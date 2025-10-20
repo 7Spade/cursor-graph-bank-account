@@ -33,8 +33,8 @@ The content is organized as follows:
 <notes>
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: angular/src/**, angular/angular.json, angular/package.json, angular/tsconfig.json, angular/tsconfig.app.json
-- Files matching these patterns are excluded: node_modules/**, angular/node_modules/**, yarn.lock, angular/pnpm-lock.yaml, .gitignore, .editorconfig, README.md, **/angular-fire-rolekit/**, angular/.angular/**, angular/public/**, *.spec.ts, *.spec.js, angular/firebase.json, angular/tsconfig.spec.json
+- Only files matching these patterns are included: angular/src/**/*.ts, angular/src/**/*.html, angular/src/**/*.scss, angular/angular.json, angular/package.json, angular/tsconfig.json, angular/tsconfig.app.json
+- Files matching these patterns are excluded: node_modules/**, angular/node_modules/**, pnpm-lock.yaml, angular/pnpm-lock.yaml, .gitignore, .editorconfig, README.md, **/angular-fire-rolekit/**, angular/.angular/**, angular/public/**, *.spec.ts, *.spec.js, angular/firebase.json, angular/tsconfig.spec.json
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Content has been compressed - code blocks are separated by ⋮---- delimiter
@@ -82,6 +82,8 @@ angular/src/app/features/organization/components/organization-card.component.ts
 angular/src/app/features/organization/components/organization-create-dialog.component.ts
 angular/src/app/features/organization/components/organization-create.component.ts
 angular/src/app/features/organization/components/organization-detail.component.ts
+angular/src/app/features/organization/components/organization-edit-dialog.component.ts
+angular/src/app/features/organization/components/organization-fixes-test.component.ts
 angular/src/app/features/organization/components/organization-list.component.ts
 angular/src/app/features/organization/components/organization-roles.component.ts
 angular/src/app/features/organization/components/organization-settings.component.ts
@@ -90,6 +92,7 @@ angular/src/app/features/organization/components/team-create-dialog.component.ts
 angular/src/app/features/organization/components/team-create.component.ts
 angular/src/app/features/organization/components/team-detail.component.ts
 angular/src/app/features/organization/components/team-edit.component.ts
+angular/src/app/features/organization/components/team-functionality-test.component.ts
 angular/src/app/features/organization/components/team-management.component.ts
 angular/src/app/features/organization/components/teams-list.component.ts
 angular/src/app/features/organization/index.ts
@@ -136,6 +139,7 @@ angular/src/app/features/user/profile/services/profile-state.service.ts
 angular/src/app/features/user/services/user.service.ts
 angular/src/app/features/user/user.routes.ts
 angular/src/app/landing/landing.component.ts
+angular/src/app/shared/components/confirm-dialog.component.ts
 angular/src/app/shared/components/index.ts
 angular/src/app/shared/index.ts
 angular/src/app/shared/types/dialog-event.types.ts
@@ -144,6 +148,7 @@ angular/src/app/shared/types/validation.types.ts
 angular/src/app/shared/utils/index.ts
 angular/src/environments/environment.prod.ts
 angular/src/environments/environment.sample.ts
+angular/src/environments/environment.ts
 angular/src/index.html
 angular/src/main.ts
 angular/src/styles.scss
@@ -2535,178 +2540,110 @@ this.authService.currentAccount()?.id || '', // 從 AuthService 獲取當前用�
 goBack()
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-detail.component.ts">
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+<file path="angular/src/app/features/organization/components/organization-edit-dialog.component.ts">
+import { Component, Inject, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
 import { firstValueFrom } from 'rxjs';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 ⋮----
+import { Organization } from '../../../core/models/auth.model';
 import { OrganizationService } from '../../../core/services/organization.service';
-import { PermissionService } from '../../../core/services/permission.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { LoggerService } from '../../../core/services/logger.service';
 import { NotificationService } from '../../../core/services/notification.service';
-import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
 ⋮----
 /**
- * 組織詳情組件
- * 顯示組織的基本信息和統計數據
+ * 組織編輯對話框組件
+ * 允許用戶編輯組織的基本信息
  */
 ⋮----
-export class OrganizationDetailComponent implements OnInit {
+export class OrganizationEditDialogComponent implements OnInit {
 ⋮----
 // Signals
 ⋮----
-// Computed signals
+// Form
+⋮----
+constructor(
+    private dialogRef: MatDialogRef<OrganizationEditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Organization
+)
 ⋮----
 async ngOnInit()
 ⋮----
-// 設置當前組織到權限服務
+private async loadOrganizationData()
 ⋮----
-// 載入組織詳情
+// 填充表單數據
 ⋮----
-async loadOrganization()
+async onSave()
 ⋮----
-// 載入組織資訊
+// 準備更新數據
 ⋮----
-// 載入團隊列表 - 暫時設為空數組，因為 getOrganizationTeams 方法不存在
+email: this.data.profile.email, // 保持原有電子郵件
+avatar: this.data.profile.avatar, // 保持原有頭像
 ⋮----
-// 載入成員列表
+// 更新組織檔案
 ⋮----
-editOrganization()
+// 如果有描述變更，也需要更新組織描述
 ⋮----
-async deleteOrganization()
-⋮----
-// 確認刪除
-⋮----
-goToMembers()
-⋮----
-goToTeams()
-⋮----
-goToSettings()
-⋮----
-viewTeam(teamId: string)
+onCancel()
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-list.component.ts">
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
+<file path="angular/src/app/features/organization/components/organization-fixes-test.component.ts">
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { firstValueFrom } from 'rxjs';
-⋮----
-import { OrganizationService } from '../../../core/services/organization.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { NotificationService } from '../../../core/services/notification.service';
-import { LoggerService } from '../../../core/services/logger.service';
-import { OrganizationCardComponent } from '../components/organization-card.component';
-import { OrganizationCreateDialogComponent } from '../components/organization-create-dialog.component';
-import { OrganizationDetail } from '../../../core/models/auth.model';
-import { OrganizationCreatedEvent } from '../models/organization-create.model';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 ⋮----
 /**
- * 組織列表組件
- * 單一職責：顯示組織列表和提供建立組織的功能
- * 遵循單一職責原則：只負責組織列表的顯示和建立組織的入口
+ * 組織服務修復測試組件
+ * 用於驗證所有修復功能是否正常工作
  */
 ⋮----
-export class OrganizationListComponent implements OnInit {
+export class OrganizationFixesTestComponent implements OnInit {
 ⋮----
-// 服務注入
+ngOnInit()
 ⋮----
-// 狀態管理
+// 初始化測試狀態
 ⋮----
-// 只讀信號
+getStatusColor(feature: string): string
 ⋮----
-ngOnInit(): void
+getStatusText(feature: string): string
 ⋮----
-/**
-   * 載入組織列表
-   */
-async loadOrganizations(): Promise<void>
+async runTests()
 ⋮----
-// 獲取當前用戶
+resetTests()
 ⋮----
-// 調用服務方法獲取用戶的組織列表
+private async testViewFunction(): Promise<
 ⋮----
-// 將 Organization 轉換為 OrganizationDetail
+// 測試檢視功能
 ⋮----
-slug: org.login, // 使用 login 作為 slug
+// 這裡可以添加實際的測試邏輯
 ⋮----
-type: 'construction' as const, // 暫時設為 construction，可以後續優化
+private async testEditFunction(): Promise<
 ⋮----
-phone: undefined, // ProfileVO 沒有 phone 字段
+// 測試編輯功能
 ⋮----
-members: [], // 暫時設為空數組，可以後續優化
-teams: [],   // 暫時設為空數組，可以後續優化
-securityManagers: [], // 暫時設為空數組，可以後續優化
-organizationRoles: [], // 暫時設為空數組，可以後續優化
+// 這裡可以添加實際的測試邏輯
 ⋮----
-/**
-   * 建立組織信號
-   */
-createOrganizationSignal(organization: OrganizationDetail)
+private async testDeleteFunction(): Promise<
 ⋮----
-/**
-   * 建立選中狀態信號
-   */
-createIsSelectedSignal(isSelected: boolean)
+// 測試刪除功能
 ⋮----
-/**
-   * 打開建立組織對話框
-   */
-openCreateOrganizationDialog(): void
+// 這裡可以添加實際的測試邏輯
 ⋮----
-this.loadOrganizations(); // 重新載入組織列表
+private async testSettingsFunction(): Promise<
 ⋮----
-/**
-   * 檢視組織
-   */
-onViewOrganization(organization: OrganizationDetail): void
+// 測試設定功能
 ⋮----
-/**
-   * 編輯組織
-   */
-onEditOrganization(organization: OrganizationDetail): void
-⋮----
-// 暫時顯示提示，後續可以實現編輯對話框
-⋮----
-// 使用適當的日誌記錄服務替代 console.log
-⋮----
-/**
-   * 組織設定
-   */
-onOrganizationSettings(organization: OrganizationDetail): void
-⋮----
-/**
-   * 組織成員
-   */
-onOrganizationMembers(organization: OrganizationDetail): void
-⋮----
-/**
-   * 組織團隊
-   */
-onOrganizationTeams(organization: OrganizationDetail): void
-⋮----
-/**
-   * 刪除組織
-   */
-onDeleteOrganization(organization: OrganizationDetail): void
-⋮----
-// 暫時顯示提示，後續可以實現刪除功能
-⋮----
-// 使用適當的日誌記錄服務替代 console.log
+// 這裡可以添加實際的測試邏輯
 </file>
 
 <file path="angular/src/app/features/organization/components/organization-roles.component.ts">
@@ -3118,6 +3055,71 @@ async saveTeam()
 goBack()
 </file>
 
+<file path="angular/src/app/features/organization/components/team-functionality-test.component.ts">
+import { Component, OnInit, signal, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { TeamCreateDialogComponent } from './team-create-dialog.component';
+⋮----
+/**
+ * 團隊功能測試組件
+ * 用於驗證團隊相關功能是否正常工作
+ */
+⋮----
+export class TeamFunctionalityTestComponent implements OnInit {
+⋮----
+ngOnInit()
+⋮----
+private async loadCurrentOrganization()
+⋮----
+// 這裡應該從路由或服務獲取當前組織 ID
+// 暫時使用模擬數據
+⋮----
+private async loadTeamStats()
+⋮----
+// 計算總成員數
+⋮----
+getStatusColor(feature: string): string
+⋮----
+getStatusText(feature: string): string
+⋮----
+async runAllTests()
+⋮----
+async testCreateTeam()
+⋮----
+resetTests()
+⋮----
+private async testCreateFunction(): Promise<
+⋮----
+// 測試團隊創建功能
+⋮----
+private async testListFunction(): Promise<
+⋮----
+// 測試團隊列表功能
+⋮----
+private async testEditFunction(): Promise<
+⋮----
+// 測試團隊編輯功能
+⋮----
+private async testDeleteFunction(): Promise<
+⋮----
+// 測試團隊刪除功能
+⋮----
+private async testPermissionsFunction(): Promise<
+⋮----
+// 測試權限控制
+</file>
+
 <file path="angular/src/app/features/organization/components/team-management.component.ts">
 import { Component, Input, Output, EventEmitter, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -3293,12 +3295,6 @@ async deleteTeam(team: Team)
 // 確認對話框
 ⋮----
 // 重新載入團隊列表
-</file>
-
-<file path="angular/src/app/features/organization/index.ts">
-// 組織模組匯出檔案
-⋮----
-// 模型匯出 - Organization 相關模型已移至 core/models/auth.model.ts
 </file>
 
 <file path="angular/src/app/features/organization/models/organization-create.model.ts">
@@ -5779,6 +5775,41 @@ navigateToLogin()
 navigateToSignup()
 </file>
 
+<file path="angular/src/app/shared/components/confirm-dialog.component.ts">
+import { Component, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+⋮----
+export interface ConfirmDialogData {
+  title: string;
+  message: string;
+  confirmText?: string;
+  cancelText?: string;
+  type?: 'warning' | 'danger' | 'info';
+}
+⋮----
+/**
+ * 確認對話框組件
+ * 用於顯示確認操作的對話框
+ */
+⋮----
+export class ConfirmDialogComponent {
+⋮----
+constructor(
+⋮----
+getIcon(): string
+⋮----
+getIconClass(): string
+⋮----
+getConfirmColor(): string
+⋮----
+onConfirm()
+⋮----
+onCancel()
+</file>
+
 <file path="angular/src/app/shared/components/index.ts">
 // 共享組件匯出檔案
 // 目前暫無共享組件，未來可在此添加
@@ -6097,6 +6128,14 @@ export interface ValidationConfig {
 // reCAPTCHA Enterprise site key for production
 </file>
 
+<file path="angular/src/environments/environment.ts">
+//All this info will be in firebase console -> project overview -> project settings -> your apps (ex: webapp)
+⋮----
+// Debug token for local development
+⋮----
+// reCAPTCHA Enterprise site key for production
+</file>
+
 <file path="angular/src/index.html">
 <!doctype html>
 <html lang="en">
@@ -6258,57 +6297,191 @@ constructor()
 // Firebase 和 App Check 已正確配置
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-settings.component.ts">
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
+<file path="angular/src/app/features/organization/components/organization-detail.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 ⋮----
-import { Organization } from '../../../core/models/auth.model';
-import { NotificationService } from '../../../core/services/notification.service';
 import { OrganizationService } from '../../../core/services/organization.service';
 import { PermissionService } from '../../../core/services/permission.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
+import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
 ⋮----
 /**
- * 組織設定組件
- * 允許組織管理員編輯組織的基本資訊
+ * 組織詳情組件
+ * 顯示組織的基本信息和統計數據
  */
 ⋮----
-export class OrganizationSettingsComponent implements OnInit {
+export class OrganizationDetailComponent implements OnInit {
 ⋮----
 // Signals
 ⋮----
-// Form data
+// Computed signals
 ⋮----
 async ngOnInit()
 ⋮----
-// 檢查權限
+// 設置當前組織到權限服務
+⋮----
+// 載入組織詳情
 ⋮----
 async loadOrganization()
 ⋮----
-// 填充表單數據
+// 載入組織資訊
 ⋮----
-isFormValid(): boolean
+// 載入團隊列表
 ⋮----
-async onSubmit()
+// 載入成員列表
 ⋮----
-// 準備 Profile 和 Settings 數據
+editOrganization()
 ⋮----
-email: '', // 組織沒有電子郵件
+// 重新載入組織信息
 ⋮----
-// 使用批次更新確保事務性
+async deleteOrganization()
 ⋮----
-resetForm()
+// 檢查權限
 ⋮----
-goBack()
+// 顯示確認對話框
+⋮----
+goToMembers()
+⋮----
+goToTeams()
+⋮----
+goToSettings()
+⋮----
+viewTeam(teamId: string)
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-list.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { OrganizationCardComponent } from '../components/organization-card.component';
+import { OrganizationCreateDialogComponent } from '../components/organization-create-dialog.component';
+import { OrganizationDetail } from '../../../core/models/auth.model';
+import { OrganizationCreatedEvent } from '../models/organization-create.model';
+⋮----
+/**
+ * 組織列表組件
+ * 單一職責：顯示組織列表和提供建立組織的功能
+ * 遵循單一職責原則：只負責組織列表的顯示和建立組織的入口
+ */
+⋮----
+export class OrganizationListComponent implements OnInit {
+⋮----
+// 服務注入
+⋮----
+// 狀態管理
+⋮----
+// 只讀信號
+⋮----
+ngOnInit(): void
+⋮----
+/**
+   * 載入組織列表
+   */
+async loadOrganizations(): Promise<void>
+⋮----
+// 獲取當前用戶
+⋮----
+// 調用服務方法獲取用戶的組織列表
+⋮----
+// 將 Organization 轉換為 OrganizationDetail
+⋮----
+slug: org.login, // 使用 login 作為 slug
+⋮----
+type: 'construction' as const, // 暫時設為 construction，可以後續優化
+⋮----
+phone: undefined, // ProfileVO 沒有 phone 字段
+⋮----
+members: [], // 將在需要時動態載入
+teams: [],   // 將在需要時動態載入
+securityManagers: [], // 將在需要時動態載入
+organizationRoles: [], // 將在需要時動態載入
+⋮----
+/**
+   * 建立組織信號
+   */
+createOrganizationSignal(organization: OrganizationDetail)
+⋮----
+/**
+   * 建立選中狀態信號
+   */
+createIsSelectedSignal(isSelected: boolean)
+⋮----
+/**
+   * 打開建立組織對話框
+   */
+openCreateOrganizationDialog(): void
+⋮----
+this.loadOrganizations(); // 重新載入組織列表
+⋮----
+/**
+   * 檢視組織
+   */
+onViewOrganization(organization: OrganizationDetail): void
+⋮----
+/**
+   * 編輯組織
+   */
+onEditOrganization(organization: OrganizationDetail): void
+⋮----
+// 暫時顯示提示，後續可以實現編輯對話框
+⋮----
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+/**
+   * 組織設定
+   */
+onOrganizationSettings(organization: OrganizationDetail): void
+⋮----
+/**
+   * 組織成員
+   */
+onOrganizationMembers(organization: OrganizationDetail): void
+⋮----
+/**
+   * 組織團隊
+   */
+onOrganizationTeams(organization: OrganizationDetail): void
+⋮----
+/**
+   * 刪除組織
+   */
+onDeleteOrganization(organization: OrganizationDetail): void
+⋮----
+// 暫時顯示提示，後續可以實現刪除功能
+⋮----
+// 使用適當的日誌記錄服務替代 console.log
+</file>
+
+<file path="angular/src/app/features/organization/index.ts">
+// 組織模組匯出檔案
+⋮----
+// 模型匯出 - Organization 相關模型已移至 core/models/auth.model.ts
 </file>
 
 <file path="angular/src/app/core/models/auth.model.ts">
@@ -6903,6 +7076,74 @@ export interface TeamVO {
 }
 ⋮----
 // 驗證工具函數已移至 core/utils/validation.utils.ts
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-settings.component.ts">
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { Organization } from '../../../core/models/auth.model';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
+⋮----
+/**
+ * 組織設定組件
+ * 允許組織管理員編輯組織的基本資訊
+ */
+⋮----
+export class OrganizationSettingsComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Form data
+⋮----
+// 檢查表單是否有變更
+hasFormChanged(): boolean
+⋮----
+async ngOnInit()
+⋮----
+// 檢查權限
+⋮----
+async loadOrganization()
+⋮----
+// 填充表單數據
+⋮----
+isFormValid(): boolean
+⋮----
+private isSlugValid(): boolean
+⋮----
+// Slug 只能包含小寫字母、數字和連字符
+⋮----
+private isDescriptionValid(): boolean
+⋮----
+getFieldError(field: string): string
+⋮----
+async onSubmit()
+⋮----
+// 準備 Profile 和 Settings 數據
+⋮----
+email: '', // 組織沒有電子郵件
+⋮----
+// 使用批次更新確保事務性
+⋮----
+resetForm()
+⋮----
+async goBack()
+⋮----
+onBeforeUnload(event: BeforeUnloadEvent): void
 </file>
 
 <file path="angular/src/app/core/services/organization.service.ts">
