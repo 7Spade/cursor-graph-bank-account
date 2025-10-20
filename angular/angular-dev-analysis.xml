@@ -6066,138 +6066,6 @@ constructor()
 // Firebase 和 App Check 已正確配置
 </file>
 
-<file path="angular/src/app/core/guards/permission.guard.ts">
-// src/app/core/guards/permission.guard.ts
-⋮----
-import { inject } from '@angular/core';
-import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
-import { authState } from 'rxfire/auth';
-import { map } from 'rxjs';
-import { PermissionService } from '../services/permission.service';
-import { AuthService } from '../services/auth.service';
-import { OrgRole } from '../models/auth.model';
-⋮----
-// authGuard 已移至 features/user/auth/auth.guard.ts
-// 請使用統一的 authGuard 實作
-⋮----
-/**
- * 用戶角色守衛工廠函數
- * @param expectedRole 預期的用戶角色
- * @returns CanActivateFn
- */
-export function roleGuard(expectedRole: string): CanActivateFn
-⋮----
-// 檢查用戶角色
-⋮----
-// 檢查是否有預期角色
-⋮----
-// 如果沒有預期角色，重定向到未授權頁面
-⋮----
-// 組織帳戶不支援角色守衛
-⋮----
-/**
- * 通用權限守衛
- * 從路由數據中讀取權限配置
- */
-export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
-⋮----
-// 從路由數據中獲取權限配置
-⋮----
-return true; // 如果沒有權限配置，允許訪問
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 權限守衛工廠函數
- * @param action 權限動作 (read, write, admin, delete)
- * @param resource 資源類型 (organization, team, repository, member)
- * @returns CanActivateFn
- */
-export function createPermissionGuard(action: string, resource: string): CanActivateFn
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織權限守衛工廠函數
- * @param role 組織角色
- * @returns CanActivateFn
- */
-export function orgRoleGuard(role: OrgRole): CanActivateFn
-⋮----
-// 檢查組織角色
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織管理員守衛
- * 檢查用戶是否為組織管理員或擁有者
- */
-export const orgAdminGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織管理員
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織擁有者守衛
- * 檢查用戶是否為組織擁有者
- */
-export const orgOwnerGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織擁有者
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 讀取權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryReadGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 讀取權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 寫入權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryWriteGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 寫入權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 管理權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryManageGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 團隊管理權限守衛
- * @param teamId 團隊 ID
- * @returns CanActivateFn
- */
-export function teamManageGuard(teamId: string): CanActivateFn
-⋮----
-// 檢查團隊管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-</file>
-
 <file path="angular/src/app/features/organization/components/organization-detail.component.ts">
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6225,7 +6093,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
  * 顯示組織的基本信息和統計數據
  */
 ⋮----
-export class OrganizationDetailComponent implements OnInit
+export class OrganizationDetailComponent implements OnInit {
 ⋮----
 // Signals
 ⋮----
@@ -6385,50 +6253,6 @@ onDeleteOrganization(organization: OrganizationDetail): void
 // 模型匯出 - Organization 相關模型已移至 core/models/auth.model.ts
 </file>
 
-<file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
-import { Routes } from '@angular/router';
-import { permissionGuard } from '../../../core/guards/permission.guard';
-⋮----
-/**
- * 組織詳細路由配置
- * 支援完整的組織層級結構，包含成員、團隊、設定等子路由
- * 對齊 docs/account.md 的設計
- */
-⋮----
-// 組織設定 - 需要寫入權限
-⋮----
-// 成員管理 - 需要讀取成員權限
-⋮----
-// 團隊管理路由
-⋮----
-// 角色管理 - 需要管理權限
-⋮----
-// 安全管理器 - 需要管理權限
-⋮----
-// Repository 管理 - 暫時註解掉，因為組件尚未創建
-// {
-//   path: 'repositories',
-//   children: [
-//     {
-//       path: '',
-//       loadComponent: () => import('../../repository/components/repository-list.component').then(m => m.RepositoryListComponent),
-//       canActivate: [permissionGuard],
-//       data: { permission: { action: 'read', resource: 'repository' } },
-//       title: 'Repository 列表'
-//     },
-//     {
-//       path: 'new',
-//       loadComponent: () => import('../../repository/components/repository-create.component').then(m => m.RepositoryCreateComponent),
-//       canActivate: [permissionGuard],
-//       data: { permission: { action: 'write', resource: 'repository' } },
-//       title: '建立 Repository'
-//     }
-//   ]
-// },
-⋮----
-// 預設重定向到組織詳情
-</file>
-
 <file path="angular/package.json">
 {
   "name": "angular-fire-rolekit",
@@ -6483,6 +6307,138 @@ import { permissionGuard } from '../../../core/guards/permission.guard';
     "typescript": "~5.8.2"
   }
 }
+</file>
+
+<file path="angular/src/app/core/guards/permission.guard.ts">
+// src/app/core/guards/permission.guard.ts
+⋮----
+import { inject } from '@angular/core';
+import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { authState } from 'rxfire/auth';
+import { map } from 'rxjs';
+import { PermissionService } from '../services/permission.service';
+import { AuthService } from '../services/auth.service';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// authGuard 已移至 features/user/auth/auth.guard.ts
+// 請使用統一的 authGuard 實作
+⋮----
+/**
+ * 用戶角色守衛工廠函數
+ * @param expectedRole 預期的用戶角色
+ * @returns CanActivateFn
+ */
+export function roleGuard(expectedRole: string): CanActivateFn
+⋮----
+// 檢查用戶角色
+⋮----
+// 檢查是否有預期角色
+⋮----
+// 如果沒有預期角色，重定向到未授權頁面
+⋮----
+// 組織帳戶不支援角色守衛
+⋮----
+/**
+ * 通用權限守衛
+ * 從路由數據中讀取權限配置
+ */
+export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
+⋮----
+// 從路由數據中獲取權限配置
+⋮----
+return true; // 如果沒有權限配置，允許訪問
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 權限守衛工廠函數
+ * @param action 權限動作 (read, write, admin, delete)
+ * @param resource 資源類型 (organization, team, repository, member)
+ * @returns CanActivateFn
+ */
+export function createPermissionGuard(action: string, resource: string): CanActivateFn
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織權限守衛工廠函數
+ * @param role 組織角色
+ * @returns CanActivateFn
+ */
+export function orgRoleGuard(role: OrgRole): CanActivateFn
+⋮----
+// 檢查組織角色
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織管理員守衛
+ * 檢查用戶是否為組織管理員或擁有者
+ */
+export const orgAdminGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織管理員
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織擁有者守衛
+ * 檢查用戶是否為組織擁有者
+ */
+export const orgOwnerGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織擁有者
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 讀取權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryReadGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 讀取權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 寫入權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryWriteGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 寫入權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 管理權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryManageGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 團隊管理權限守衛
+ * @param teamId 團隊 ID
+ * @returns CanActivateFn
+ */
+export function teamManageGuard(teamId: string): CanActivateFn
+⋮----
+// 檢查團隊管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
 </file>
 
 <file path="angular/src/app/core/models/auth.model.ts">
@@ -7079,6 +7035,50 @@ export interface TeamVO {
 // 驗證工具函數已移至 core/utils/validation.utils.ts
 </file>
 
+<file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
+import { Routes } from '@angular/router';
+import { permissionGuard } from '../../../core/guards/permission.guard';
+⋮----
+/**
+ * 組織詳細路由配置
+ * 支援完整的組織層級結構，包含成員、團隊、設定等子路由
+ * 對齊 docs/account.md 的設計
+ */
+⋮----
+// 組織設定 - 需要寫入權限
+⋮----
+// 成員管理 - 需要讀取成員權限
+⋮----
+// 團隊管理路由
+⋮----
+// 角色管理 - 需要管理權限
+⋮----
+// 安全管理器 - 需要管理權限
+⋮----
+// Repository 管理 - 暫時註解掉，因為組件尚未創建
+// {
+//   path: 'repositories',
+//   children: [
+//     {
+//       path: '',
+//       loadComponent: () => import('../../repository/components/repository-list.component').then(m => m.RepositoryListComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'read', resource: 'repository' } },
+//       title: 'Repository 列表'
+//     },
+//     {
+//       path: 'new',
+//       loadComponent: () => import('../../repository/components/repository-create.component').then(m => m.RepositoryCreateComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'write', resource: 'repository' } },
+//       title: '建立 Repository'
+//     }
+//   ]
+// },
+⋮----
+// 預設重定向到組織詳情
+</file>
+
 <file path="angular/src/app/features/organization/components/organization-settings.component.ts">
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
@@ -7184,7 +7184,7 @@ import { AuthService } from './auth.service';
 import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { NotificationService } from './notification.service';
 ⋮----
-export class OrganizationService
+export class OrganizationService {
 ⋮----
 // Signals for state management
 ⋮----
