@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 
 import { OrganizationService } from '../../../core/services/organization.service';
@@ -15,6 +16,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LoggerService } from '../../../core/services/logger.service';
 import { NotificationService } from '../../../core/services/notification.service';
 import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
+import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
 
 /**
  * 組織詳情組件
@@ -356,6 +359,7 @@ export class OrganizationDetailComponent implements OnInit {
   private authService = inject(AuthService);
   private logger = inject(LoggerService);
   private notificationService = inject(NotificationService);
+  private dialog = inject(MatDialog);
 
   // Signals
   organization = signal<Organization | null>(null);
@@ -402,8 +406,9 @@ export class OrganizationDetailComponent implements OnInit {
         return;
       }
 
-      // 載入團隊列表 - 暫時設為空數組，因為 getOrganizationTeams 方法不存在
-      this.teams.set([]);
+      // 載入團隊列表
+      const teams = await firstValueFrom(this.orgService.getOrganizationTeams(this.orgId));
+      this.teams.set(teams || []);
 
       // 載入成員列表
       const members = await firstValueFrom(this.orgService.getOrganizationMembers(this.orgId));
@@ -417,13 +422,51 @@ export class OrganizationDetailComponent implements OnInit {
   }
 
   editOrganization() {
-    this.router.navigate(['settings'], { relativeTo: this.route });
+    if (!this.organization()) {
+      this.notificationService.showError('無法載入組織信息');
+      return;
+    }
+
+    const dialogRef = this.dialog.open(OrganizationEditDialogComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      data: this.organization(),
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // 重新載入組織信息
+        this.loadOrganization();
+      }
+    });
   }
 
   async deleteOrganization() {
-    // 確認刪除
-    const confirmed = confirm('確定要刪除這個組織嗎？此操作無法撤銷。');
-    if (!confirmed) return;
+    // 檢查權限
+    if (!this.permissionService.isOrganizationOwner()) {
+      this.notificationService.showError('只有組織擁有者可以刪除組織');
+      return;
+    }
+
+    // 顯示確認對話框
+    const dialogData: ConfirmDialogData = {
+      title: '刪除組織',
+      message: `確定要刪除組織「${this.organization()?.profile.name}」嗎？此操作無法撤銷，將刪除所有相關數據，包括：\n\n• 所有團隊和成員\n• 所有專案和儲存庫\n• 所有設定和權限\n\n請謹慎操作！`,
+      confirmText: '刪除組織',
+      cancelText: '取消',
+      type: 'danger'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      maxWidth: '90vw',
+      data: dialogData,
+      disableClose: true
+    });
+
+    const result = await firstValueFrom(dialogRef.afterClosed());
+    if (!result) return;
 
     try {
       await this.orgService.deleteOrganization(this.orgId);

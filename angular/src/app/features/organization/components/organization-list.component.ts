@@ -288,10 +288,10 @@ export class OrganizationListComponent implements OnInit {
           phone: undefined, // ProfileVO 沒有 phone 字段
           avatar: org.profile.avatar
         },
-        members: [], // 暫時設為空數組，可以後續優化
-        teams: [],   // 暫時設為空數組，可以後續優化
-        securityManagers: [], // 暫時設為空數組，可以後續優化
-        organizationRoles: [], // 暫時設為空數組，可以後續優化
+        members: [], // 將在需要時動態載入
+        teams: [],   // 將在需要時動態載入
+        securityManagers: [], // 將在需要時動態載入
+        organizationRoles: [], // 將在需要時動態載入
         createdAt: org.createdAt,
         updatedAt: org.updatedAt
       }));
