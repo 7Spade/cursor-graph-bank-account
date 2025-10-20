@@ -1,6 +1,6 @@
 # Active Context
 
-- 環境：Windows p
+- 環境：Windows 11、包管理器：pnpm、編輯器：Cursor
 - 專案：Angular v20 + Firebase（@angular/fire）
 - 模式：PLAN（規劃模式 - Level 3 中級功能）
 - 複雜度：Level 3（權限系統修復 - 多組件協調）
