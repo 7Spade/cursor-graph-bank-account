@@ -99,7 +99,7 @@
       ]
     },
     "Context7": {
-      "url": "http://localhost:3000/mcp",
+      "url": "https://mcp.context7.com/mcp",
       "disabled": false,
       "autoApprove": [
         "resolve-library-id",
