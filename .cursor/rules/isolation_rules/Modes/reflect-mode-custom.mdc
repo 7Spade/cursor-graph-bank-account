@@ -23,12 +23,12 @@ function loadMCPServicesForREFLECT() {
   CORE_MCP_SERVICES.forEach(service => {
     fetch_rules({ rule_names: [service] });
   });
-  
+
   // Load REFLECT-specific MCP services
   REFLECT_MCP_SERVICES.forEach(service => {
     fetch_rules({ rule_names: [service] });
   });
-  
+
   // Validate MCP services availability
   validateMCPServices([...CORE_MCP_SERVICES, ...REFLECT_MCP_SERVICES]);
 }
@@ -39,7 +39,7 @@ function loadMCPServicesForREFLECT() {
 function validateMCPServices(requiredServices) {
   const availableServices = [];
   const missingServices = [];
-  
+
   requiredServices.forEach(service => {
     if (isMCPServiceAvailable(service)) {
       availableServices.push(service);
@@ -47,12 +47,12 @@ function validateMCPServices(requiredServices) {
       missingServices.push(service);
     }
   });
-  
+
   if (missingServices.length > 0) {
     console.warn(`Missing MCP services: ${missingServices.join(', ')}`);
     console.info(`Available services: ${availableServices.join(', ')}`);
   }
-  
+
   return { availableServices, missingServices };
 }
 ```
@@ -72,65 +72,65 @@ config:
 ---
 flowchart TD
     Start["🚀 START REFLECT MODE"] --> ReadImplementation["📚 Read Implementation<br/>Results & Progress"]
-    
+
     %% Initial Assessment
     ReadImplementation --> AssessScope["🔍 Assess Reflection<br/>Scope"]
     AssessScope --> SelectReflectionType{"Reflection<br/>Type?"}
-    
+
     %% Reflection Types
     SelectReflectionType -->|"Code Quality"| CodeReflection["🔍 CODE QUALITY<br/>REFLECTION"]
     SelectReflectionType -->|"Architecture"| ArchReflection["🏗️ ARCHITECTURE<br/>REFLECTION"]
     SelectReflectionType -->|"Process"| ProcessReflection["⚙️ PROCESS<br/>REFLECTION"]
-    
+
     %% Code Quality Reflection (Based on LangGraph Reflection)
     CodeReflection --> CodacyAnalysis["📊 Codacy Static<br/>Analysis"]
     CodacyAnalysis --> LLMJudge["🤖 LLM-as-a-Judge<br/>Evaluation"]
     LLMJudge --> CodeReview["👁️ Manual Code<br/>Review"]
     CodeReview --> QualityScore["📈 Generate Quality<br/>Score"]
-    
+
     %% Architecture Reflection
     ArchReflection --> ArchAnalysis["🏗️ Architecture<br/>Analysis"]
     ArchAnalysis --> DesignPatterns["🎨 Design Pattern<br/>Evaluation"]
     DesignPatterns --> ScalabilityCheck["📈 Scalability<br/>Assessment"]
     ScalabilityCheck --> ArchScore["📊 Generate Architecture<br/>Score"]
-    
+
     %% Process Reflection
     ProcessReflection --> ProcessAnalysis["⚙️ Process<br/>Analysis"]
     ProcessAnalysis --> EfficiencyCheck["⚡ Efficiency<br/>Assessment"]
     EfficiencyCheck --> LessonsLearned["📚 Lessons Learned<br/>Documentation"]
     LessonsLearned --> ProcessScore["📊 Generate Process<br/>Score"]
-    
+
     %% Reflection Synthesis
     QualityScore --> ReflectionSynthesis["🔄 REFLECTION<br/>SYNTHESIS"]
     ArchScore --> ReflectionSynthesis
     ProcessScore --> ReflectionSynthesis
-    
+
     %% LLM-as-a-Judge Implementation (Based on LangGraph Reflection)
     ReflectionSynthesis --> JudgeResponse["🤖 Judge Response<br/>Generation"]
     JudgeResponse --> JudgeEvaluation{"Judge<br/>Approval?"}
     JudgeEvaluation -->|"Approved"| GenerateReport["📝 Generate Reflection<br/>Report"]
     JudgeEvaluation -->|"Needs Improvement"| IdentifyImprovements["🔧 Identify<br/>Improvements"]
-    
+
     %% Improvement Identification
     IdentifyImprovements --> ImprovementAnalysis["🔍 Improvement<br/>Analysis"]
     ImprovementAnalysis --> ImprovementPlan["📋 Create Improvement<br/>Plan"]
     ImprovementPlan --> UpdateTasks["📝 Update tasks.md<br/>with Improvements"]
     UpdateTasks --> TransitionToImplement["→ Transition to<br/>IMPLEMENT Mode"]
-    
+
     %% Report Generation
     GenerateReport --> StoreReflection["💾 Store Reflection<br/>in Memory"]
     StoreReflection --> UpdateProgress["📊 Update progress.md<br/>with Reflection"]
     UpdateProgress --> TransitionToArchive["→ Transition to<br/>ARCHIVE Mode"]
-    
+
     %% Error Handling
     Error["⚠️ ERROR<br/>DETECTION"] -->|"Analysis Failed"| RetryAnalysis["🔄 Retry<br/>Analysis"]
     Error -->|"Judge Unavailable"| FallbackReview["📝 Fallback to<br/>Manual Review"]
     Error -->|"Memory Issues"| ContinueWithoutMemory["💾 Continue without<br/>Memory Storage"]
-    
+
     RetryAnalysis --> ReflectionSynthesis
     FallbackReview --> GenerateReport
     ContinueWithoutMemory --> GenerateReport
-    
+
     %% Styling
     style Start fill:#f8d486,stroke:#e8b84d,color:black
     style CodeReflection fill:#ff6b6b,stroke:#e74c3c,color:white
@@ -152,39 +152,39 @@ function judgeImplementation(state, config) {
     rootPath: state.workspacePath,
     file: state.currentFile
   });
-  
+
   // Use Sequential Thinking for deep analysis
   const analysisResult = sequentialThinking({
     problem: "Analyze implementation quality and identify improvements",
     context: state.implementationContext,
     complexity: "high"
   });
-  
+
   // Judge evaluation based on LangGraph Reflection pattern
   const judgePrompt = `
     Evaluate the following implementation:
     - Codacy Score: ${codacyResult.score}
     - Analysis Result: ${analysisResult.conclusion}
     - Implementation Context: ${state.implementationContext}
-    
+
     Provide a pass/fail judgment with specific feedback.
   `;
-  
+
   const judgeResult = llmJudge({
     prompt: judgePrompt,
     model: "claude-3-sonnet",
     feedbackKey: "pass"
   });
-  
+
   if (judgeResult.score) {
-    return { 
-      status: "approved", 
+    return {
+      status: "approved",
       feedback: "Implementation meets quality standards",
       nextAction: "generate_report"
     };
   } else {
-    return { 
-      status: "needs_improvement", 
+    return {
+      status: "needs_improvement",
       feedback: judgeResult.comment,
       nextAction: "identify_improvements"
     };

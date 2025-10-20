@@ -1,10 +1,13 @@
 // src/app/core/guards/permission.guard.ts
 
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
-import { OrgRole } from '../models/auth.model';
-import { AuthService } from '../services/auth.service';
+import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { authState } from 'rxfire/auth';
+import { map } from 'rxjs';
 import { PermissionService } from '../services/permission.service';
+import { AuthService } from '../services/auth.service';
+import { OrgRole } from '../models/auth.model';
 
 // authGuard 已移至 features/user/auth/auth.guard.ts
 // 請使用統一的 authGuard 實作
@@ -20,7 +23,7 @@ export function roleGuard(expectedRole: string): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -30,12 +33,12 @@ export function roleGuard(expectedRole: string): CanActivateFn {
     if (currentAccount.type === 'user') {
       const user = currentAccount;
       const permissions = user.permissions;
-
+      
       // 檢查是否有預期角色
       if (permissions.roles.includes(expectedRole)) {
         return true;
       }
-
+      
       // 如果沒有預期角色，重定向到未授權頁面
       router.navigate(['/unauthorized']);
       return false;
@@ -49,15 +52,15 @@ export function roleGuard(expectedRole: string): CanActivateFn {
 
 /**
  * 通用權限守衛
- * 從路由數據中讀取權限配置，支持組織上下文
+ * 從路由數據中讀取權限配置
  */
-export const permissionGuard: CanActivateFn = async (route: ActivatedRouteSnapshot) => {
+export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const permissionService = inject(PermissionService);
   const authService = inject(AuthService);
   const router = inject(Router);
 
   const currentAccount = authService.currentAccount();
-
+  
   if (!currentAccount) {
     router.navigate(['/login']);
     return false;
@@ -65,31 +68,10 @@ export const permissionGuard: CanActivateFn = async (route: ActivatedRouteSnapsh
 
   // 從路由數據中獲取權限配置
   const permission = route.data['permission'] as { action: string; resource: string };
-
+  
   if (!permission) {
     console.warn('No permission configuration found in route data');
     return true; // 如果沒有權限配置，允許訪問
-  }
-
-  // 對於組織相關資源，確保組織上下文已設置
-  if (permission.resource === 'organization' || permission.resource === 'member' || permission.resource === 'team') {
-    const orgId = route.paramMap.get('orgId');
-
-    if (orgId) {
-      // 檢查當前組織上下文是否已設置
-      const currentOrgId = permissionService.currentOrgId();
-
-      if (currentOrgId !== orgId) {
-        // 設置組織上下文
-        try {
-          await permissionService.setCurrentOrganization(orgId);
-        } catch (error) {
-          console.error('Failed to set organization context in guard:', error);
-          router.navigate(['/unauthorized']);
-          return false;
-        }
-      }
-    }
   }
 
   // 檢查權限
@@ -115,7 +97,7 @@ export function createPermissionGuard(action: string, resource: string): CanActi
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -144,7 +126,7 @@ export function orgRoleGuard(role: OrgRole): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -171,7 +153,7 @@ export const orgAdminGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   const currentAccount = authService.currentAccount();
-
+  
   if (!currentAccount) {
     router.navigate(['/login']);
     return false;
@@ -197,7 +179,7 @@ export const orgOwnerGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   const currentAccount = authService.currentAccount();
-
+  
   if (!currentAccount) {
     router.navigate(['/login']);
     return false;
@@ -225,7 +207,7 @@ export function repositoryReadGuard(repositoryId: string): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -233,7 +215,7 @@ export function repositoryReadGuard(repositoryId: string): CanActivateFn {
 
     // 檢查 Repository 讀取權限
     const canAccess = await permissionService.canAccessRepository(repositoryId);
-
+    
     if (canAccess) {
       return true;
     }
@@ -256,7 +238,7 @@ export function repositoryWriteGuard(repositoryId: string): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -264,7 +246,7 @@ export function repositoryWriteGuard(repositoryId: string): CanActivateFn {
 
     // 檢查 Repository 寫入權限
     const canWrite = await permissionService.canWriteRepository(repositoryId);
-
+    
     if (canWrite) {
       return true;
     }
@@ -287,7 +269,7 @@ export function repositoryManageGuard(repositoryId: string): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -295,7 +277,7 @@ export function repositoryManageGuard(repositoryId: string): CanActivateFn {
 
     // 檢查 Repository 管理權限
     const canManage = await permissionService.canManageRepository(repositoryId);
-
+    
     if (canManage) {
       return true;
     }
@@ -318,7 +300,7 @@ export function teamManageGuard(teamId: string): CanActivateFn {
     const router = inject(Router);
 
     const currentAccount = authService.currentAccount();
-
+    
     if (!currentAccount) {
       router.navigate(['/login']);
       return false;
@@ -326,7 +308,7 @@ export function teamManageGuard(teamId: string): CanActivateFn {
 
     // 檢查團隊管理權限
     const canManage = await permissionService.canManageTeam(teamId);
-
+    
     if (canManage) {
       return true;
     }
@@ -336,3 +318,4 @@ export function teamManageGuard(teamId: string): CanActivateFn {
     return false;
   };
 }
+

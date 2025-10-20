@@ -334,138 +334,6 @@ import { roleGuard, orgRoleGuard, permissionGuard, orgAdminGuard, orgOwnerGuard 
 // 預設重定向
 </file>
 
-<file path="angular/src/app/core/guards/permission.guard.ts">
-// src/app/core/guards/permission.guard.ts
-⋮----
-import { inject } from '@angular/core';
-import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
-import { authState } from 'rxfire/auth';
-import { map } from 'rxjs';
-import { PermissionService } from '../services/permission.service';
-import { AuthService } from '../services/auth.service';
-import { OrgRole } from '../models/auth.model';
-⋮----
-// authGuard 已移至 features/user/auth/auth.guard.ts
-// 請使用統一的 authGuard 實作
-⋮----
-/**
- * 用戶角色守衛工廠函數
- * @param expectedRole 預期的用戶角色
- * @returns CanActivateFn
- */
-export function roleGuard(expectedRole: string): CanActivateFn
-⋮----
-// 檢查用戶角色
-⋮----
-// 檢查是否有預期角色
-⋮----
-// 如果沒有預期角色，重定向到未授權頁面
-⋮----
-// 組織帳戶不支援角色守衛
-⋮----
-/**
- * 通用權限守衛
- * 從路由數據中讀取權限配置
- */
-export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
-⋮----
-// 從路由數據中獲取權限配置
-⋮----
-return true; // 如果沒有權限配置，允許訪問
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 權限守衛工廠函數
- * @param action 權限動作 (read, write, admin, delete)
- * @param resource 資源類型 (organization, team, repository, member)
- * @returns CanActivateFn
- */
-export function createPermissionGuard(action: string, resource: string): CanActivateFn
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織權限守衛工廠函數
- * @param role 組織角色
- * @returns CanActivateFn
- */
-export function orgRoleGuard(role: OrgRole): CanActivateFn
-⋮----
-// 檢查組織角色
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織管理員守衛
- * 檢查用戶是否為組織管理員或擁有者
- */
-export const orgAdminGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織管理員
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織擁有者守衛
- * 檢查用戶是否為組織擁有者
- */
-export const orgOwnerGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織擁有者
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 讀取權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryReadGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 讀取權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 寫入權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryWriteGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 寫入權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 管理權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryManageGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 團隊管理權限守衛
- * @param teamId 團隊 ID
- * @returns CanActivateFn
- */
-export function teamManageGuard(teamId: string): CanActivateFn
-⋮----
-// 檢查團隊管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-</file>
-
 <file path="angular/src/app/core/models/index.ts">
 /**
  * Core Models 導出文件
@@ -509,7 +377,7 @@ export interface AsyncOperationSettings {
  * 遵循單一職責原則：只負責異步操作管理
  */
 ⋮----
-export class AsyncOperationService {
+export class AsyncOperationService
 ⋮----
 // State signals
 ⋮----
@@ -642,7 +510,7 @@ export interface LoadingSettings {
  * 遵循單一職責原則：只負責載入狀態管理
  */
 ⋮----
-export class LoadingStateService {
+export class LoadingStateService
 ⋮----
 // State signals
 ⋮----
@@ -784,7 +652,7 @@ export interface RetrySettings {
  * 遵循單一職責原則：只負責重試邏輯管理
  */
 ⋮----
-export class RetryService {
+export class RetryService
 ⋮----
 // State signals
 ⋮----
@@ -928,7 +796,7 @@ export interface TimeoutSettings {
  * 遵循單一職責原則：只負責超時邏輯管理
  */
 ⋮----
-export class TimeoutService {
+export class TimeoutService
 ⋮----
 // State signals
 ⋮----
@@ -1067,7 +935,7 @@ import {
 } from '../models/auth.model';
 import { ValidationUtils } from '../utils/validation.utils';
 ⋮----
-export class AuthService {
+export class AuthService
 ⋮----
 // 使用 Signals 管理狀態
 ⋮----
@@ -1203,7 +1071,7 @@ export interface ErrorStatistics {
  * 遵循單一職責原則：只負責錯誤日誌管理
  */
 ⋮----
-export class ErrorLoggingService {
+export class ErrorLoggingService
 ⋮----
 // State signals
 ⋮----
@@ -1324,7 +1192,7 @@ export interface ErrorNotificationSettings {
  * 遵循單一職責原則：只負責錯誤通知顯示
  */
 ⋮----
-export class ErrorNotificationService {
+export class ErrorNotificationService
 ⋮----
 // State signals
 ⋮----
@@ -1460,7 +1328,7 @@ export interface RecoverySettings {
  * 遵循單一職責原則：只負責錯誤恢復
  */
 ⋮----
-export class ErrorRecoveryService {
+export class ErrorRecoveryService
 ⋮----
 // State signals
 ⋮----
@@ -1564,7 +1432,7 @@ export interface ErrorDetails {
  * 遵循單一職責原則：只負責全局錯誤處理
  */
 ⋮----
-export class GlobalErrorHandler implements ErrorHandler {
+export class GlobalErrorHandler implements ErrorHandler
 ⋮----
 constructor(
 ⋮----
@@ -1619,7 +1487,7 @@ export interface LogEntry {
   data?: any;
 }
 ⋮----
-export class LoggerService {
+export class LoggerService
 ⋮----
 /**
    * 設置日誌級別
@@ -1694,7 +1562,7 @@ export interface NotificationOptions {
  * 提供統一的用戶通知功能
  */
 ⋮----
-export class NotificationService {
+export class NotificationService
 ⋮----
 constructor(private snackBar: MatSnackBar)
 ⋮----
@@ -1800,7 +1668,7 @@ import { AuthService } from './auth.service';
 import { PermissionService } from './permission.service';
 import { ValidationUtils } from '../utils/validation.utils';
 ⋮----
-export class RepositoryService {
+export class RepositoryService
 ⋮----
 // Signals for state management
 ⋮----
@@ -1908,7 +1776,7 @@ import { ValidationUtils } from '../utils/validation.utils';
  * 遵循單一職責原則：只負責驗證相關的業務邏輯
  */
 ⋮----
-export class ValidationService {
+export class ValidationService
 ⋮----
 /**
    * 驗證組織名稱
@@ -1999,7 +1867,7 @@ generateSlugFromName(name: string): string
  * 統一處理預設頭像和用戶自定義頭像的 URL 生成
  */
 ⋮----
-export class AvatarUtils {
+export class AvatarUtils
 ⋮----
 /**
    * 獲取頭像 URL
@@ -2045,7 +1913,7 @@ import { ProfileVO, PermissionVO, SettingsVO, OrgRole } from '../models/auth.mod
  * 驗證工具類別
  * 提供統一的驗證邏輯和錯誤處理
  */
-export class ValidationUtils {
+export class ValidationUtils
 ⋮----
 /**
    * 驗證電子郵件格式
@@ -2191,7 +2059,7 @@ interface UserData {
   role: string;
 }
 ⋮----
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit
 ⋮----
 ngOnInit()
 ⋮----
@@ -2218,7 +2086,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../core/services/auth.service';
 ⋮----
-export class DashboardComponent {
+export class DashboardComponent
 ⋮----
 // 使用 Signals 獲取當前用戶信息
 ⋮----
@@ -2264,7 +2132,7 @@ interface Article {
   createdAt: Date;
 }
 ⋮----
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit
 ⋮----
 ngOnInit()
 ⋮----
@@ -2294,7 +2162,7 @@ interface Article {
   createdAt: Date;
 }
 ⋮----
-export class ViewerComponent implements OnInit {
+export class ViewerComponent implements OnInit
 ⋮----
 ngOnInit()
 ⋮----
@@ -2328,7 +2196,7 @@ import { OrganizationMember, OrgRole } from '../../../core/models/auth.model';
  * 顯示組織成員列表並允許管理員管理成員角色
  */
 ⋮----
-export class MembersListComponent implements OnInit {
+export class MembersListComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -2375,7 +2243,7 @@ import { OrganizationDetail } from '../../../core/models/auth.model';
  * 使用 Material Design 3 設計，對齊 GitHub 的組織卡片風格
  */
 ⋮----
-export class OrganizationCardComponent {
+export class OrganizationCardComponent
 ⋮----
 // 計算屬性
 ⋮----
@@ -2445,7 +2313,7 @@ import {
  * 遵循單一職責原則：只負責組織建立的 UI 和用戶交互
  */
 ⋮----
-export class OrganizationCreateDialogComponent {
+export class OrganizationCreateDialogComponent
 ⋮----
 // 服務注入
 ⋮----
@@ -2515,7 +2383,7 @@ import { AuthService } from '../../../core/services/auth.service';
  * 允許用戶建立新的組織
  */
 ⋮----
-export class OrganizationCreateComponent implements OnInit {
+export class OrganizationCreateComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -2562,7 +2430,7 @@ import { NotificationService } from '../../../core/services/notification.service
  * 允許用戶編輯組織的基本信息
  */
 ⋮----
-export class OrganizationEditDialogComponent implements OnInit {
+export class OrganizationEditDialogComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -2607,7 +2475,7 @@ import { MatChipsModule } from '@angular/material/chips';
  * 用於驗證所有修復功能是否正常工作
  */
 ⋮----
-export class OrganizationFixesTestComponent implements OnInit {
+export class OrganizationFixesTestComponent implements OnInit
 ⋮----
 ngOnInit()
 ⋮----
@@ -2669,7 +2537,7 @@ import { PermissionService } from '../../../core/services/permission.service';
  * 管理組織的角色和權限設定
  */
 ⋮----
-export class OrganizationRolesComponent implements OnInit {
+export class OrganizationRolesComponent implements OnInit
 ⋮----
 // 響應式狀態
 ⋮----
@@ -2776,7 +2644,7 @@ import { PermissionService } from '../../../core/services/permission.service';
  * 管理組織的安全權限和安全管理員
  */
 ⋮----
-export class SecurityManagerComponent implements OnInit {
+export class SecurityManagerComponent implements OnInit
 ⋮----
 // 響應式狀態
 ⋮----
@@ -2881,7 +2749,7 @@ import {
  * 遵循單一職責原則：只負責團隊建立的 UI 和用戶交互
  */
 ⋮----
-export class TeamCreateDialogComponent {
+export class TeamCreateDialogComponent
 ⋮----
 // 服務注入
 ⋮----
@@ -2949,7 +2817,7 @@ import { ValidationService } from '../../../core/services/validation.service';
  * 允許組織管理員建立新的團隊
  */
 ⋮----
-export class TeamCreateComponent implements OnInit {
+export class TeamCreateComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -2989,7 +2857,7 @@ import { Team } from '../../../core/models/auth.model';
  * 顯示團隊的詳細資訊
  */
 ⋮----
-export class TeamDetailComponent implements OnInit {
+export class TeamDetailComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -3031,7 +2899,7 @@ import { Team } from '../../../core/models/auth.model';
  * 允許團隊管理員編輯團隊資訊
  */
 ⋮----
-export class TeamEditComponent implements OnInit {
+export class TeamEditComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -3076,7 +2944,7 @@ import { TeamCreateDialogComponent } from './team-create-dialog.component';
  * 用於驗證團隊相關功能是否正常工作
  */
 ⋮----
-export class TeamFunctionalityTestComponent implements OnInit {
+export class TeamFunctionalityTestComponent implements OnInit
 ⋮----
 ngOnInit()
 ⋮----
@@ -3149,7 +3017,7 @@ interface TeamNode extends Team {
  * 使用 Material Design 3 的 Tree 組件實作 GitHub 風格的團隊層級結構
  */
 ⋮----
-export class TeamHierarchyComponent {
+export class TeamHierarchyComponent
 ⋮----
 // 服務注入
 ⋮----
@@ -3272,7 +3140,7 @@ import { Team } from '../../../core/models/auth.model';
  * 顯示組織的所有團隊並提供管理功能
  */
 ⋮----
-export class TeamsListComponent implements OnInit {
+export class TeamsListComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -3561,50 +3429,6 @@ export interface TeamCreateFormState {
 /** 表單值 */
 </file>
 
-<file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
-import { Routes } from '@angular/router';
-import { permissionGuard } from '../../../core/guards/permission.guard';
-⋮----
-/**
- * 組織詳細路由配置
- * 支援完整的組織層級結構，包含成員、團隊、設定等子路由
- * 對齊 docs/account.md 的設計
- */
-⋮----
-// 組織設定 - 需要寫入權限
-⋮----
-// 成員管理 - 需要讀取成員權限
-⋮----
-// 團隊管理路由
-⋮----
-// 角色管理 - 需要管理權限
-⋮----
-// 安全管理器 - 需要管理權限
-⋮----
-// Repository 管理 - 暫時註解掉，因為組件尚未創建
-// {
-//   path: 'repositories',
-//   children: [
-//     {
-//       path: '',
-//       loadComponent: () => import('../../repository/components/repository-list.component').then(m => m.RepositoryListComponent),
-//       canActivate: [permissionGuard],
-//       data: { permission: { action: 'read', resource: 'repository' } },
-//       title: 'Repository 列表'
-//     },
-//     {
-//       path: 'new',
-//       loadComponent: () => import('../../repository/components/repository-create.component').then(m => m.RepositoryCreateComponent),
-//       canActivate: [permissionGuard],
-//       data: { permission: { action: 'write', resource: 'repository' } },
-//       title: '建立 Repository'
-//     }
-//   ]
-// },
-⋮----
-// 預設重定向到組織詳情
-</file>
-
 <file path="angular/src/app/features/organization/routes/organization.routes.ts">
 import { Routes } from '@angular/router';
 ⋮----
@@ -3643,7 +3467,7 @@ import {
  * 實作對齊 GitHub REST API 模式的組織管理 API
  */
 ⋮----
-export class OrganizationApiService {
+export class OrganizationApiService
 ⋮----
 // ==================== 組織管理 API ====================
 ⋮----
@@ -3803,7 +3627,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LoggerService } from '../../../core/services/logger.service';
 import { RepositoryCollaborator } from '../../../core/models/auth.model';
 ⋮----
-export class CollaboratorManagementComponent implements OnInit {
+export class CollaboratorManagementComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -3863,7 +3687,7 @@ import { RepositoryService } from '../../../core/services/repository.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Repository } from '../../../core/models/auth.model';
 ⋮----
-export class RepositoryDetailComponent implements OnInit {
+export class RepositoryDetailComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -3904,7 +3728,7 @@ import { RepositoryService } from '../../../core/services/repository.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Repository } from '../../../core/models/auth.model';
 ⋮----
-export class RepositoryListComponent implements OnInit {
+export class RepositoryListComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -4300,7 +4124,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 ⋮----
-export class LoginComponent {
+export class LoginComponent
 ⋮----
 // 使用 Signals 獲取狀態
 ⋮----
@@ -4330,7 +4154,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 ⋮----
-export class SignupComponent {
+export class SignupComponent
 ⋮----
 // 使用 Signals 獲取狀態
 ⋮----
@@ -4356,7 +4180,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 ⋮----
-export class UnauthorizedComponent {
+export class UnauthorizedComponent
 ⋮----
 constructor(private router: Router)
 ⋮----
@@ -4590,7 +4414,7 @@ import { NotificationService } from '../../../../../core/services/notification.s
  * 遵循單一職責原則：只負責頭像上傳相關的業務邏輯
  */
 ⋮----
-export class AvatarUploadComponent {
+export class AvatarUploadComponent
 ⋮----
 // Signals for state management
 ⋮----
@@ -4845,7 +4669,7 @@ import { NotificationPreferences } from '../../../../../core/models/auth.model';
  * 遵循單一職責原則：只負責通知設定相關的業務邏輯
  */
 ⋮----
-export class NotificationSettingsComponent {
+export class NotificationSettingsComponent
 ⋮----
 // Signals for state management
 ⋮----
@@ -4901,7 +4725,7 @@ import { AvatarUtils } from '../../../../../core/utils/avatar.utils';
  * 單一職責：處理用戶基本資料的編輯和更新
  */
 ⋮----
-export class ProfileBasicInfoComponent implements OnInit {
+export class ProfileBasicInfoComponent implements OnInit
 ⋮----
 // Signals for state management
 ⋮----
@@ -5110,7 +4934,7 @@ import { User } from '../../../../../core/models/auth.model';
  * 遵循單一職責原則：只負責個人資料相關的表單邏輯
  */
 ⋮----
-export class ProfileFormComponent {
+export class ProfileFormComponent
 ⋮----
 // Signals for state management
 ⋮----
@@ -5382,7 +5206,7 @@ import { SocialAccount } from '../../../../../core/models/auth.model';
  * 遵循單一職責原則：只負責社交帳戶相關的業務邏輯
  */
 ⋮----
-export class SocialAccountComponent {
+export class SocialAccountComponent
 ⋮----
 // Signals for state management
 ⋮----
@@ -5442,7 +5266,7 @@ import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.
  * 使用子組件模式，遵循單一職責原則
  */
 ⋮----
-export class ProfileManagementComponent implements OnInit {
+export class ProfileManagementComponent implements OnInit
 ⋮----
 // Signals for state management
 ⋮----
@@ -5484,7 +5308,7 @@ export interface FormFieldState {
  * 遵循單一職責原則：只負責表單狀態管理
  */
 ⋮----
-export class FormStateService {
+export class FormStateService
 ⋮----
 // Form states registry
 ⋮----
@@ -5579,7 +5403,7 @@ export interface NotificationSettings {
  * 遵循單一職責原則：只負責通知狀態管理
  */
 ⋮----
-export class NotificationStateService {
+export class NotificationStateService
 ⋮----
 // Core notification state
 ⋮----
@@ -5666,7 +5490,7 @@ export interface ProfileState {
  * 遵循單一職責原則：只負責個人資料狀態管理
  */
 ⋮----
-export class ProfileStateService {
+export class ProfileStateService
 ⋮----
 // Core state signals
 ⋮----
@@ -5732,7 +5556,7 @@ import { Observable, of } from 'rxjs';
 import { User, UpdateUserRequest } from '../../../core/models/auth.model';
 import { AuthService } from '../../../core/services/auth.service';
 ⋮----
-export class UserService {
+export class UserService
 ⋮----
 getCurrentUser(): Observable<User | null>
 ⋮----
@@ -5768,7 +5592,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 ⋮----
-export class LandingComponent {
+export class LandingComponent
 ⋮----
 navigateToLogin()
 ⋮----
@@ -5795,7 +5619,7 @@ export interface ConfirmDialogData {
  * 用於顯示確認操作的對話框
  */
 ⋮----
-export class ConfirmDialogComponent {
+export class ConfirmDialogComponent
 ⋮----
 constructor(
 ⋮----
@@ -6229,72 +6053,149 @@ body {
 }
 </file>
 
-<file path="angular/package.json">
-{
-  "name": "angular-fire-rolekit",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "20.1.0",
-    "@angular/cdk": "20.1.0",
-    "@angular/common": "^20.1.0",
-    "@angular/compiler": "^20.1.0",
-    "@angular/core": "^20.1.0",
-    "@angular/fire": "^20.0.1",
-    "@angular/forms": "^20.1.0",
-    "@angular/material": "20.1.0",
-    "@angular/platform-browser": "^20.1.0",
-    "@angular/router": "^20.1.0",
-    "firebase": "^11.10.0",
-    "rxfire": "^6.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
-  },
-  "devDependencies": {
-    "@angular/build": "^20.1.0",
-    "@angular/cli": "^20.1.0",
-    "@angular/compiler-cli": "^20.1.0",
-    "@types/jasmine": "~5.1.0",
-    "jasmine-core": "~5.8.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.2"
-  }
-}
-</file>
-
 <file path="angular/src/app/app.ts">
 import { Component, inject, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
 ⋮----
-export class App {
+export class App
 ⋮----
 constructor()
 ⋮----
 // Firebase 和 App Check 已正確配置
+</file>
+
+<file path="angular/src/app/core/guards/permission.guard.ts">
+// src/app/core/guards/permission.guard.ts
+⋮----
+import { inject } from '@angular/core';
+import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { authState } from 'rxfire/auth';
+import { map } from 'rxjs';
+import { PermissionService } from '../services/permission.service';
+import { AuthService } from '../services/auth.service';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// authGuard 已移至 features/user/auth/auth.guard.ts
+// 請使用統一的 authGuard 實作
+⋮----
+/**
+ * 用戶角色守衛工廠函數
+ * @param expectedRole 預期的用戶角色
+ * @returns CanActivateFn
+ */
+export function roleGuard(expectedRole: string): CanActivateFn
+⋮----
+// 檢查用戶角色
+⋮----
+// 檢查是否有預期角色
+⋮----
+// 如果沒有預期角色，重定向到未授權頁面
+⋮----
+// 組織帳戶不支援角色守衛
+⋮----
+/**
+ * 通用權限守衛
+ * 從路由數據中讀取權限配置
+ */
+export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
+⋮----
+// 從路由數據中獲取權限配置
+⋮----
+return true; // 如果沒有權限配置，允許訪問
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 權限守衛工廠函數
+ * @param action 權限動作 (read, write, admin, delete)
+ * @param resource 資源類型 (organization, team, repository, member)
+ * @returns CanActivateFn
+ */
+export function createPermissionGuard(action: string, resource: string): CanActivateFn
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織權限守衛工廠函數
+ * @param role 組織角色
+ * @returns CanActivateFn
+ */
+export function orgRoleGuard(role: OrgRole): CanActivateFn
+⋮----
+// 檢查組織角色
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織管理員守衛
+ * 檢查用戶是否為組織管理員或擁有者
+ */
+export const orgAdminGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織管理員
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織擁有者守衛
+ * 檢查用戶是否為組織擁有者
+ */
+export const orgOwnerGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織擁有者
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 讀取權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryReadGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 讀取權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 寫入權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryWriteGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 寫入權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 管理權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryManageGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 團隊管理權限守衛
+ * @param teamId 團隊 ID
+ * @returns CanActivateFn
+ */
+export function teamManageGuard(teamId: string): CanActivateFn
+⋮----
+// 檢查團隊管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
 </file>
 
 <file path="angular/src/app/features/organization/components/organization-detail.component.ts">
@@ -6324,7 +6225,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
  * 顯示組織的基本信息和統計數據
  */
 ⋮----
-export class OrganizationDetailComponent implements OnInit {
+export class OrganizationDetailComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -6390,7 +6291,7 @@ import { OrganizationCreatedEvent } from '../models/organization-create.model';
  * 遵循單一職責原則：只負責組織列表的顯示和建立組織的入口
  */
 ⋮----
-export class OrganizationListComponent implements OnInit {
+export class OrganizationListComponent implements OnInit
 ⋮----
 // 服務注入
 ⋮----
@@ -6484,6 +6385,106 @@ onDeleteOrganization(organization: OrganizationDetail): void
 // 模型匯出 - Organization 相關模型已移至 core/models/auth.model.ts
 </file>
 
+<file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
+import { Routes } from '@angular/router';
+import { permissionGuard } from '../../../core/guards/permission.guard';
+⋮----
+/**
+ * 組織詳細路由配置
+ * 支援完整的組織層級結構，包含成員、團隊、設定等子路由
+ * 對齊 docs/account.md 的設計
+ */
+⋮----
+// 組織設定 - 需要寫入權限
+⋮----
+// 成員管理 - 需要讀取成員權限
+⋮----
+// 團隊管理路由
+⋮----
+// 角色管理 - 需要管理權限
+⋮----
+// 安全管理器 - 需要管理權限
+⋮----
+// Repository 管理 - 暫時註解掉，因為組件尚未創建
+// {
+//   path: 'repositories',
+//   children: [
+//     {
+//       path: '',
+//       loadComponent: () => import('../../repository/components/repository-list.component').then(m => m.RepositoryListComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'read', resource: 'repository' } },
+//       title: 'Repository 列表'
+//     },
+//     {
+//       path: 'new',
+//       loadComponent: () => import('../../repository/components/repository-create.component').then(m => m.RepositoryCreateComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'write', resource: 'repository' } },
+//       title: '建立 Repository'
+//     }
+//   ]
+// },
+⋮----
+// 預設重定向到組織詳情
+</file>
+
+<file path="angular/package.json">
+{
+  "name": "angular-fire-rolekit",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "20.1.0",
+    "@angular/cdk": "20.1.0",
+    "@angular/common": "^20.1.0",
+    "@angular/compiler": "^20.1.0",
+    "@angular/core": "^20.1.0",
+    "@angular/fire": "^20.0.1",
+    "@angular/forms": "^20.1.0",
+    "@angular/material": "20.1.0",
+    "@angular/platform-browser": "^20.1.0",
+    "@angular/router": "^20.1.0",
+    "firebase": "^11.10.0",
+    "rxfire": "^6.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.0",
+    "@angular/cli": "^20.1.0",
+    "@angular/compiler-cli": "^20.1.0",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.9.0",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.2"
+  }
+}
+</file>
+
 <file path="angular/src/app/core/models/auth.model.ts">
 // src/app/core/models/auth.model.ts
 ⋮----
@@ -6510,7 +6511,7 @@ settings: SettingsVO;            // 使用 Value Object 封裝設定資訊
 projectsOwned: string[];          // 擁有的專案列表
 ⋮----
 // 現代化的 Account 狀態管理
-export class AccountState {
+export class AccountState
 ⋮----
 // 只讀 Signals
 ⋮----
@@ -7104,7 +7105,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
  * 允許組織管理員編輯組織的基本資訊
  */
 ⋮----
-export class OrganizationSettingsComponent implements OnInit {
+export class OrganizationSettingsComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
@@ -7183,7 +7184,7 @@ import { AuthService } from './auth.service';
 import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { NotificationService } from './notification.service';
 ⋮----
-export class OrganizationService {
+export class OrganizationService
 ⋮----
 // Signals for state management
 ⋮----
@@ -7361,7 +7362,7 @@ import { AuthService } from './auth.service';
 import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { OrganizationService } from './organization.service';
 ⋮----
-export class PermissionService {
+export class PermissionService
 ⋮----
 // 當前組織 ID Signal
 ⋮----
