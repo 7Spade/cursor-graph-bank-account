@@ -1,8 +1,9 @@
 {
   "name": "cursor-graph-bank-account",
   "version": "1.0.0",
-  "description": "Graph Bank Account Management System",
+  "description": "Graph Bank Account Management System - Monorepo with Angular app in /angular directory",
   "private": true,
+  "note": "This is a monorepo. The main Angular application is in the /angular directory. Do not create src/ in root.",
   "workspaces": [
     "angular"
   ],
