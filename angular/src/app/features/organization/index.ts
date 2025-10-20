@@ -1,5 +1,9 @@
 // 組織模組匯出檔案
 export * from './components/organization-card.component';
+export * from './components/organization-detail.component';
+export * from './components/organization-list.component';
+export * from './components/organization-settings.component';
+export * from './components/organization-edit-dialog.component';
 export * from './components/team-management.component';
 export * from './components/security-manager.component';
 export * from './components/organization-roles.component';
