@@ -1,10 +1,9 @@
 {
     // ===== TypeScript 伺服器優化 (針對 64GB RAM) =====
-    "typescript.tsserver.nodePath": "C:/nvm4w/nodejs/node.exe",
+    "typescript.tsserver.nodePath": "D:/nvm/nodejs/node.exe",
     "typescript.tsserver.maxTsServerMemory": 16384, // 16GB for large projects
     "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "typescript.tsserver.log": "verbose", // 詳細日誌用於除錯
-
     // ===== Angular 編譯優化 =====
     "typescript.preferences.includePackageJsonAutoImports": "on",
     "typescript.suggest.autoImports": true,
@@ -13,7 +12,6 @@
     "typescript.suggest.includeCompletionsForModuleExports": true,
     "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
-
     // ===== TypeScript 內聯提示優化 =====
     "typescript.inlayHints.parameterNames.enabled": "all",
     "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -21,7 +19,6 @@
     "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
     "typescript.inlayHints.variableTypes.enabled": true,
     "editor.inlayHints.enabled": "on",
-
     // ===== 編輯器效能優化 (針對多核心 CPU) =====
     "editor.smoothScrolling": true,
     "editor.cursorBlinking": "expand",
@@ -44,7 +41,6 @@
         "source.organizeImports": "explicit",
         "source.fixAll": "explicit"
     },
-
     // ===== 工作區效能優化 =====
     "workbench.list.smoothScrolling": true,
     "workbench.tree.indent": 20,
@@ -55,16 +51,13 @@
     "workbench.editor.tabSizing": "shrink",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.decorations.colors": true,
-
     // ===== Angular 模板優化 =====
     "html.format.indentInnerHtml": true,
     "html.format.wrapLineLength": 120,
-
     // ===== 檔案關聯 =====
     "files.associations": {
         "*.html": "html"
     },
-
     // ===== 搜尋效能優化 =====
     "search.followSymlinks": false, // 不跟隨符號連結以提升搜尋效能
     "search.useGlobalIgnoreFiles": true,
@@ -83,7 +76,6 @@
         "**/yarn.lock": true,
         "**/package-lock.json": true
     },
-
     // ===== 檔案監視優化 (針對大型專案) =====
     "files.watcherExclude": {
         "**/node_modules/**": true,
@@ -102,7 +94,6 @@
         "**/logs/**": true,
         "**/*.log": true
     },
-
     // ===== 檔案系統優化 =====
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
@@ -122,7 +113,6 @@
         "**/out-tsc": true,
         "**/.angular": true
     },
-
     // ===== 終端整合優化 =====
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "terminal.integrated.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, monospace",
@@ -132,11 +122,9 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.scrollback": 10000,
     "terminal.integrated.shellIntegration.enabled": true,
-
     // ===== 備份與恢復優化 =====
     "backup.enabled": true,
     "backup.location": "backup",
-
     // ===== 智能編碼助手設定 =====
     "editor.snippetSuggestions": "top",
     "editor.suggest.showKeywords": true,
@@ -167,7 +155,6 @@
     "editor.suggest.preview": true,
     "editor.suggest.shareSuggestSelections": true,
     "editor.inlineSuggest.enabled": true,
-
     // ===== Git 整合優化 =====
     "git.enabled": true,
     "git.autofetch": true,
@@ -178,19 +165,16 @@
     "git.postCommitCommand": "none",
     "git.showPushSuccessNotification": true,
     "git.terminalAuthentication": true,
-
     // ===== 除錯優化 =====
     "debug.console.fontSize": 13,
     "debug.console.lineHeight": 1.5,
     "debug.inlineValues": true,
     "debug.showBreakpointsInOverviewRuler": true,
     "debug.showInlineBreakpointCandidates": true,
-
     // ===== 擴展優化 =====
     "extensions.autoUpdate": false, // 手動控制擴展更新
     "extensions.autoCheckUpdates": true,
     "extensions.ignoreRecommendations": false,
-
     // ===== 效能監控 =====
     "telemetry.telemetryLevel": "off", // 關閉遙測以提升效能
     "update.mode": "manual" // 手動更新以減少背景活動
