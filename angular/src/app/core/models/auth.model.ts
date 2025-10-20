@@ -1,6 +1,6 @@
 // src/app/core/models/auth.model.ts
 
-import { signal, computed, Signal } from '@angular/core';
+import { computed, signal, Signal } from '@angular/core';
 
 // Account 基礎介面 - GitHub 的核心概念
 export interface Account {
@@ -72,22 +72,22 @@ export interface User extends Account {
   twoFactorEnabled: boolean;
   lastLoginAt?: Date;
   lastActiveAt?: Date;
-  
+
   // GitHub 對齊的社交帳戶
   socialAccounts: SocialAccount[];
-  
+
   // 專業證照
   certificates: Certificate[];
-  
+
   // 組織成員資格
   organizationMemberships: OrganizationMembership[];
-  
+
   // 通知偏好
   notificationPreferences: NotificationPreferences;
-  
+
   // 隱私設定
   privacySettings: PrivacySettings;
-  
+
   // 保留原有的 Value Objects 以保持向後兼容
   socialRelations?: SocialRelationVO;   // 社交關係
 }
