@@ -108,11 +108,10 @@ export class PermissionService {
             timestamp: Date.now(),
             userAgent: navigator.userAgent,
             url: window.location.href,
-            orgId: orgId,
             userId: currentUser.id
           },
           severity: 'high',
-          category: 'permission'
+          category: 'system'
         },
         ['permission', 'organization', 'membership']
       );

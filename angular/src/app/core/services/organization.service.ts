@@ -557,8 +557,9 @@ export class OrganizationService {
       
       // 添加更新操作到批次
       batch.update(orgRef, { 
-        profile: { ...profile, updatedAt: new Date() },
-        settings: { ...settings, updatedAt: new Date() }
+        profile: { ...profile },
+        settings: { ...settings },
+        updatedAt: new Date()
       });
       
       // 執行批次操作
@@ -569,16 +570,33 @@ export class OrganizationService {
       if (currentOrg && currentOrg.id === orgId) {
         this._currentOrganization.set({
           ...currentOrg,
-          profile: { ...profile, updatedAt: new Date() },
-          settings: { ...settings, updatedAt: new Date() }
+          profile: { ...profile },
+          settings: { ...settings },
+          updatedAt: new Date()
         });
       }
 
-      this.errorLoggingService.logInfo('組織完整資訊批次更新成功', { orgId, profile, settings });
+      this.notificationService.showInfo('組織完整資訊批次更新成功');
     } catch (error) {
       const errorMessage = `批次更新組織資訊失敗: ${error instanceof Error ? error.message : '未知錯誤'}`;
       this._error.set(errorMessage);
-      this.errorLoggingService.logError(errorMessage, error);
+      this.errorLoggingService.logError(
+        {
+          message: errorMessage,
+          stack: error instanceof Error ? error.stack : undefined,
+          name: error instanceof Error ? error.name : 'UnknownError',
+          context: {
+            component: 'OrganizationService',
+            action: 'updateOrganizationComplete',
+            timestamp: Date.now(),
+            userAgent: navigator.userAgent,
+            url: window.location.href
+          },
+          severity: 'high',
+          category: 'system'
+        },
+        ['organization', 'batch', 'update']
+      );
       throw new Error(errorMessage);
     } finally {
       this._isLoading.set(false);
@@ -592,7 +610,7 @@ export class OrganizationService {
 
       // 檢查是否為擁有者
       const currentUser = this.authService.currentAccount();
-      const org = await this.getOrganization(orgId);
+      const org = await firstValueFrom(this.getOrganization(orgId));
       
       if (!org || org.ownerId !== currentUser?.id) {
         throw new Error('只有組織擁有者可以刪除組織');
@@ -639,11 +657,10 @@ export class OrganizationService {
             timestamp: Date.now(),
             userAgent: navigator.userAgent,
             url: window.location.href,
-            orgId: orgId,
-            userId: currentUser?.id
+            userId: this.authService.currentAccount()?.id
           },
           severity: 'high',
-          category: 'organization'
+          category: 'system'
         },
         ['organization', 'delete', 'permission']
       );

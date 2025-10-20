@@ -308,10 +308,10 @@ export class OrganizationSettingsComponent implements OnInit {
       const profileData = {
         name: this.formData.name,
         email: '', // 組織沒有電子郵件
-        avatar: this.organization()?.profile?.avatar || null,
+        avatar: this.organization()?.profile?.avatar || '',
         bio: this.formData.description,
-        location: this.organization()?.profile?.location || null,
-        website: this.organization()?.profile?.website || null
+        location: this.organization()?.profile?.location || '',
+        website: this.organization()?.profile?.website || ''
       };
 
       const settingsData = {

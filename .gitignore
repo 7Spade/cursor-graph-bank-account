@@ -68,8 +68,10 @@ pids
 *.pid.lock
 
 # Cursor specific
-.cursor/workspace/ 
+.cursor/workspace/
 
 #claude.code specific
 .claude/
 CLAUDE.md
+
+.env
