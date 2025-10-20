@@ -21,6 +21,7 @@ import { Observable, catchError, firstValueFrom, map, switchMap, throwError } fr
 import {
   OrgRole,
   Organization,
+  OrganizationDetail,
   OrganizationMember,
   PermissionVO,
   ProfileVO,
@@ -144,7 +145,97 @@ export class OrganizationService {
     }
   }
 
-  getOrganization(orgId: string): Observable<Organization> {
+  /**
+   * 統一的組織獲取方法 - 支援 ID 和 slug 參數
+   * 根據 CREATIVE 階段的架構設計決策實現
+   */
+  getOrganization(identifier: string): Observable<OrganizationDetail> {
+    // 判斷是 ID 還是 slug
+    const isId = identifier.length > 20 || identifier.includes('-'); // Firestore ID 通常較長或包含連字符
+
+    if (isId) {
+      return this.getOrganizationById(identifier);
+    } else {
+      return this.getOrganizationBySlug(identifier);
+    }
+  }
+
+  /**
+   * 根據 Firestore ID 獲取組織
+   */
+  private getOrganizationById(orgId: string): Observable<OrganizationDetail> {
+    const orgDoc = doc(this.firestore, `accounts/${orgId}`);
+    return docData(orgDoc, { idField: 'id' }).pipe(
+      map(data => {
+        if (data && (data as DocumentData)['type'] === 'organization') {
+          return this.convertToOrganizationDetail(data as Organization);
+        }
+        throw new Error(`組織不存在或類型不正確: ${orgId}`);
+      }),
+      catchError((error: any) => {
+        console.error('獲取組織失敗:', error);
+        return throwError(() => new Error('無法載入組織資訊，請稍後再試'));
+      })
+    );
+  }
+
+  /**
+   * 根據 slug 獲取組織
+   */
+  private getOrganizationBySlug(slug: string): Observable<OrganizationDetail> {
+    const orgsQuery = query(
+      collection(this.firestore, 'accounts'),
+      where('type', '==', 'organization'),
+      where('login', '==', slug)
+    );
+
+    return collectionData(orgsQuery, { idField: 'id' }).pipe(
+      map(orgs => {
+        if (orgs.length === 0) {
+          throw new Error(`組織不存在或類型不正確: ${slug}`);
+        }
+        return this.convertToOrganizationDetail(orgs[0] as Organization);
+      }),
+      catchError((error: any) => {
+        console.error('獲取組織失敗:', error);
+        return throwError(() => new Error('無法載入組織資訊，請稍後再試'));
+      })
+    );
+  }
+
+  /**
+   * 將 Organization 轉換為 OrganizationDetail
+   * 實現資料轉換層，確保資料結構一致性
+   */
+  private convertToOrganizationDetail(org: Organization): OrganizationDetail {
+    return {
+      id: org.id,
+      slug: org.login,
+      name: org.profile.name,
+      description: org.description || org.profile.bio,
+      type: 'construction' as const, // 暫時設為 construction，可以後續優化
+      profile: {
+        website: org.profile.website,
+        location: org.profile.location,
+        email: org.profile.email,
+        phone: undefined, // ProfileVO 沒有 phone 字段
+        avatar: org.profile.avatar,
+        banner: undefined // ProfileVO 沒有 banner 字段
+      },
+      members: [], // 將在需要時動態載入
+      teams: [],   // 將在需要時動態載入
+      securityManagers: [], // 將在需要時動態載入
+      organizationRoles: [], // 將在需要時動態載入
+      createdAt: org.createdAt,
+      updatedAt: org.updatedAt
+    };
+  }
+
+  /**
+   * 保留原有的 getOrganization 方法以保持向後相容性
+   * @deprecated 使用 getOrganization(identifier) 替代
+   */
+  getOrganizationLegacy(orgId: string): Observable<Organization> {
     const orgDoc = doc(this.firestore, `accounts/${orgId}`);
     return docData(orgDoc, { idField: 'id' }).pipe(
       map(data => {
@@ -609,7 +700,7 @@ export class OrganizationService {
 
       // 檢查是否為擁有者
       const currentUser = this.authService.currentAccount();
-      const org = await firstValueFrom(this.getOrganization(orgId));
+      const org = await firstValueFrom(this.getOrganizationLegacy(orgId));
 
       if (!org || org.ownerId !== currentUser?.id) {
         throw new Error('只有組織擁有者可以刪除組織');

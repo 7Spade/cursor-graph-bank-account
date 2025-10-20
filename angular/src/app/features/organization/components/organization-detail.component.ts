@@ -1,23 +1,23 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 
-import { OrganizationService } from '../../../core/services/organization.service';
-import { PermissionService } from '../../../core/services/permission.service';
+import { OrganizationDetail, OrganizationMember, OrgRole, Team } from '../../../core/models/auth.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoggerService } from '../../../core/services/logger.service';
 import { NotificationService } from '../../../core/services/notification.service';
-import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
-import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
+import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
 
 /**
  * 組織詳情組件
@@ -54,14 +54,14 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
           <mat-card-header>
             <div mat-card-avatar class="organization-avatar">
               @if (organization()?.profile?.avatar) {
-                <img [src]="organization()?.profile?.avatar" [alt]="organization()?.login">
+                <img [src]="organization()?.profile?.avatar" [alt]="organization()?.name">
               } @else {
                 <mat-icon>business</mat-icon>
               }
             </div>
-            <mat-card-title>{{ organization()?.login }}</mat-card-title>
-            <mat-card-subtitle>{{ organization()?.login }}</mat-card-subtitle>
-            
+            <mat-card-title>{{ organization()?.name }}</mat-card-title>
+            <mat-card-subtitle>{{ organization()?.slug }}</mat-card-subtitle>
+
             <div class="card-actions">
               @if (permissionService.canManageOrganization()) {
                 <button mat-icon-button (click)="editOrganization()">
@@ -80,7 +80,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
             @if (organization()?.description) {
               <p class="organization-description">{{ organization()?.description }}</p>
             }
-            
+
             <div class="organization-stats">
               <div class="stat-item">
                 <mat-icon>people</mat-icon>
@@ -223,7 +223,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
       align-items: center;
       justify-content: center;
       color: white;
-      
+
       img {
         width: 100%;
         height: 100%;
@@ -252,14 +252,14 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
       display: flex;
       gap: 16px;
       margin: 16px 0;
-      
+
       .stat-item {
         display: flex;
         align-items: center;
         gap: 4px;
         color: var(--mdc-theme-on-surface-variant);
         font-size: 14px;
-        
+
         mat-icon {
           font-size: 18px;
           width: 18px;
@@ -280,21 +280,21 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
         display: flex;
         align-items: center;
         gap: 16px;
-        
+
         .stat-icon {
           font-size: 32px;
           width: 32px;
           height: 32px;
           color: var(--mdc-theme-primary);
         }
-        
+
         .stat-info {
           h3 {
             margin: 0;
             font-size: 24px;
             font-weight: 500;
           }
-          
+
           p {
             margin: 0;
             color: var(--mdc-theme-on-surface-variant);
@@ -309,7 +309,7 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
         display: grid;
         gap: 16px;
       }
-      
+
       .team-item {
         display: flex;
         justify-content: space-between;
@@ -317,14 +317,14 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
         padding: 16px;
         border: 1px solid #e0e0e0;
         border-radius: 8px;
-        
+
         .team-info {
           h4 {
             margin: 0 0 4px 0;
             font-size: 16px;
             font-weight: 500;
           }
-          
+
           p {
             margin: 0;
             color: var(--mdc-theme-on-surface-variant);
@@ -338,11 +338,11 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/compo
       .organization-detail-container {
         padding: 16px;
       }
-      
+
       .stats-grid {
         grid-template-columns: 1fr;
       }
-      
+
       .team-item {
         flex-direction: column;
         align-items: stretch;
@@ -362,7 +362,7 @@ export class OrganizationDetailComponent implements OnInit {
   private dialog = inject(MatDialog);
 
   // Signals
-  organization = signal<Organization | null>(null);
+  organization = signal<OrganizationDetail | null>(null);
   teams = signal<Team[]>([]);
   members = signal<OrganizationMember[]>([]);
   isLoading = signal(false);
@@ -371,7 +371,7 @@ export class OrganizationDetailComponent implements OnInit {
   // Computed signals
   readonly memberCount = computed(() => this.members().length);
   readonly teamCount = computed(() => this.teams().length);
-  readonly securityManagerCount = computed(() => 
+  readonly securityManagerCount = computed(() =>
     this.members().filter(m => m.role === OrgRole.ADMIN || m.role === OrgRole.OWNER).length
   );
 
@@ -379,15 +379,15 @@ export class OrganizationDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.orgId = this.route.snapshot.paramMap.get('orgId')!;
-    
+
     if (!this.orgId) {
       this.error.set('無效的組織 ID');
       return;
     }
 
     // 設置當前組織到權限服務
-    await this.permissionService.setCurrentOrganization(this.orgId);
-    
+    await this.permissionService.setCurrentOrganizationByIdentifier(this.orgId);
+
     // 載入組織詳情
     await this.loadOrganization();
   }
@@ -396,22 +396,22 @@ export class OrganizationDetailComponent implements OnInit {
     try {
       this.isLoading.set(true);
       this.error.set(null);
-      
-      // 載入組織資訊
+
+      // 使用統一的 getOrganization 方法，支援 ID 和 slug
       const org = await firstValueFrom(this.orgService.getOrganization(this.orgId));
       this.organization.set(org || null);
-      
+
       if (!org) {
         this.error.set('組織不存在或無法載入');
         return;
       }
 
-      // 載入團隊列表
-      const teams = await firstValueFrom(this.orgService.getOrganizationTeams(this.orgId));
+      // 載入團隊列表 - 使用組織的實際 ID
+      const teams = await firstValueFrom(this.orgService.getOrganizationTeams(org.id));
       this.teams.set(teams || []);
 
-      // 載入成員列表
-      const members = await firstValueFrom(this.orgService.getOrganizationMembers(this.orgId));
+      // 載入成員列表 - 使用組織的實際 ID
+      const members = await firstValueFrom(this.orgService.getOrganizationMembers(org.id));
       this.members.set(members || []);
 
     } catch (error) {
@@ -452,7 +452,7 @@ export class OrganizationDetailComponent implements OnInit {
     // 顯示確認對話框
     const dialogData: ConfirmDialogData = {
       title: '刪除組織',
-      message: `確定要刪除組織「${this.organization()?.profile.name}」嗎？此操作無法撤銷，將刪除所有相關數據，包括：\n\n• 所有團隊和成員\n• 所有專案和儲存庫\n• 所有設定和權限\n\n請謹慎操作！`,
+      message: `確定要刪除組織「${this.organization()?.name}」嗎？此操作無法撤銷，將刪除所有相關數據，包括：\n\n• 所有團隊和成員\n• 所有專案和儲存庫\n• 所有設定和權限\n\n請謹慎操作！`,
       confirmText: '刪除組織',
       cancelText: '取消',
       type: 'danger'

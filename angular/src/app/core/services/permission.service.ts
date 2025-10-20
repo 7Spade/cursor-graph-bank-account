@@ -51,6 +51,82 @@ export class PermissionService {
   });
 
   // 設置當前組織
+  /**
+   * 混合策略權限檢查 - 支援 ID 和 slug 參數
+   * 根據 CREATIVE 階段的設計決策實現
+   */
+  async setCurrentOrganizationByIdentifier(identifier: string) {
+    // 判斷是 ID 還是 slug
+    const isId = identifier.length > 20 || identifier.includes('-');
+
+    if (isId) {
+      // 直接使用 ID
+      await this.setCurrentOrganization(identifier);
+    } else {
+      // 如果是 slug，需要先查詢到對應的 ID
+      try {
+        const orgDetail = await firstValueFrom(this.orgService.getOrganization(identifier));
+        if (orgDetail) {
+          await this.setCurrentOrganization(orgDetail.id);
+        } else {
+          this._orgMembership.set({ isMember: false, role: null, isOwner: false });
+        }
+      } catch (error) {
+        console.error('無法載入組織成員資格:', error);
+        this._orgMembership.set({ isMember: false, role: null, isOwner: false });
+      }
+    }
+  }
+
+  /**
+   * 快速權限檢查 - 優先使用快取，必要時進行即時查詢
+   */
+  async can(action: string, resource: string): Promise<boolean> {
+    const membership = this._orgMembership();
+
+    // 如果快取中有足夠的資訊，直接返回
+    if (membership.isMember) {
+      switch (action) {
+        case 'manage':
+          return membership.isOwner || membership.role === OrgRole.ADMIN;
+        case 'read':
+          return true;
+        case 'write':
+          return membership.isOwner || membership.role === OrgRole.ADMIN || membership.role === OrgRole.MEMBER;
+        default:
+          return false;
+      }
+    }
+
+    // 如果快取中沒有足夠的資訊，進行即時查詢
+    const currentOrgId = this._currentOrgId();
+    if (currentOrgId) {
+      await this.loadOrganizationMembership(currentOrgId);
+      return this.can(action, resource); // 遞歸調用，但這次會使用更新後的快取
+    }
+
+    return false;
+  }
+
+  /**
+   * 檢查是否為組織擁有者 - Computed Signal
+   */
+  readonly isOrganizationOwner = computed(() => {
+    const membership = this._orgMembership();
+    return membership.isOwner;
+  });
+
+  /**
+   * 檢查是否為組織管理員 - Computed Signal
+   */
+  readonly isOrganizationAdmin = computed(() => {
+    const membership = this._orgMembership();
+    return membership.role === OrgRole.ADMIN;
+  });
+
+  /**
+   * 設置當前組織 - 原有方法保持向後相容性
+   */
   async setCurrentOrganization(orgId: string) {
     this._currentOrgId.set(orgId);
     await this.loadOrganizationMembership(orgId);
@@ -65,8 +141,8 @@ export class PermissionService {
     }
 
     try {
-      // 先檢查是否為組織擁有者
-      const org = await firstValueFrom(this.orgService.getOrganization(orgId));
+      // 使用 getOrganizationLegacy 來獲取包含 ownerId 的 Organization 對象
+      const org = await firstValueFrom(this.orgService.getOrganizationLegacy(orgId));
       const isOwner = org?.ownerId === currentUser.id;
 
       if (isOwner) {
@@ -119,36 +195,7 @@ export class PermissionService {
     }
   }
 
-  // 權限檢查方法
-  can(action: string, resource: string): boolean {
-    const account = this.authService.currentAccount();
-    if (!account) return false;
-
-    // 對於組織相關資源，優先檢查組織權限
-    if (resource === 'organization' || resource === 'member' || resource === 'team') {
-      const membership = this._orgMembership();
-
-      // 如果是組織擁有者，擁有所有權限
-      if (membership.isOwner) return true;
-
-      // 如果是組織管理員，擁有大部分權限
-      if (membership.role === OrgRole.ADMIN) {
-        return action === 'read' || action === 'write' || action === 'admin';
-      }
-
-      // 如果是成員，只有讀取權限
-      if (membership.isMember) {
-        return action === 'read';
-      }
-
-      return false;
-    }
-
-    // 其他資源使用基本權限檢查
-    return account.permissions.abilities.some(ability =>
-      ability.action === action && ability.resource === resource
-    );
-  }
+  // 權限檢查方法 - 使用上面的 async can 方法
 
   // 團隊權限檢查
   async canManageTeam(teamId: string): Promise<boolean> {
@@ -301,21 +348,5 @@ export class PermissionService {
     return account.permissions.roles.includes(role);
   }
 
-  // 檢查組織角色
-  hasOrgRole(role: OrgRole): boolean {
-    const membership = this._orgMembership();
-    return membership.role === role;
-  }
-
-  // 檢查是否為組織擁有者
-  isOrganizationOwner(): boolean {
-    const membership = this._orgMembership();
-    return membership.isOwner;
-  }
-
-  // 檢查是否為組織管理員
-  isOrganizationAdmin(): boolean {
-    const membership = this._orgMembership();
-    return membership.role === OrgRole.ADMIN || membership.isOwner;
-  }
+  // 檢查組織角色 - 使用上面的 hasOrgRole 方法
 }

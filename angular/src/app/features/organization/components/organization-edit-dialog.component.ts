@@ -1,18 +1,17 @@
-import { Component, Inject, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, inject, signal } from '@angular/core';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { firstValueFrom } from 'rxjs';
-import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 
-import { Organization } from '../../../core/models/auth.model';
-import { OrganizationService } from '../../../core/services/organization.service';
+import { OrganizationDetail } from '../../../core/models/auth.model';
 import { NotificationService } from '../../../core/services/notification.service';
+import { OrganizationService } from '../../../core/services/organization.service';
 
 /**
  * 組織編輯對話框組件
@@ -33,7 +32,7 @@ import { NotificationService } from '../../../core/services/notification.service
   ],
   template: `
     <h2 mat-dialog-title>編輯組織</h2>
-    
+
     <mat-dialog-content>
       @if (isLoading()) {
         <div class="loading-container">
@@ -107,7 +106,7 @@ import { NotificationService } from '../../../core/services/notification.service
         [disabled]="isSubmitting()">
         取消
       </button>
-      
+
       <button
         mat-raised-button
         color="primary"
@@ -181,7 +180,7 @@ export class OrganizationEditDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<OrganizationEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Organization
+    @Inject(MAT_DIALOG_DATA) public data: OrganizationDetail
   ) {
     this.editForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -202,7 +201,7 @@ export class OrganizationEditDialogComponent implements OnInit {
 
       // 填充表單數據
       this.editForm.patchValue({
-        name: this.data.profile.name,
+        name: this.data.name,
         description: this.data.description || '',
         website: this.data.profile.website || '',
         location: this.data.profile.location || ''
@@ -228,8 +227,8 @@ export class OrganizationEditDialogComponent implements OnInit {
       // 準備更新數據
       const profileUpdate = {
         name: formValue.name,
-        email: this.data.profile.email, // 保持原有電子郵件
-        avatar: this.data.profile.avatar, // 保持原有頭像
+        email: this.data.profile.email || '', // 確保 email 不為 undefined
+        avatar: this.data.profile.avatar || '', // 確保 avatar 不為 undefined
         bio: formValue.description,
         location: formValue.location,
         website: formValue.website
