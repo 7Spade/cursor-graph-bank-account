@@ -15,11 +15,11 @@ graph TD
     Start["Command<br>Planning"] --> Analyze["Analyze Command<br>Requirements"]
     Analyze --> Balance["Balance Clarity<br>vs. Efficiency"]
     Balance --> Complexity{"Command<br>Complexity?"}
-    
+
     Complexity -->|"Simple"| Single["Execute<br>Single Command"]
     Complexity -->|"Moderate"| Chain["Use Efficient<br>Command Chaining"]
     Complexity -->|"Complex"| Group["Group Into<br>Logical Steps"]
-    
+
     Single & Chain & Group --> Verify["Verify<br>Results"]
     Verify --> Document["Document<br>Command & Result"]
     Document --> Next["Next<br>Command"]
@@ -30,15 +30,15 @@ graph TD
 ```mermaid
 graph TD
     Command["Command<br>Execution"] --> ChainApprop{"Is Chaining<br>Appropriate?"}
-    
+
     ChainApprop -->|"Yes"| ChainTypes["Chain<br>Types"]
     ChainApprop -->|"No"| SingleCmd["Use Single<br>Commands"]
-    
+
     ChainTypes --> Sequential["Sequential Operations<br>cmd1 && cmd2"]
     ChainTypes --> Conditional["Conditional Operations<br>cmd1 || cmd2"]
     ChainTypes --> Piping["Piping<br>cmd1 | cmd2"]
     ChainTypes --> Grouping["Command Grouping<br>(cmd1; cmd2)"]
-    
+
     Sequential & Conditional & Piping & Grouping --> Doc["Document<br>Commands & Results"]
 ```
 
@@ -48,21 +48,23 @@ graph TD
 graph TD
     Command["Command<br>Execution"] --> DirCheck["Check Current<br>Directory"]
     DirCheck --> ProjectRoot{"In Project<br>Root?"}
-    
+
     ProjectRoot -->|"Yes"| Execute["Execute<br>Command"]
     ProjectRoot -->|"No"| Locate["Locate<br>Project Root"]
-    
+
     Locate --> Found{"Project Root<br>Found?"}
     Found -->|"Yes"| Navigate["Navigate to<br>Project Root"]
     Found -->|"No"| Error["Error: Cannot<br>Find Project Root"]
-    
+
     Navigate --> Execute
     Execute --> Verify["Verify<br>Results"]
 ```
 
 ## 📋 DIRECTORY VERIFICATION CHECKLIST
 
-Before executing any npm or build command:
+Before executing any pnpm, npm, yarn or build command:
+
+**⚠️ CRITICAL: This project uses PNPM as the package manager. Always use `pnpm` instead of `npm` or `yarn`.**
 
 | Step | Windows (PowerShell) | Unix/Linux/Mac | Purpose |
 |------|----------------------|----------------|---------|
@@ -70,16 +72,18 @@ Before executing any npm or build command:
 | **Check for parent directory** | `Test-Path "*/package.json"` | `find . -maxdepth 2 -name package.json` | Find potential project directories |
 | **Navigate to project root** | `cd [project-dir]` | `cd [project-dir]` | Move to correct directory before executing commands |
 
-## 📋 REACT-SPECIFIC COMMAND GUIDELINES
+## 📋 ANGULAR-SPECIFIC COMMAND GUIDELINES
 
-For React applications, follow these strict guidelines:
+**⚠️ CRITICAL: This project uses PNPM. Replace all `npm` commands with `pnpm`.**
 
-| Command | Correct Usage | Incorrect Usage | Notes |
-|---------|---------------|----------------|-------|
-| **npm start** | `cd [project-root] && npm start` | `npm start` (from parent dir) | Must execute from directory with package.json |
-| **npm run build** | `cd [project-root] && npm run build` | `cd [parent-dir] && npm run build` | Must execute from directory with package.json |
-| **npm install** | `cd [project-root] && npm install [pkg]` | `npm install [pkg]` (wrong dir) | Dependencies installed to nearest package.json |
-| **npm create** | `npm create vite@latest my-app -- --template react` | Manually configuring webpack | Use standard tools for project creation |
+For Angular applications, follow these strict guidelines:
+
+| Command | Correct Usage (PNPM) | Incorrect Usage | Notes |
+|---------|---------------------|----------------|-------|
+| **pnpm start** | `cd angular && pnpm run start` | `npm start` or `pnpm start` (from parent dir) | Must execute from angular directory with package.json |
+| **pnpm run build** | `cd angular && pnpm run build` | `cd [parent-dir] && pnpm run build` | Must execute from angular directory with package.json |
+| **pnpm install** | `cd angular && pnpm install [pkg]` | `npm install [pkg]` (wrong dir) | Dependencies installed to nearest package.json |
+| **pnpm create** | `pnpm create vite@latest my-app -- --template angular` | Manually configuring webpack | Use standard tools for project creation |
 
 ## 🔄 COMMAND CHAINING PATTERNS
 
@@ -121,13 +125,13 @@ Effective command chaining patterns include:
 graph TD
     Platform["Platform<br>Detection"] --> Windows["Windows<br>Commands"]
     Platform --> Unix["Unix/Linux/Mac<br>Commands"]
-    
+
     Windows --> WinAdapt["Windows Command<br>Adaptations"]
     Unix --> UnixAdapt["Unix Command<br>Adaptations"]
-    
+
     WinAdapt --> WinChain["Windows Chaining:<br>Commands separated by &"]
     UnixAdapt --> UnixChain["Unix Chaining:<br>Commands separated by ;"]
-    
+
     WinChain & UnixChain --> Execute["Execute<br>Platform-Specific<br>Commands"]
 ```
 
@@ -137,11 +141,11 @@ Examples of efficient command usage:
 
 | Inefficient | Efficient | Explanation |
 |-------------|-----------|-------------|
-| `mkdir dir`<br>`cd dir`<br>`npm init -y` | `mkdir dir && cd dir && npm init -y` | Combines related sequential operations |
+| `mkdir dir`<br>`cd dir`<br>`pnpm init` | `mkdir dir && cd dir && pnpm init` | Combines related sequential operations |
 | `ls`<br>`grep "\.js$"` | `ls \| grep "\.js$"` | Pipes output of first command to second |
 | `test -f file.txt`<br>`if not exists, touch file.txt` | `test -f file.txt \|\| touch file.txt` | Creates file only if it doesn't exist |
 | `mkdir dir1`<br>`mkdir dir2`<br>`mkdir dir3` | `mkdir dir1 dir2 dir3` | Uses command's built-in multiple argument capability |
-| `npm install pkg1`<br>`npm install pkg2` | `npm install pkg1 pkg2` | Installs multiple packages in one command |
+| `pnpm install pkg1`<br>`pnpm install pkg2` | `pnpm install pkg1 pkg2` | Installs multiple packages in one command (PNPM) |
 
 ## 📋 REACT PROJECT INITIALIZATION STANDARDS
 
@@ -161,10 +165,10 @@ sequenceDiagram
     participant User
     participant AI
     participant System
-    
+
     AI->>System: Execute Command
     System->>AI: Return Result
-    
+
     alt Success
         AI->>AI: Verify Expected Result
         AI->>User: Report Success
@@ -185,16 +189,16 @@ After command execution, verify:
 ```mermaid
 graph TD
     Execute["Execute<br>Command"] --> Check{"Check<br>Result"}
-    
+
     Check -->|"Success"| Verify["Verify Expected<br>Outcome"]
     Check -->|"Error"| Analyze["Analyze<br>Error"]
-    
+
     Verify -->|"Expected"| Document["Document<br>Success"]
     Verify -->|"Unexpected"| Investigate["Investigate<br>Unexpected Result"]
-    
+
     Analyze --> Diagnose["Diagnose<br>Error Cause"]
     Diagnose --> Correct["Propose<br>Correction"]
-    
+
     Document & Investigate & Correct --> Next["Next Step<br>in Process"]
 ```
 
@@ -208,8 +212,8 @@ graph TD
 - Command documented with results? [YES/NO]
 - Outcome verified against expectations? [YES/NO]
 - Errors properly handled (if any)? [YES/NO/NA]
-- For npm/build commands: Executed from project root? [YES/NO/NA]
-- For React projects: Using standard tooling? [YES/NO/NA]
+- For pnpm/build commands: Executed from angular directory? [YES/NO/NA]
+- For Angular projects: Using pnpm instead of npm? [YES/NO/NA]
 
 → If all YES: Command execution complete
 → If any NO: Address missing elements
@@ -226,10 +230,10 @@ graph TD
     Warning --> W3["Unnecessary<br>Complexity"]
     Warning --> W4["Destructive<br>Operations Without<br>Confirmation"]
     Warning --> W5["Wrong Directory<br>Execution"]
-    
+
     W1 --> S1["Use flags to reduce<br>unnecessary output"]
     W2 --> S2["Include error handling<br>in command chains"]
     W3 --> S3["Prefer built-in<br>command capabilities"]
     W4 --> S4["Show confirmation<br>before destructive actions"]
-    W5 --> S5["Verify directory before<br>npm/build commands"]
-``` 
+    W5 --> S5["Verify directory before<br>pnpm/build commands<br>Use 'cd angular &&' prefix"]
+```
