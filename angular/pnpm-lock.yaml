@@ -41,6 +41,9 @@ importers:
       firebase:
         specifier: ^11.10.0
         version: 11.10.0
+      rxfire:
+        specifier: ^6.1.0
+        version: 6.1.0(firebase@11.10.0)(rxjs@7.8.2)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2

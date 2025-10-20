@@ -1,0 +1,7216 @@
+This file is a merged representation of a subset of the codebase, containing specifically included files and files not matching ignore patterns, combined into a single document by Repomix.
+The content has been processed where content has been compressed (code blocks are separated by ⋮---- delimiter).
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: angular/src/**, angular/angular.json, angular/package.json, angular/tsconfig.json, angular/tsconfig.app.json
+- Files matching these patterns are excluded: node_modules/**, angular/node_modules/**, yarn.lock, angular/pnpm-lock.yaml, .gitignore, .editorconfig, README.md, **/angular-fire-rolekit/**, angular/.angular/**, angular/public/**, *.spec.ts, *.spec.js, angular/firebase.json, angular/tsconfig.spec.json
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Content has been compressed - code blocks are separated by ⋮---- delimiter
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+angular/angular.json
+angular/package.json
+angular/src/app/app.config.ts
+angular/src/app/app.html
+angular/src/app/app.routes.ts
+angular/src/app/app.scss
+angular/src/app/app.spec.ts
+angular/src/app/app.ts
+angular/src/app/core/guards/permission.guard.ts
+angular/src/app/core/models/auth.model.ts
+angular/src/app/core/models/index.ts
+angular/src/app/core/services/async-operations/async-operation.service.ts
+angular/src/app/core/services/async-operations/loading-state.service.ts
+angular/src/app/core/services/async-operations/retry.service.ts
+angular/src/app/core/services/async-operations/timeout.service.ts
+angular/src/app/core/services/auth.service.ts
+angular/src/app/core/services/error-handling/error-logging.service.ts
+angular/src/app/core/services/error-handling/error-notification.service.ts
+angular/src/app/core/services/error-handling/error-recovery.service.ts
+angular/src/app/core/services/error-handling/global-error-handler.service.ts
+angular/src/app/core/services/logger.service.ts
+angular/src/app/core/services/notification.service.ts
+angular/src/app/core/services/organization.service.spec.ts
+angular/src/app/core/services/organization.service.ts
+angular/src/app/core/services/permission.service.spec.ts
+angular/src/app/core/services/permission.service.ts
+angular/src/app/core/services/repository.service.ts
+angular/src/app/core/services/validation.service.ts
+angular/src/app/core/utils/avatar.utils.ts
+angular/src/app/core/utils/validation.utils.spec.ts
+angular/src/app/core/utils/validation.utils.ts
+angular/src/app/dashboard/admin.component.ts
+angular/src/app/dashboard/dashboard.component.ts
+angular/src/app/dashboard/editor.component.ts
+angular/src/app/dashboard/viewer.component.ts
+angular/src/app/features/organization/components/members-list.component.ts
+angular/src/app/features/organization/components/organization-card.component.ts
+angular/src/app/features/organization/components/organization-create-dialog.component.ts
+angular/src/app/features/organization/components/organization-create.component.ts
+angular/src/app/features/organization/components/organization-detail.component.ts
+angular/src/app/features/organization/components/organization-list.component.ts
+angular/src/app/features/organization/components/organization-roles.component.ts
+angular/src/app/features/organization/components/organization-settings.component.ts
+angular/src/app/features/organization/components/security-manager.component.ts
+angular/src/app/features/organization/components/team-create-dialog.component.ts
+angular/src/app/features/organization/components/team-create.component.ts
+angular/src/app/features/organization/components/team-detail.component.ts
+angular/src/app/features/organization/components/team-edit.component.ts
+angular/src/app/features/organization/components/team-management.component.ts
+angular/src/app/features/organization/components/teams-list.component.ts
+angular/src/app/features/organization/index.ts
+angular/src/app/features/organization/models/organization-create.model.ts
+angular/src/app/features/organization/models/team-create.model.ts
+angular/src/app/features/organization/routes/organization-detail.routes.ts
+angular/src/app/features/organization/routes/organization.routes.ts
+angular/src/app/features/organization/services/organization-api.service.ts
+angular/src/app/features/repository/components/collaborator-management.component.ts
+angular/src/app/features/repository/components/index.ts
+angular/src/app/features/repository/components/repository-detail.component.ts
+angular/src/app/features/repository/components/repository-list.component.ts
+angular/src/app/features/repository/guards/index.ts
+angular/src/app/features/repository/index.ts
+angular/src/app/features/repository/models/index.ts
+angular/src/app/features/repository/models/repository.model.ts
+angular/src/app/features/repository/routes/index.ts
+angular/src/app/features/repository/routes/repository.routes.ts
+angular/src/app/features/repository/services/index.ts
+angular/src/app/features/repository/utils/index.ts
+angular/src/app/features/user/auth/auth.guard.ts
+angular/src/app/features/user/auth/index.ts
+angular/src/app/features/user/auth/login.component.ts
+angular/src/app/features/user/auth/signup.component.ts
+angular/src/app/features/user/auth/unauthorized.component.ts
+angular/src/app/features/user/index.ts
+angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.html
+angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.scss
+angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.ts
+angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.html
+angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.scss
+angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.ts
+angular/src/app/features/user/profile/components/profile-basic-info/profile-basic-info.component.ts
+angular/src/app/features/user/profile/components/profile-form/profile-form.component.html
+angular/src/app/features/user/profile/components/profile-form/profile-form.component.scss
+angular/src/app/features/user/profile/components/profile-form/profile-form.component.ts
+angular/src/app/features/user/profile/components/social-account/social-account.component.html
+angular/src/app/features/user/profile/components/social-account/social-account.component.scss
+angular/src/app/features/user/profile/components/social-account/social-account.component.ts
+angular/src/app/features/user/profile/profile-management.component.ts
+angular/src/app/features/user/profile/services/form-state.service.ts
+angular/src/app/features/user/profile/services/notification-state.service.ts
+angular/src/app/features/user/profile/services/profile-state.service.ts
+angular/src/app/features/user/services/user.service.ts
+angular/src/app/features/user/user.routes.ts
+angular/src/app/landing/landing.component.ts
+angular/src/app/shared/components/index.ts
+angular/src/app/shared/index.ts
+angular/src/app/shared/types/dialog-event.types.ts
+angular/src/app/shared/types/index.ts
+angular/src/app/shared/types/validation.types.ts
+angular/src/app/shared/utils/index.ts
+angular/src/environments/environment.prod.ts
+angular/src/environments/environment.sample.ts
+angular/src/index.html
+angular/src/main.ts
+angular/src/styles.scss
+angular/tsconfig.app.json
+angular/tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="angular/angular.json">
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular-fire-rolekit": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": true,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "angular-fire-rolekit:build:production"
+            },
+            "development": {
+              "buildTarget": "angular-fire-rolekit:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.scss"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}
+</file>
+
+<file path="angular/package.json">
+{
+  "name": "angular-fire-rolekit",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "20.1.0",
+    "@angular/cdk": "20.1.0",
+    "@angular/common": "^20.1.0",
+    "@angular/compiler": "^20.1.0",
+    "@angular/core": "^20.1.0",
+    "@angular/fire": "^20.0.1",
+    "@angular/forms": "^20.1.0",
+    "@angular/material": "20.1.0",
+    "@angular/platform-browser": "^20.1.0",
+    "@angular/router": "^20.1.0",
+    "firebase": "^11.10.0",
+    "rxfire": "^6.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.0",
+    "@angular/cli": "^20.1.0",
+    "@angular/compiler-cli": "^20.1.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.2"
+  }
+}
+</file>
+
+<file path="angular/src/app/app.config.ts">
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+⋮----
+// Firebase
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck, CustomProvider } from '@angular/fire/app-check';
+import { getMessaging, provideMessaging } from '@angular/fire/messaging';
+import { getPerformance, providePerformance } from '@angular/fire/performance';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import { getVertexAI, provideVertexAI } from '@angular/fire/vertexai';
+⋮----
+// 根據環境選擇 App Check provider
+⋮----
+// 生產環境使用 reCAPTCHA Enterprise
+⋮----
+// 開發環境使用 debug token
+⋮----
+// 返回 debug token
+⋮----
+expireTimeMillis: Date.now() + 3600000 // 1小時後過期
+</file>
+
+<file path="angular/src/app/app.html">
+<div class="app-container">
+  <router-outlet></router-outlet>
+</div>
+</file>
+
+<file path="angular/src/app/app.routes.ts">
+import { Routes } from '@angular/router';
+import { LoginComponent } from './features/user/auth/login.component';
+import { SignupComponent } from './features/user/auth/signup.component';
+import { LandingComponent } from './landing/landing.component';
+⋮----
+import { authGuard } from './features/user/auth/auth.guard';
+import { roleGuard, orgRoleGuard, permissionGuard, orgAdminGuard, orgOwnerGuard } from './core/guards/permission.guard';
+⋮----
+// 首頁路由 - Landing Page
+⋮----
+// 認證路由
+⋮----
+// 用戶帳戶管理路由
+⋮----
+// 組織管理路由 - 支援完整的組織層級結構
+⋮----
+// 特定組織的詳細路由
+⋮----
+// Repository 管理路由
+⋮----
+// 角色管理路由
+⋮----
+// 儀表板路由
+⋮----
+// 預設重定向
+</file>
+
+<file path="angular/src/app/app.spec.ts">
+import { TestBed } from '@angular/core/testing';
+import { App } from './app';
+</file>
+
+<file path="angular/src/app/app.ts">
+import { Component, inject, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
+⋮----
+export class App {
+⋮----
+constructor()
+⋮----
+// Firebase 和 App Check 已正確配置
+</file>
+
+<file path="angular/src/app/core/guards/permission.guard.ts">
+// src/app/core/guards/permission.guard.ts
+⋮----
+import { inject } from '@angular/core';
+import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
+import { authState } from 'rxfire/auth';
+import { map } from 'rxjs';
+import { PermissionService } from '../services/permission.service';
+import { AuthService } from '../services/auth.service';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// authGuard 已移至 features/user/auth/auth.guard.ts
+// 請使用統一的 authGuard 實作
+⋮----
+/**
+ * 用戶角色守衛工廠函數
+ * @param expectedRole 預期的用戶角色
+ * @returns CanActivateFn
+ */
+export function roleGuard(expectedRole: string): CanActivateFn
+⋮----
+// 檢查用戶角色
+⋮----
+// 檢查是否有預期角色
+⋮----
+// 如果沒有預期角色，重定向到未授權頁面
+⋮----
+// 組織帳戶不支援角色守衛
+⋮----
+/**
+ * 通用權限守衛
+ * 從路由數據中讀取權限配置
+ */
+export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
+⋮----
+// 從路由數據中獲取權限配置
+⋮----
+return true; // 如果沒有權限配置，允許訪問
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 權限守衛工廠函數
+ * @param action 權限動作 (read, write, admin, delete)
+ * @param resource 資源類型 (organization, team, repository, member)
+ * @returns CanActivateFn
+ */
+export function createPermissionGuard(action: string, resource: string): CanActivateFn
+⋮----
+// 檢查權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織權限守衛工廠函數
+ * @param role 組織角色
+ * @returns CanActivateFn
+ */
+export function orgRoleGuard(role: OrgRole): CanActivateFn
+⋮----
+// 檢查組織角色
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織管理員守衛
+ * 檢查用戶是否為組織管理員或擁有者
+ */
+export const orgAdminGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織管理員
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織擁有者守衛
+ * 檢查用戶是否為組織擁有者
+ */
+export const orgOwnerGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織擁有者
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 讀取權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryReadGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 讀取權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 寫入權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryWriteGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 寫入權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 管理權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryManageGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 團隊管理權限守衛
+ * @param teamId 團隊 ID
+ * @returns CanActivateFn
+ */
+export function teamManageGuard(teamId: string): CanActivateFn
+⋮----
+// 檢查團隊管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+</file>
+
+<file path="angular/src/app/core/models/index.ts">
+/**
+ * Core Models 導出文件
+ * 遵循單一職責原則：統一導出所有核心模型
+ */
+⋮----
+// 認證相關模型
+</file>
+
+<file path="angular/src/app/core/services/async-operations/async-operation.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { Observable, from, throwError, timer, firstValueFrom, lastValueFrom } from 'rxjs';
+import { catchError, timeout, retry } from 'rxjs/operators';
+⋮----
+export interface AsyncOperation<T = any> {
+  id: string;
+  name: string;
+  operation: () => Promise<T> | Observable<T>;
+  status: 'pending' | 'running' | 'completed' | 'failed' | 'cancelled';
+  result?: T;
+  error?: any;
+  startTime?: number;
+  endTime?: number;
+  retryCount: number;
+  maxRetries: number;
+  timeout?: number;
+}
+⋮----
+export interface AsyncOperationSettings {
+  defaultTimeout: number;
+  defaultMaxRetries: number;
+  enableRetry: boolean;
+  retryDelay: number;
+  enableTimeout: boolean;
+  enableCancellation: boolean;
+}
+⋮----
+/**
+ * AsyncOperationService - 異步操作服務
+ * 使用 Angular Signals 統一管理異步操作
+ * 遵循單一職責原則：只負責異步操作管理
+ */
+⋮----
+export class AsyncOperationService {
+⋮----
+// State signals
+⋮----
+defaultTimeout: 30000, // 30 seconds
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Execute an async operation
+   */
+async execute<T>(
+    name: string,
+    operation: () => Promise<T> | Observable<T>,
+    options: Partial<AsyncOperationSettings> = {}
+): Promise<T>
+⋮----
+/**
+   * Execute multiple operations in parallel
+   */
+async executeParallel<T>(
+    operations: Array<{ name: string; operation: () => Promise<T> | Observable<T> }>,
+    options: Partial<AsyncOperationSettings> = {}
+): Promise<T[]>
+⋮----
+/**
+   * Execute multiple operations sequentially
+   */
+async executeSequential<T>(
+    operations: Array<{ name: string; operation: () => Promise<T> | Observable<T> }>,
+    options: Partial<AsyncOperationSettings> = {}
+): Promise<T[]>
+⋮----
+/**
+   * Cancel an operation
+   */
+cancelOperation(operationId: string): boolean
+⋮----
+/**
+   * Get operation by ID
+   */
+getOperation(operationId: string): AsyncOperation | undefined
+⋮----
+/**
+   * Get operations by name
+   */
+getOperationsByName(name: string): AsyncOperation[]
+⋮----
+/**
+   * Get operations by status
+   */
+getOperationsByStatus(status: AsyncOperation['status']): AsyncOperation[]
+⋮----
+/**
+   * Clear completed operations
+   */
+clearCompleted(): void
+⋮----
+/**
+   * Clear all operations
+   */
+clearAll(): void
+⋮----
+/**
+   * Update settings
+   */
+updateSettings(settings: Partial<AsyncOperationSettings>): void
+⋮----
+/**
+   * Get operation statistics
+   */
+getOperationStatistics()
+⋮----
+// Private methods
+private async runOperation<T>(
+    operation: AsyncOperation<T>,
+    settings: AsyncOperationSettings
+): Promise<T>
+⋮----
+// Convert Promise to Observable if needed
+⋮----
+// Apply timeout if enabled
+⋮----
+// Apply retry if enabled
+⋮----
+// Execute the operation
+⋮----
+// Retry the operation
+⋮----
+private updateOperationStatus(operationId: string, status: AsyncOperation['status']): void
+⋮----
+private removeOperation(operationId: string): void
+⋮----
+private generateId(): string
+⋮----
+private delay(ms: number): Promise<void>
+⋮----
+private calculateAverageExecutionTime(operations: AsyncOperation[]): number
+⋮----
+private calculateSuccessRate(operations: AsyncOperation[]): number
+</file>
+
+<file path="angular/src/app/core/services/async-operations/loading-state.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+⋮----
+export interface LoadingState {
+  id: string;
+  name: string;
+  loading: boolean;
+  progress?: number;
+  message?: string;
+  startTime: number;
+  endTime?: number;
+  duration?: number;
+}
+⋮----
+export interface LoadingSettings {
+  enableProgressTracking: boolean;
+  enableDurationTracking: boolean;
+  enableMessageTracking: boolean;
+  defaultLoadingMessage: string;
+  maxLoadingStates: number;
+  enableLoadingHistory: boolean;
+}
+⋮----
+/**
+ * LoadingStateService - 載入狀態服務
+ * 使用 Angular Signals 統一管理載入狀態
+ * 遵循單一職責原則：只負責載入狀態管理
+ */
+⋮----
+export class LoadingStateService {
+⋮----
+// State signals
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Start loading state
+   */
+startLoading(
+    name: string,
+    message?: string,
+    progress?: number
+): string
+⋮----
+// Limit loading states
+⋮----
+/**
+   * Update loading progress
+   */
+updateProgress(loadingId: string, progress: number, message?: string): boolean
+⋮----
+/**
+   * Update loading message
+   */
+updateMessage(loadingId: string, message: string): boolean
+⋮----
+/**
+   * Complete loading state
+   */
+completeLoading(loadingId: string, finalMessage?: string): boolean
+⋮----
+// Add to history if enabled
+⋮----
+/**
+   * Cancel loading state
+   */
+cancelLoading(loadingId: string, cancelMessage?: string): boolean
+⋮----
+// Add to history if enabled
+⋮----
+/**
+   * Get loading state by ID
+   */
+getLoadingState(loadingId: string): LoadingState | undefined
+⋮----
+/**
+   * Get loading states by name
+   */
+getLoadingStatesByName(name: string): LoadingState[]
+⋮----
+/**
+   * Get active loading states by name
+   */
+getActiveLoadingStatesByName(name: string): LoadingState[]
+⋮----
+/**
+   * Check if specific operation is loading
+   */
+isOperationLoading(name: string): boolean
+⋮----
+/**
+   * Get loading statistics
+   */
+getLoadingStatistics()
+⋮----
+/**
+   * Clear completed loading states
+   */
+clearCompleted(): void
+⋮----
+/**
+   * Clear all loading states
+   */
+clearAll(): void
+⋮----
+/**
+   * Clear loading history
+   */
+clearHistory(): void
+⋮----
+/**
+   * Update loading settings
+   */
+updateSettings(settings: Partial<LoadingSettings>): void
+⋮----
+// Private methods
+private addToHistory(state: LoadingState): void
+⋮----
+// Limit history size
+⋮----
+private generateId(): string
+⋮----
+private calculateAverageLoadingTime(states: LoadingState[]): number
+⋮----
+private calculateTotalLoadingTime(states: LoadingState[]): number
+⋮----
+private groupOperationsByName(states: LoadingState[]): Record<string, number>
+</file>
+
+<file path="angular/src/app/core/services/async-operations/retry.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { Observable, throwError, timer } from 'rxjs';
+import { retry, retryWhen, delay, take, concatMap } from 'rxjs/operators';
+⋮----
+export interface RetryConfig {
+  maxAttempts: number;
+  delay: number;
+  backoffMultiplier: number;
+  maxDelay: number;
+  retryCondition?: (error: any) => boolean;
+  onRetry?: (attempt: number, error: any) => void;
+}
+⋮----
+export interface RetryAttempt {
+  id: string;
+  operationId: string;
+  attempt: number;
+  timestamp: number;
+  error: any;
+  success: boolean;
+  duration: number;
+}
+⋮----
+export interface RetrySettings {
+  defaultMaxAttempts: number;
+  defaultDelay: number;
+  defaultBackoffMultiplier: number;
+  defaultMaxDelay: number;
+  enableExponentialBackoff: boolean;
+  enableJitter: boolean;
+  logRetryAttempts: boolean;
+}
+⋮----
+/**
+ * RetryService - 重試服務
+ * 負責處理異步操作的重試邏輯
+ * 遵循單一職責原則：只負責重試邏輯管理
+ */
+⋮----
+export class RetryService {
+⋮----
+// State signals
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Retry an operation with custom configuration
+   */
+retryOperation<T>(
+    operation: () => Observable<T>,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+// Record retry attempt
+⋮----
+// Check if we should retry
+⋮----
+// Check retry condition
+⋮----
+// Call onRetry callback
+⋮----
+// Calculate delay
+⋮----
+/**
+   * Retry with exponential backoff
+   */
+retryWithExponentialBackoff<T>(
+    operation: () => Observable<T>,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+/**
+   * Retry with fixed delay
+   */
+retryWithFixedDelay<T>(
+    operation: () => Observable<T>,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+/**
+   * Retry with custom condition
+   */
+retryWithCondition<T>(
+    operation: () => Observable<T>,
+    condition: (error: any) => boolean,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+/**
+   * Retry network operations
+   */
+retryNetworkOperation<T>(
+    operation: () => Observable<T>,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+// Retry on network errors
+⋮----
+/**
+   * Retry authentication operations
+   */
+retryAuthOperation<T>(
+    operation: () => Observable<T>,
+    config: Partial<RetryConfig> = {}
+): Observable<T>
+⋮----
+// Retry on authentication errors
+⋮----
+/**
+   * Get retry statistics
+   */
+getRetryStatistics()
+⋮----
+/**
+   * Clear retry history
+   */
+clearRetryHistory(): void
+⋮----
+/**
+   * Update retry settings
+   */
+updateSettings(settings: Partial<RetrySettings>): void
+⋮----
+// Private methods
+private mergeConfig(config: Partial<RetryConfig>): RetryConfig
+⋮----
+private calculateDelay(attempt: number, config: RetryConfig): number
+⋮----
+// Apply exponential backoff if enabled
+⋮----
+// Apply jitter if enabled
+⋮----
+// Cap at max delay
+⋮----
+private recordRetryAttempt(attempt: RetryAttempt): void
+⋮----
+private generateId(): string
+⋮----
+private calculateAverageRetryTime(attempts: RetryAttempt[]): number
+⋮----
+private groupRetriesByOperation(attempts: RetryAttempt[]): Record<string, number>
+⋮----
+private groupRetriesByError(attempts: RetryAttempt[]): Record<string, number>
+</file>
+
+<file path="angular/src/app/core/services/async-operations/timeout.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { Observable, throwError, timer } from 'rxjs';
+import { timeout, catchError } from 'rxjs/operators';
+⋮----
+export interface TimeoutConfig {
+  timeout: number;
+  timeoutMessage?: string;
+  onTimeout?: () => void;
+}
+⋮----
+export interface TimeoutOperation {
+  id: string;
+  name: string;
+  timeout: number;
+  startTime: number;
+  endTime?: number;
+  completed: boolean;
+  timedOut: boolean;
+  duration?: number;
+}
+⋮----
+export interface TimeoutSettings {
+  defaultTimeout: number;
+  enableTimeout: boolean;
+  timeoutWarningThreshold: number;
+  logTimeoutOperations: boolean;
+  enableTimeoutRecovery: boolean;
+}
+⋮----
+/**
+ * TimeoutService - 超時服務
+ * 負責處理異步操作的超時邏輯
+ * 遵循單一職責原則：只負責超時邏輯管理
+ */
+⋮----
+export class TimeoutService {
+⋮----
+// State signals
+⋮----
+defaultTimeout: 30000, // 30 seconds
+⋮----
+timeoutWarningThreshold: 5000, // 5 seconds
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Execute an operation with timeout
+   */
+executeWithTimeout<T>(
+    name: string,
+    operation: () => Observable<T>,
+    config: Partial<TimeoutConfig> = {}
+): Observable<T>
+⋮----
+// Check if it's a timeout error
+⋮----
+/**
+   * Execute with custom timeout
+   */
+executeWithCustomTimeout<T>(
+    name: string,
+    operation: () => Observable<T>,
+    timeoutMs: number,
+    timeoutMessage?: string
+): Observable<T>
+⋮----
+/**
+   * Execute with warning threshold
+   */
+executeWithWarning<T>(
+    name: string,
+    operation: () => Observable<T>,
+    config: Partial<TimeoutConfig> = {}
+): Observable<T>
+⋮----
+// Set up warning timer
+⋮----
+/**
+   * Cancel a timeout operation
+   */
+cancelOperation(operationId: string): boolean
+⋮----
+/**
+   * Get operation by ID
+   */
+getOperation(operationId: string): TimeoutOperation | undefined
+⋮----
+/**
+   * Get operations by name
+   */
+getOperationsByName(name: string): TimeoutOperation[]
+⋮----
+/**
+   * Get timeout statistics
+   */
+getTimeoutStatistics()
+⋮----
+/**
+   * Clear completed operations
+   */
+clearCompleted(): void
+⋮----
+/**
+   * Clear all operations
+   */
+clearAll(): void
+⋮----
+/**
+   * Update timeout settings
+   */
+updateSettings(settings: Partial<TimeoutSettings>): void
+⋮----
+// Private methods
+private mergeConfig(config: Partial<TimeoutConfig>): TimeoutConfig
+⋮----
+private handleTimeout(operationId: string, config: TimeoutConfig): void
+⋮----
+// Call timeout callback
+⋮----
+// Log timeout if enabled
+⋮----
+private handleTimeoutWarning(operationId: string): void
+⋮----
+private generateId(): string
+⋮----
+private calculateAverageExecutionTime(operations: TimeoutOperation[]): number
+⋮----
+private calculateTimeoutRate(operations: TimeoutOperation[]): number
+⋮----
+private groupOperationsByTimeout(operations: TimeoutOperation[]): Record<string, number>
+</file>
+
+<file path="angular/src/app/core/services/auth.service.ts">
+// src/app/core/services/auth.service.ts
+⋮----
+import { Injectable, inject, signal, computed, effect, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { 
+  Auth, 
+  authState, 
+  signInWithPopup, 
+  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  User as FirebaseUser
+} from '@angular/fire/auth';
+import {
+  Firestore,
+  doc,
+  docData,
+  collection,
+  collectionData,
+  query,
+  where,
+  setDoc,
+  writeBatch,
+  DocumentData
+} from '@angular/fire/firestore';
+import { Observable, of, switchMap, map, combineLatest, firstValueFrom } from 'rxjs';
+import { 
+  User, 
+  Organization, 
+  Account, 
+  AccountState, 
+  ProfileVO, 
+  PermissionVO, 
+  SettingsVO 
+} from '../models/auth.model';
+import { ValidationUtils } from '../utils/validation.utils';
+⋮----
+export class AuthService {
+⋮----
+// 使用 Signals 管理狀態
+⋮----
+// 公開的 Signals
+⋮----
+// Computed Signals for organizations
+⋮----
+// 這裡應該實現組織查詢邏輯
+// 為了簡化，返回空數組
+⋮----
+constructor()
+⋮----
+// 監聽 Firebase Auth 狀態變化
+⋮----
+async signInWithGoogle()
+⋮----
+async signOut()
+⋮----
+private getFirebaseAuthErrorMessage(error: any): string
+⋮----
+// Firebase Auth 錯誤代碼對應的中文訊息
+⋮----
+async signInWithEmailAndPassword(email: string, password: string)
+⋮----
+async createUserWithEmailAndPassword(email: string, password: string, displayName?: string)
+⋮----
+// 如果提供了顯示名稱，更新用戶資料
+⋮----
+private async loadUserAccount(uid: string)
+⋮----
+private async syncUserProfile(firebaseUser: FirebaseUser)
+⋮----
+// 檢查用戶是否已存在
+⋮----
+// 建立或更新 ProfileVO
+⋮----
+avatar: firebaseUser.photoURL || 'avatar.jpg', // 預設頭像
+⋮----
+// 驗證 Profile
+⋮----
+// 建立或保留現有的 PermissionVO
+⋮----
+// 建立或保留現有的 SettingsVO
+⋮----
+// 準備用戶資料
+⋮----
+photoURL: firebaseUser.photoURL || 'avatar.jpg', // 預設頭像
+⋮----
+// 如果是新用戶，添加創建時間
+⋮----
+// 使用事務確保資料一致性
+⋮----
+// 更新用戶資料
+⋮----
+// 如果是新用戶，創建默認的個人設定
+⋮----
+// 提交事務
+⋮----
+// 更新本地狀態
+⋮----
+// 回滾本地狀態
+⋮----
+// 重新拋出錯誤
+⋮----
+// 權限檢查方法
+can(action: string, resource: string): boolean
+⋮----
+// 角色檢查方法
+hasRole(role: string): boolean
+⋮----
+// 獲取當前用戶
+getCurrentUser(): User | null
+⋮----
+// 獲取當前組織
+getCurrentOrganization(): Organization | null
+⋮----
+// 更新用戶檔案
+async updateUserProfile(profile: ProfileVO): Promise<void>
+⋮----
+// 驗證 Profile
+⋮----
+// 更新本地狀態
+⋮----
+// 更新用戶設定
+async updateUserSettings(settings: SettingsVO): Promise<void>
+⋮----
+// 驗證 Settings
+⋮----
+// 更新本地狀態
+⋮----
+// 設置錯誤
+setError(error: string)
+⋮----
+// 清除錯誤
+clearError()
+</file>
+
+<file path="angular/src/app/core/services/error-handling/error-logging.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { ErrorDetails } from './global-error-handler.service';
+⋮----
+export interface ErrorLog {
+  id: string;
+  error: ErrorDetails;
+  timestamp: number;
+  resolved: boolean;
+  resolution?: string;
+  tags: string[];
+}
+⋮----
+export interface ErrorLogSettings {
+  enableLogging: boolean;
+  logLevel: 'debug' | 'info' | 'warn' | 'error';
+  maxLogs: number;
+  enableRemoteLogging: boolean;
+  remoteEndpoint?: string;
+  enableLocalStorage: boolean;
+  enableConsoleLogging: boolean;
+}
+⋮----
+export interface ErrorStatistics {
+  totalErrors: number;
+  errorsBySeverity: Record<string, number>;
+  errorsByCategory: Record<string, number>;
+  errorsByComponent: Record<string, number>;
+  recentErrors: ErrorLog[];
+  errorTrends: Array<{ date: string; count: number }>;
+}
+⋮----
+/**
+ * ErrorLoggingService - 錯誤日誌服務
+ * 負責記錄和管理應用程序錯誤日誌
+ * 遵循單一職責原則：只負責錯誤日誌管理
+ */
+⋮----
+export class ErrorLoggingService {
+⋮----
+// State signals
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Log an error
+   */
+logError(errorDetails: ErrorDetails, tags: string[] = []): void
+⋮----
+// Limit logs based on settings
+⋮----
+// Log to console if enabled
+⋮----
+// Log to localStorage if enabled
+⋮----
+// Log to remote endpoint if enabled
+⋮----
+/**
+   * Mark an error as resolved
+   */
+markAsResolved(logId: string, resolution?: string): void
+⋮----
+/**
+   * Get error statistics
+   */
+getErrorStatistics(): ErrorStatistics
+⋮----
+/**
+   * Get logs by severity
+   */
+getLogsBySeverity(severity: ErrorDetails['severity']): ErrorLog[]
+⋮----
+/**
+   * Get logs by category
+   */
+getLogsByCategory(category: ErrorDetails['category']): ErrorLog[]
+⋮----
+/**
+   * Get logs by component
+   */
+getLogsByComponent(component: string): ErrorLog[]
+⋮----
+/**
+   * Search logs
+   */
+searchLogs(query: string): ErrorLog[]
+⋮----
+/**
+   * Clear all logs
+   */
+clearAllLogs(): void
+⋮----
+/**
+   * Clear resolved logs
+   */
+clearResolvedLogs(): void
+⋮----
+/**
+   * Export logs
+   */
+exportLogs(): string
+⋮----
+/**
+   * Import logs
+   */
+importLogs(logsJson: string): void
+⋮----
+/**
+   * Update settings
+   */
+updateSettings(settings: Partial<ErrorLogSettings>): void
+⋮----
+// Private methods
+private generateId(): string
+⋮----
+private logToConsole(errorLog: ErrorLog): void
+⋮----
+private logToLocalStorage(errorLog: ErrorLog): void
+⋮----
+// Limit localStorage logs
+⋮----
+private getLogsFromLocalStorage(): ErrorLog[]
+⋮----
+private async logToRemote(errorLog: ErrorLog): Promise<void>
+⋮----
+private calculateErrorTrends(logs: ErrorLog[]): Array<
+</file>
+
+<file path="angular/src/app/core/services/error-handling/error-notification.service.ts">
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { ErrorDetails } from './global-error-handler.service';
+import { LoggerService } from '../logger.service';
+⋮----
+export interface ErrorNotification {
+  id: string;
+  error: ErrorDetails;
+  dismissed: boolean;
+  timestamp: number;
+  retryCount: number;
+  maxRetries: number;
+}
+⋮----
+export interface ErrorNotificationSettings {
+  showNotifications: boolean;
+  autoDismiss: boolean;
+  dismissDelay: number;
+  maxNotifications: number;
+  showRetryButton: boolean;
+  showDetailsButton: boolean;
+}
+⋮----
+/**
+ * ErrorNotificationService - 錯誤通知服務
+ * 負責向用戶顯示友好的錯誤通知
+ * 遵循單一職責原則：只負責錯誤通知顯示
+ */
+⋮----
+export class ErrorNotificationService {
+⋮----
+// State signals
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+/**
+   * Show error notification to user
+   */
+showErrorNotification(errorDetails: ErrorDetails): void
+⋮----
+// Limit notifications based on settings
+⋮----
+// Auto-dismiss if enabled
+⋮----
+/**
+   * Dismiss a notification
+   */
+dismissNotification(notificationId: string): void
+⋮----
+/**
+   * Retry the action that caused the error
+   */
+retryAction(notificationId: string): void
+⋮----
+// Increment retry count
+⋮----
+// TODO: Implement actual retry logic based on error context
+⋮----
+/**
+   * Show error details
+   */
+showErrorDetails(notificationId: string): void
+⋮----
+// TODO: Open error details modal/dialog
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+/**
+   * Clear all notifications
+   */
+clearAll(): void
+⋮----
+/**
+   * Clear dismissed notifications
+   */
+clearDismissed(): void
+⋮----
+/**
+   * Update notification settings
+   */
+updateSettings(settings: Partial<ErrorNotificationSettings>): void
+⋮----
+/**
+   * Get user-friendly error message
+   */
+getUserFriendlyMessage(errorDetails: ErrorDetails): string
+⋮----
+// Add context-specific information
+⋮----
+/**
+   * Get error severity icon
+   */
+getSeverityIcon(severity: ErrorDetails['severity']): string
+⋮----
+/**
+   * Get error severity color
+   */
+getSeverityColor(severity: ErrorDetails['severity']): string
+⋮----
+/**
+   * Check if retry is available
+   */
+canRetry(notificationId: string): boolean
+⋮----
+/**
+   * Get retry attempts remaining
+   */
+getRetryAttemptsRemaining(notificationId: string): number
+⋮----
+// Private methods
+private generateId(): string
+⋮----
+private getMaxRetriesForSeverity(severity: ErrorDetails['severity']): number
+⋮----
+private performRetry(errorDetails: ErrorDetails): void
+⋮----
+// TODO: Implement actual retry logic
+// This would involve calling the original action that failed
+// 使用適當的日誌記錄服務替代 console.log
+</file>
+
+<file path="angular/src/app/core/services/error-handling/error-recovery.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { ErrorDetails } from './global-error-handler.service';
+⋮----
+export interface RecoveryAction {
+  id: string;
+  name: string;
+  description: string;
+  action: () => Promise<boolean>;
+  priority: number;
+  conditions: RecoveryCondition[];
+}
+⋮----
+export interface RecoveryCondition {
+  type: 'severity' | 'category' | 'component' | 'message';
+  operator: 'equals' | 'contains' | 'startsWith' | 'endsWith';
+  value: string;
+}
+⋮----
+export interface RecoveryAttempt {
+  id: string;
+  errorId: string;
+  actionId: string;
+  timestamp: number;
+  success: boolean;
+  error?: string;
+  duration: number;
+}
+⋮----
+export interface RecoverySettings {
+  enableAutoRecovery: boolean;
+  maxRecoveryAttempts: number;
+  recoveryDelay: number;
+  enableUserPrompt: boolean;
+  enableFallbackActions: boolean;
+}
+⋮----
+/**
+ * ErrorRecoveryService - 錯誤恢復服務
+ * 負責自動或手動恢復應用程序錯誤
+ * 遵循單一職責原則：只負責錯誤恢復
+ */
+⋮----
+export class ErrorRecoveryService {
+⋮----
+// State signals
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+constructor()
+⋮----
+/**
+   * Attempt to recover from an error
+   */
+async attemptRecovery(errorDetails: ErrorDetails): Promise<boolean>
+⋮----
+/**
+   * Execute a specific recovery action
+   */
+async executeRecoveryAction(errorDetails: ErrorDetails, action: RecoveryAction): Promise<boolean>
+⋮----
+// Record the attempt
+⋮----
+// Record the failed attempt
+⋮----
+/**
+   * Add a custom recovery action
+   */
+addRecoveryAction(action: RecoveryAction): void
+⋮----
+/**
+   * Remove a recovery action
+   */
+removeRecoveryAction(actionId: string): void
+⋮----
+/**
+   * Get recovery statistics
+   */
+getRecoveryStatistics()
+⋮----
+/**
+   * Update recovery settings
+   */
+updateSettings(settings: Partial<RecoverySettings>): void
+⋮----
+/**
+   * Clear recovery history
+   */
+clearRecoveryHistory(): void
+⋮----
+// Private methods
+private initializeDefaultRecoveryActions(): void
+⋮----
+// TODO: Implement network retry logic
+⋮----
+// TODO: Implement cache clearing logic
+⋮----
+// TODO: Implement fallback UI logic
+⋮----
+private getApplicableActions(errorDetails: ErrorDetails): RecoveryAction[]
+⋮----
+private matchesConditions(errorDetails: ErrorDetails, conditions: RecoveryCondition[]): boolean
+⋮----
+private matchesValue(actual: string, operator: RecoveryCondition['operator'], expected: string): boolean
+⋮----
+private recordRecoveryAttempt(attempt: RecoveryAttempt): void
+⋮----
+private generateId(): string
+⋮----
+private generateErrorId(errorDetails: ErrorDetails): string
+⋮----
+private calculateAverageRecoveryTime(attempts: RecoveryAttempt[]): number
+</file>
+
+<file path="angular/src/app/core/services/error-handling/global-error-handler.service.ts">
+import { ErrorHandler, Injectable, NgZone } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorNotificationService } from './error-notification.service';
+import { ErrorLoggingService } from './error-logging.service';
+import { ErrorRecoveryService } from './error-recovery.service';
+⋮----
+export interface ErrorContext {
+  component?: string;
+  action?: string;
+  timestamp: number;
+  userAgent: string;
+  url: string;
+  userId?: string;
+}
+⋮----
+export interface ErrorDetails {
+  message: string;
+  stack?: string;
+  name: string;
+  context: ErrorContext;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  category: 'network' | 'validation' | 'authentication' | 'authorization' | 'system' | 'unknown';
+}
+⋮----
+/**
+ * GlobalErrorHandler - 全局錯誤處理器
+ * 捕獲和處理應用程序中的所有未處理錯誤
+ * 遵循單一職責原則：只負責全局錯誤處理
+ */
+⋮----
+export class GlobalErrorHandler implements ErrorHandler {
+⋮----
+constructor(
+⋮----
+handleError(error: any): void
+⋮----
+// Ensure error handling runs inside Angular zone
+⋮----
+// Log the error
+⋮----
+// Show user-friendly notification
+⋮----
+// Attempt error recovery
+⋮----
+// Log to console in development
+⋮----
+private processError(error: any): ErrorDetails
+⋮----
+private processHttpError(error: HttpErrorResponse, context: ErrorContext): ErrorDetails
+⋮----
+private processJavaScriptError(error: Error, context: ErrorContext): ErrorDetails
+⋮----
+// Determine severity based on error type
+⋮----
+private processUnknownError(error: any, context: ErrorContext): ErrorDetails
+⋮----
+private createErrorContext(): ErrorContext
+⋮----
+private getCurrentUserId(): string | undefined
+⋮----
+// TODO: Get current user ID from auth service
+⋮----
+private isDevelopmentMode(): boolean
+⋮----
+// Placeholder for environment
+</file>
+
+<file path="angular/src/app/core/services/logger.service.ts">
+import { Injectable } from '@angular/core';
+⋮----
+export enum LogLevel {
+  DEBUG = 0,
+  INFO = 1,
+  WARN = 2,
+  ERROR = 3
+}
+⋮----
+export interface LogEntry {
+  level: LogLevel;
+  message: string;
+  timestamp: Date;
+  context?: string;
+  data?: any;
+}
+⋮----
+export class LoggerService {
+⋮----
+/**
+   * 設置日誌級別
+   */
+setLevel(level: LogLevel): void
+⋮----
+/**
+   * 獲取當前日誌級別
+   */
+getLevel(): LogLevel
+⋮----
+/**
+   * 獲取所有日誌
+   */
+getLogs(): LogEntry[]
+⋮----
+/**
+   * 清除日誌
+   */
+clearLogs(): void
+⋮----
+/**
+   * 記錄調試信息
+   */
+debug(message: string, data?: any, context?: string): void
+⋮----
+/**
+   * 記錄一般信息
+   */
+info(message: string, data?: any, context?: string): void
+⋮----
+/**
+   * 記錄警告信息
+   */
+warn(message: string, data?: any, context?: string): void
+⋮----
+/**
+   * 記錄錯誤信息
+   */
+error(message: string, data?: any, context?: string): void
+⋮----
+/**
+   * 內部日誌記錄方法
+   */
+private log(level: LogLevel, message: string, data?: any, context?: string): void
+⋮----
+// 添加到內部日誌數組
+⋮----
+// 保持日誌數組大小合理（最多保留 1000 條）
+⋮----
+// 根據級別輸出到控制台
+⋮----
+/**
+   * 獲取級別名稱
+   */
+private getLevelName(level: LogLevel): string
+</file>
+
+<file path="angular/src/app/core/services/notification.service.ts">
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+⋮----
+export interface NotificationOptions {
+  duration?: number;
+  action?: string;
+  horizontalPosition?: 'start' | 'center' | 'end' | 'left' | 'right';
+  verticalPosition?: 'top' | 'bottom';
+}
+⋮----
+/**
+ * NotificationService - 通知服務
+ * 提供統一的用戶通知功能
+ */
+⋮----
+export class NotificationService {
+⋮----
+constructor(private snackBar: MatSnackBar)
+⋮----
+/**
+   * 顯示成功通知
+   */
+showSuccess(message: string, options?: NotificationOptions): void
+⋮----
+/**
+   * 顯示錯誤通知
+   */
+showError(message: string, options?: NotificationOptions): void
+⋮----
+/**
+   * 顯示警告通知
+   */
+showWarning(message: string, options?: NotificationOptions): void
+⋮----
+/**
+   * 顯示信息通知
+   */
+showInfo(message: string, options?: NotificationOptions): void
+⋮----
+// 支援現有組織管理功能的方法
+showValidationErrors(errors: string[]): void
+⋮----
+showOrganizationCreatedSuccess(organizationName: string): void
+⋮----
+showOrganizationCreatedError(errorMessage: string): void
+</file>
+
+<file path="angular/src/app/core/services/organization.service.spec.ts">
+import { TestBed } from '@angular/core/testing';
+import { OrganizationService } from './organization.service';
+import { AuthService } from './auth.service';
+import { NotificationService } from './notification.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { Firestore, writeBatch, doc, collection, getDocs } from '@angular/fire/firestore';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// Mock Firestore operations
+⋮----
+// Mock getOrganization
+⋮----
+// Mock Firestore batch operations
+⋮----
+// Simulate no members
+⋮----
+// Simulate no teams
+⋮----
+// Mock writeBatch
+⋮----
+ownerId: 'user1', // Different from current user
+⋮----
+// Mock getOrganization
+</file>
+
+<file path="angular/src/app/core/services/permission.service.spec.ts">
+import { TestBed } from '@angular/core/testing';
+import { PermissionService } from './permission.service';
+import { AuthService } from './auth.service';
+import { OrganizationService } from './organization.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { Firestore } from '@angular/fire/firestore';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// Mock organization membership as owner
+⋮----
+// Mock organization membership as admin
+⋮----
+// Mock organization membership as member
+⋮----
+// Mock organization membership as non-member
+</file>
+
+<file path="angular/src/app/core/services/repository.service.ts">
+// src/app/core/services/repository.service.ts
+⋮----
+import { Injectable, inject, signal, computed } from '@angular/core';
+import {
+  Firestore,
+  doc,
+  docData,
+  collection,
+  collectionData,
+  query,
+  where,
+  addDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+  DocumentData
+} from '@angular/fire/firestore';
+import { Observable, map, switchMap, combineLatest, of, catchError, throwError, firstValueFrom } from 'rxjs';
+import { 
+  Repository, 
+  RepositoryCollaborator, 
+  RepositoryTeamAccess,
+  Account
+} from '../models/auth.model';
+import { AuthService } from './auth.service';
+import { PermissionService } from './permission.service';
+import { ValidationUtils } from '../utils/validation.utils';
+⋮----
+export class RepositoryService {
+⋮----
+// Signals for state management
+⋮----
+// Readonly signals
+⋮----
+// Computed signals
+⋮----
+async createRepository(
+    name: string,
+    description?: string,
+    isPrivate: boolean = true,
+    ownerId?: string
+): Promise<string>
+⋮----
+// 驗證 Repository 名稱
+⋮----
+// 如果擁有者不是當前用戶，添加協作者
+⋮----
+getRepository(repoId: string): Observable<Repository>
+⋮----
+async loadRepository(repoId: string): Promise<void>
+⋮----
+getUserRepositories(userId: string): Observable<Repository[]>
+⋮----
+getOrganizationRepositories(orgId: string): Observable<Repository[]>
+⋮----
+async updateRepository(
+    repoId: string,
+    updates: Partial<Repository>
+): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+// 更新本地狀態
+⋮----
+async deleteRepository(repoId: string): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+// 清除本地狀態
+⋮----
+getRepositoryCollaborators(repoId: string): Observable<RepositoryCollaborator[]>
+⋮----
+async addCollaborator(
+    repoId: string,
+    userId: string,
+    permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin',
+    invitedBy?: string
+): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+async updateCollaboratorPermission(
+    repoId: string,
+    userId: string,
+    newPermission: 'read' | 'triage' | 'write' | 'maintain' | 'admin'
+): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+async removeCollaborator(repoId: string, userId: string): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+getRepositoryTeamAccess(repoId: string): Observable<RepositoryTeamAccess[]>
+⋮----
+async addTeamAccess(
+    repoId: string,
+    teamId: string,
+    permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin',
+    grantedBy?: string
+): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+async updateTeamAccessPermission(
+    repoId: string,
+    teamId: string,
+    newPermission: 'read' | 'triage' | 'write' | 'maintain' | 'admin'
+): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+async removeTeamAccess(repoId: string, teamId: string): Promise<void>
+⋮----
+// 檢查權限
+⋮----
+private getRoleName(permission: string): string
+⋮----
+// 清除錯誤
+clearError()
+⋮----
+// 清除 Repository 上下文
+clearRepositoryContext()
+</file>
+
+<file path="angular/src/app/core/services/validation.service.ts">
+import { Injectable } from '@angular/core';
+import { ValidationResult, ValidationRule, ValidationConfig } from '../../shared/types/validation.types';
+import { ValidationUtils } from '../utils/validation.utils';
+⋮----
+/**
+ * 驗證服務
+ * 單一職責：提供表單驗證邏輯
+ * 遵循單一職責原則：只負責驗證相關的業務邏輯
+ */
+⋮----
+export class ValidationService {
+⋮----
+/**
+   * 驗證組織名稱
+   * @param name 組織名稱
+   * @returns 驗證結果
+   */
+validateOrganizationName(name: string): ValidationResult
+⋮----
+/**
+   * 驗證登入名稱 (通用方法)
+   * @param login 登入名稱
+   * @returns 驗證結果
+   */
+validateLogin(login: string): ValidationResult
+⋮----
+/**
+   * 驗證組織登入名稱
+   * @param login 組織登入名稱
+   * @returns 驗證結果
+   */
+validateOrganizationLogin(login: string): ValidationResult
+⋮----
+/**
+   * 驗證組織描述
+   * @param description 組織描述
+   * @returns 驗證結果
+   */
+validateOrganizationDescription(description: string): ValidationResult
+⋮----
+/**
+   * 驗證團隊名稱
+   * @param name 團隊名稱
+   * @returns 驗證結果
+   */
+validateTeamName(name: string): ValidationResult
+⋮----
+/**
+   * 驗證團隊 slug
+   * @param slug 團隊 slug
+   * @returns 驗證結果
+   */
+validateTeamSlug(slug: string): ValidationResult
+⋮----
+/**
+   * 驗證團隊描述
+   * @param description 團隊描述
+   * @returns 驗證結果
+   */
+validateTeamDescription(description: string): ValidationResult
+⋮----
+/**
+   * 驗證電子郵件
+   * @param email 電子郵件
+   * @returns 驗證結果
+   */
+validateEmail(email: string): ValidationResult
+⋮----
+/**
+   * 驗證密碼
+   * @param password 密碼
+   * @returns 驗證結果
+   */
+validatePassword(password: string): ValidationResult
+⋮----
+/**
+   * 驗證多個字段
+   * @param validations 驗證結果數組
+   * @returns 整體驗證結果
+   */
+validateMultiple(validations: ValidationResult[]): ValidationResult
+⋮----
+/**
+   * 生成 slug 從名稱
+   * @param name 名稱
+   * @returns slug
+   */
+generateSlugFromName(name: string): string
+⋮----
+.replace(/[^a-z0-9\s\-_]/g, '') // 移除特殊字符
+.replace(/\s+/g, '-') // 空格替換為連字符
+.replace(/-+/g, '-') // 多個連字符替換為單個
+.replace(/^-|-$/g, ''); // 移除開頭和結尾的連字符
+</file>
+
+<file path="angular/src/app/core/utils/avatar.utils.ts">
+/**
+ * 頭像 URL 處理工具
+ * 統一處理預設頭像和用戶自定義頭像的 URL 生成
+ */
+⋮----
+export class AvatarUtils {
+⋮----
+/**
+   * 獲取頭像 URL
+   * @param avatar 頭像路徑或 URL
+   * @returns 完整的頭像 URL
+   */
+static getAvatarUrl(avatar: string | undefined | null): string
+⋮----
+// 使用預設頭像
+⋮----
+// 完整的 URL，直接返回
+⋮----
+// 相對路徑，從 Storage 獲取
+⋮----
+/**
+   * 檢查是否為預設頭像
+   * @param avatar 頭像路徑或 URL
+   * @returns 是否為預設頭像
+   */
+static isDefaultAvatar(avatar: string | undefined | null): boolean
+⋮----
+/**
+   * 獲取預設頭像 URL
+   * @returns 預設頭像的完整 URL
+   */
+static getDefaultAvatarUrl(): string
+</file>
+
+<file path="angular/src/app/core/utils/validation.utils.spec.ts">
+import { ValidationUtils } from './validation.utils';
+import { OrgRole } from '../models/auth.model';
+⋮----
+// 注意：實際的 validateTeamName 不檢查特殊字符，所以這些測試會失敗
+// 如果需要檢查特殊字符，需要在 ValidationUtils 中添加相應的驗證邏輯
+</file>
+
+<file path="angular/src/app/core/utils/validation.utils.ts">
+// src/app/core/utils/validation.utils.ts
+⋮----
+import { ProfileVO, PermissionVO, SettingsVO, OrgRole } from '../models/auth.model';
+⋮----
+/**
+ * 驗證工具類別
+ * 提供統一的驗證邏輯和錯誤處理
+ */
+export class ValidationUtils {
+⋮----
+/**
+   * 驗證電子郵件格式
+   * @param email 電子郵件地址
+   * @returns 是否為有效的電子郵件格式
+   */
+static validateEmail(email: string): boolean
+⋮----
+/**
+   * 驗證密碼強度
+   * @param password 密碼
+   * @returns 驗證結果和錯誤訊息
+   */
+static validatePassword(password: string):
+⋮----
+/**
+   * 驗證用戶檔案
+   * @param profile 用戶檔案
+   * @returns 錯誤訊息陣列
+   */
+static validateProfile(profile: ProfileVO): string[]
+⋮----
+/**
+   * 驗證權限設定
+   * @param permission 權限設定
+   * @returns 錯誤訊息陣列
+   */
+static validatePermission(permission: PermissionVO): string[]
+⋮----
+// 驗證角色格式
+⋮----
+/**
+   * 驗證設定
+   * @param settings 設定
+   * @returns 錯誤訊息陣列
+   */
+static validateSettings(settings: SettingsVO): string[]
+⋮----
+/**
+   * 驗證 URL 格式
+   * @param url URL 字串
+   * @returns 是否為有效的 URL
+   */
+static validateUrl(url: string): boolean
+⋮----
+/**
+   * 驗證登入名稱 (GitHub 式)
+   * @param login 登入名稱
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateLogin(login: string):
+⋮----
+// GitHub 式登入名稱規則：只能包含字母、數字、連字符和底線
+⋮----
+// 不能以連字符或底線開頭或結尾
+⋮----
+// 不能包含連續的連字符或底線
+⋮----
+/**
+   * 驗證組織名稱
+   * @param name 組織名稱
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateOrganizationName(name: string):
+⋮----
+/**
+   * 驗證團隊名稱
+   * @param name 團隊名稱
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateTeamName(name: string):
+⋮----
+/**
+   * 驗證團隊 slug
+   * @param slug 團隊 slug
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateTeamSlug(slug: string):
+⋮----
+// 檢查格式
+⋮----
+// 檢查是否以連字符開頭或結尾
+⋮----
+/**
+   * 驗證 Repository 名稱
+   * @param name Repository 名稱
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateRepositoryName(name: string):
+⋮----
+// Repository 名稱規則：只能包含字母、數字、連字符、底線和點
+⋮----
+// 不能以點開頭或結尾
+⋮----
+/**
+   * 清理和格式化輸入
+   * @param input 輸入字串
+   * @returns 清理後的字串
+   */
+static sanitizeInput(input: string): string
+⋮----
+/**
+   * 驗證日期範圍
+   * @param startDate 開始日期
+   * @param endDate 結束日期
+   * @returns 驗證結果和錯誤訊息
+   */
+static validateDateRange(startDate: Date, endDate: Date):
+</file>
+
+<file path="angular/src/app/dashboard/admin.component.ts">
+import {
+  Component,
+  inject,
+  OnInit,
+  Injector,
+  runInInjectionContext
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  doc,
+  updateDoc
+} from '@angular/fire/firestore';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoggerService } from '../core/services/logger.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+⋮----
+interface UserData {
+  uid: string;
+  email: string;
+  role: string;
+}
+⋮----
+export class AdminComponent implements OnInit {
+⋮----
+ngOnInit()
+⋮----
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+loadUsers()
+⋮----
+updateRole(uid: string, newRole: string)
+⋮----
+refresh()
+⋮----
+logout()
+</file>
+
+<file path="angular/src/app/dashboard/dashboard.component.ts">
+import { Component, inject, signal, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthService } from '../core/services/auth.service';
+⋮----
+export class DashboardComponent {
+⋮----
+// 使用 Signals 獲取當前用戶信息
+⋮----
+navigateToAccount()
+⋮----
+navigateToOrganizations()
+⋮----
+navigateToRepositories()
+⋮----
+logout()
+</file>
+
+<file path="angular/src/app/dashboard/editor.component.ts">
+import {
+  Component,
+  inject,
+  OnInit
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  collectionData,
+  updateDoc,
+  deleteDoc,
+  doc
+} from '@angular/fire/firestore';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+⋮----
+interface Article {
+  id?: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+}
+⋮----
+export class EditorComponent implements OnInit {
+⋮----
+ngOnInit()
+⋮----
+async saveArticle()
+⋮----
+editArticle(article: Article)
+⋮----
+async deleteArticle(id?: string)
+⋮----
+logout()
+</file>
+
+<file path="angular/src/app/dashboard/viewer.component.ts">
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+⋮----
+interface Article {
+  id?: string;
+  title: string;
+  content: string;
+  createdAt: Date;
+}
+⋮----
+export class ViewerComponent implements OnInit {
+⋮----
+ngOnInit()
+⋮----
+getDate(date: any)
+⋮----
+logout()
+</file>
+
+<file path="angular/src/app/features/organization/components/members-list.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OrganizationMember, OrgRole } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 成員列表組件
+ * 顯示組織成員列表並允許管理員管理成員角色
+ */
+⋮----
+export class MembersListComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+// Table configuration
+⋮----
+async ngOnInit()
+⋮----
+async loadMembers()
+⋮----
+async updateRole(member: OrganizationMember, newRole: OrgRole)
+⋮----
+// 更新本地狀態
+⋮----
+async removeMember(member: OrganizationMember)
+⋮----
+// 更新本地狀態
+⋮----
+inviteMember()
+⋮----
+// TODO: 實作邀請成員對話框
+⋮----
+isCurrentUser(userId: string): boolean
+⋮----
+// TODO: 檢查是否為當前用戶
+⋮----
+getRoleLabel(role: OrgRole): string
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-card.component.ts">
+import { Component, Input, Output, EventEmitter, signal, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { OrganizationDetail } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 組織卡片組件
+ * 使用 Material Design 3 設計，對齊 GitHub 的組織卡片風格
+ */
+⋮----
+export class OrganizationCardComponent {
+⋮----
+// 計算屬性
+⋮----
+/**
+   * 獲取組織類型標籤
+   */
+getTypeLabel(type?: string): string
+⋮----
+/**
+   * 檢視組織
+   */
+onView(): void
+⋮----
+/**
+   * 編輯組織
+   */
+onEdit(): void
+⋮----
+/**
+   * 組織設定
+   */
+onSettings(): void
+⋮----
+/**
+   * 成員管理
+   */
+onMembers(): void
+⋮----
+/**
+   * 團隊管理
+   */
+onTeams(): void
+⋮----
+/**
+   * 刪除組織
+   */
+onDelete(): void
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-create-dialog.component.ts">
+import { Component, inject, signal, computed, Output, EventEmitter, effect } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { ValidationService } from '../../../core/services/validation.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { 
+  OrganizationCreateRequest, 
+  OrganizationCreateFormState,
+  OrganizationCreatedEvent 
+} from '../models/organization-create.model';
+⋮----
+/**
+ * 組織建立對話框組件
+ * 單一職責：處理組織建立的用戶界面和表單提交
+ * 遵循單一職責原則：只負責組織建立的 UI 和用戶交互
+ */
+⋮----
+export class OrganizationCreateDialogComponent {
+⋮----
+// 服務注入
+⋮----
+// 事件發射器
+⋮----
+// 表單狀態
+⋮----
+// 計算屬性
+⋮----
+constructor()
+⋮----
+// 初始化表單有效性
+⋮----
+/**
+   * 驗證單個字段
+   */
+validateField(field: string): void
+⋮----
+/**
+   * 更新表單有效性
+   */
+private updateFormValidity(): void
+⋮----
+// 直接計算表單有效性，不依賴 computed signal
+⋮----
+/**
+   * 處理輸入變化
+   */
+onInputChange(): void
+⋮----
+/**
+   * 提交表單
+   */
+async onSubmit(): Promise<void>
+⋮----
+// 驗證所有字段
+⋮----
+// 發射成功事件
+⋮----
+/**
+   * 取消操作
+   */
+onCancel(): void
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-create.component.ts">
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { ValidationService } from '../../../core/services/validation.service';
+import { AuthService } from '../../../core/services/auth.service';
+⋮----
+/**
+ * 組織建立組件
+ * 允許用戶建立新的組織
+ */
+⋮----
+export class OrganizationCreateComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Form data
+⋮----
+ngOnInit()
+⋮----
+// 檢查用戶是否已登入
+⋮----
+isFormValid(): boolean
+⋮----
+validateField(field: string): void
+⋮----
+async onSubmit()
+⋮----
+// 驗證所有字段
+⋮----
+// 建立組織
+⋮----
+this.authService.currentAccount()?.id || '', // 從 AuthService 獲取當前用戶 ID
+⋮----
+goBack()
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-detail.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 組織詳情組件
+ * 顯示組織的基本信息和統計數據
+ */
+⋮----
+export class OrganizationDetailComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+async ngOnInit()
+⋮----
+// 設置當前組織到權限服務
+⋮----
+// 載入組織詳情
+⋮----
+async loadOrganization()
+⋮----
+// 載入組織資訊
+⋮----
+// 載入團隊列表 - 暫時設為空數組，因為 getOrganizationTeams 方法不存在
+⋮----
+// 載入成員列表
+⋮----
+editOrganization()
+⋮----
+async deleteOrganization()
+⋮----
+// 確認刪除
+⋮----
+goToMembers()
+⋮----
+goToTeams()
+⋮----
+goToSettings()
+⋮----
+viewTeam(teamId: string)
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-list.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { OrganizationCardComponent } from '../components/organization-card.component';
+import { OrganizationCreateDialogComponent } from '../components/organization-create-dialog.component';
+import { OrganizationDetail } from '../../../core/models/auth.model';
+import { OrganizationCreatedEvent } from '../models/organization-create.model';
+⋮----
+/**
+ * 組織列表組件
+ * 單一職責：顯示組織列表和提供建立組織的功能
+ * 遵循單一職責原則：只負責組織列表的顯示和建立組織的入口
+ */
+⋮----
+export class OrganizationListComponent implements OnInit {
+⋮----
+// 服務注入
+⋮----
+// 狀態管理
+⋮----
+// 只讀信號
+⋮----
+ngOnInit(): void
+⋮----
+/**
+   * 載入組織列表
+   */
+async loadOrganizations(): Promise<void>
+⋮----
+// 獲取當前用戶
+⋮----
+// 調用服務方法獲取用戶的組織列表
+⋮----
+// 將 Organization 轉換為 OrganizationDetail
+⋮----
+slug: org.login, // 使用 login 作為 slug
+⋮----
+type: 'construction' as const, // 暫時設為 construction，可以後續優化
+⋮----
+phone: undefined, // ProfileVO 沒有 phone 字段
+⋮----
+members: [], // 暫時設為空數組，可以後續優化
+teams: [],   // 暫時設為空數組，可以後續優化
+securityManagers: [], // 暫時設為空數組，可以後續優化
+organizationRoles: [], // 暫時設為空數組，可以後續優化
+⋮----
+/**
+   * 建立組織信號
+   */
+createOrganizationSignal(organization: OrganizationDetail)
+⋮----
+/**
+   * 建立選中狀態信號
+   */
+createIsSelectedSignal(isSelected: boolean)
+⋮----
+/**
+   * 打開建立組織對話框
+   */
+openCreateOrganizationDialog(): void
+⋮----
+this.loadOrganizations(); // 重新載入組織列表
+⋮----
+/**
+   * 檢視組織
+   */
+onViewOrganization(organization: OrganizationDetail): void
+⋮----
+/**
+   * 編輯組織
+   */
+onEditOrganization(organization: OrganizationDetail): void
+⋮----
+// 暫時顯示提示，後續可以實現編輯對話框
+⋮----
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+/**
+   * 組織設定
+   */
+onOrganizationSettings(organization: OrganizationDetail): void
+⋮----
+/**
+   * 組織成員
+   */
+onOrganizationMembers(organization: OrganizationDetail): void
+⋮----
+/**
+   * 組織團隊
+   */
+onOrganizationTeams(organization: OrganizationDetail): void
+⋮----
+/**
+   * 刪除組織
+   */
+onDeleteOrganization(organization: OrganizationDetail): void
+⋮----
+// 暫時顯示提示，後續可以實現刪除功能
+⋮----
+// 使用適當的日誌記錄服務替代 console.log
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-roles.component.ts">
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatBadgeModule } from '@angular/material/badge';
+⋮----
+import { OrganizationRole, Permission } from '../../../core/models/auth.model';
+import { PermissionService } from '../../../core/services/permission.service';
+⋮----
+/**
+ * 組織角色系統組件
+ * 管理組織的角色和權限設定
+ */
+⋮----
+export class OrganizationRolesComponent implements OnInit {
+⋮----
+// 響應式狀態
+⋮----
+// 公開的只讀 signals
+⋮----
+// 計算屬性
+⋮----
+// 表格配置
+⋮----
+ngOnInit(): void
+⋮----
+/**
+   * 載入組織角色資料
+   */
+private async loadOrganizationRoles(): Promise<void>
+⋮----
+// 暫時使用空數組，等待實際實現
+⋮----
+/**
+   * 獲取角色圖標
+   */
+getRoleIcon(level: number): string
+⋮----
+/**
+   * 獲取等級顏色
+   */
+getLevelColor(level: number): 'primary' | 'accent' | 'warn'
+⋮----
+/**
+   * 獲取唯一權限範圍
+   */
+getUniqueScopes(permissions: Permission[]): string[]
+⋮----
+/**
+   * 獲取範圍顏色
+   */
+getScopeColor(scope: string): 'primary' | 'accent' | 'warn'
+⋮----
+/**
+   * 獲取範圍標籤
+   */
+getScopeLabel(scope: string): string
+⋮----
+/**
+   * 格式化日期
+   */
+formatDate(date: Date): string
+⋮----
+/**
+   * 開啟新增角色對話框
+   */
+openCreateRoleDialog(): void
+⋮----
+// TODO: 實作新增角色對話框
+⋮----
+/**
+   * 查看角色詳情
+   */
+viewRoleDetails(role: OrganizationRole): void
+⋮----
+// TODO: 實作查看角色詳情對話框
+⋮----
+/**
+   * 編輯角色
+   */
+editRole(role: OrganizationRole): void
+⋮----
+// TODO: 實作編輯角色對話框
+⋮----
+/**
+   * 複製角色
+   */
+duplicateRole(role: OrganizationRole): void
+⋮----
+// TODO: 實作複製角色功能
+⋮----
+/**
+   * 刪除角色
+   */
+deleteRole(role: OrganizationRole): void
+⋮----
+// TODO: 實作刪除角色確認對話框
+</file>
+
+<file path="angular/src/app/features/organization/components/organization-settings.component.ts">
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Organization } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 組織設定組件
+ * 允許組織管理員編輯組織的基本資訊
+ */
+⋮----
+export class OrganizationSettingsComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Form data
+⋮----
+async ngOnInit()
+⋮----
+// 檢查權限
+⋮----
+async loadOrganization()
+⋮----
+// 填充表單數據
+⋮----
+isFormValid(): boolean
+⋮----
+async onSubmit()
+⋮----
+// 準備 Profile 和 Settings 數據
+⋮----
+email: '', // 組織沒有電子郵件
+⋮----
+// 使用批次更新確保事務性
+⋮----
+resetForm()
+⋮----
+goBack()
+</file>
+
+<file path="angular/src/app/features/organization/components/security-manager.component.ts">
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { SecurityManager, SecurityPermission } from '../../../core/models/auth.model';
+import { PermissionService } from '../../../core/services/permission.service';
+⋮----
+/**
+ * 安全管理器組件
+ * 管理組織的安全權限和安全管理員
+ */
+⋮----
+export class SecurityManagerComponent implements OnInit {
+⋮----
+// 響應式狀態
+⋮----
+// 公開的只讀 signals
+⋮----
+// 計算屬性
+⋮----
+// 表格配置
+⋮----
+ngOnInit(): void
+⋮----
+/**
+   * 載入安全管理員資料
+   */
+private async loadSecurityManagers(): Promise<void>
+⋮----
+// 暫時使用空數組，等待實際實現
+⋮----
+/**
+   * 獲取類型顏色
+   */
+getTypeColor(type: 'user' | 'team'): 'primary' | 'accent' | 'warn'
+⋮----
+/**
+   * 獲取類型圖標
+   */
+getTypeIcon(type: 'user' | 'team'): string
+⋮----
+/**
+   * 獲取類型標籤
+   */
+getTypeLabel(type: 'user' | 'team'): string
+⋮----
+/**
+   * 獲取實體名稱
+   */
+getEntityName(manager: SecurityManager): string
+⋮----
+// 這裡應該根據 entityId 查找實際的用戶名或團隊名
+// 簡化實作，直接返回 ID
+⋮----
+/**
+   * 格式化日期
+   */
+formatDate(date: Date): string
+⋮----
+/**
+   * 開啟新增安全管理員對話框
+   */
+openAddSecurityManagerDialog(): void
+⋮----
+// TODO: 實作新增安全管理員對話框
+⋮----
+/**
+   * 查看權限
+   */
+viewPermissions(manager: SecurityManager): void
+⋮----
+// TODO: 實作查看權限對話框
+⋮----
+/**
+   * 編輯安全管理員
+   */
+editSecurityManager(manager: SecurityManager): void
+⋮----
+// TODO: 實作編輯安全管理員對話框
+⋮----
+/**
+   * 移除安全管理員
+   */
+removeSecurityManager(manager: SecurityManager): void
+⋮----
+// TODO: 實作移除安全管理員確認對話框
+</file>
+
+<file path="angular/src/app/features/organization/components/team-create-dialog.component.ts">
+import { Component, inject, signal, computed, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { ValidationService } from '../../../core/services/validation.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { 
+  TeamCreateRequest, 
+  TeamCreateFormState,
+  TeamCreatedEvent 
+} from '../models/team-create.model';
+⋮----
+/**
+ * 團隊建立對話框組件
+ * 單一職責：處理團隊建立的用戶界面和表單提交
+ * 遵循單一職責原則：只負責團隊建立的 UI 和用戶交互
+ */
+⋮----
+export class TeamCreateDialogComponent {
+⋮----
+// 服務注入
+⋮----
+// 對話框數據注入
+constructor(@Inject(MAT_DIALOG_DATA) public data:
+⋮----
+// 監聽表單變化
+⋮----
+// 事件發射器
+⋮----
+// 表單狀態
+⋮----
+// 計算屬性
+⋮----
+/**
+   * 驗證單個字段
+   */
+validateField(field: string): void
+⋮----
+/**
+   * 更新表單有效性
+   */
+private updateFormValidity(): void
+⋮----
+/**
+   * 提交表單
+   */
+async onSubmit(): Promise<void>
+⋮----
+// 驗證所有字段
+⋮----
+// 設置提交狀態
+⋮----
+// 發射成功事件
+⋮----
+// 重置提交狀態
+⋮----
+/**
+   * 取消操作
+   */
+onCancel(): void
+</file>
+
+<file path="angular/src/app/features/organization/components/team-create.component.ts">
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { ValidationService } from '../../../core/services/validation.service';
+⋮----
+/**
+ * 團隊建立組件
+ * 允許組織管理員建立新的團隊
+ */
+⋮----
+export class TeamCreateComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Form data
+⋮----
+async ngOnInit()
+⋮----
+// 檢查權限
+⋮----
+isFormValid(): boolean
+⋮----
+validateField(field: string): void
+⋮----
+async onSubmit()
+⋮----
+// 驗證所有字段
+⋮----
+goBack()
+</file>
+
+<file path="angular/src/app/features/organization/components/team-detail.component.ts">
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Team } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 團隊詳情組件
+ * 顯示團隊的詳細資訊
+ */
+⋮----
+export class TeamDetailComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+async ngOnInit()
+⋮----
+async loadTeam()
+⋮----
+// TODO: 實作載入團隊詳情的邏輯
+// const team = await this.orgService.getTeam(this.orgId, this.teamId).toPromise();
+// this.team.set(team || null);
+⋮----
+// 暫時使用模擬數據
+⋮----
+canManageTeam(): boolean
+⋮----
+// TODO: 實作團隊管理權限檢查
+⋮----
+editTeam()
+⋮----
+goBack()
+</file>
+
+<file path="angular/src/app/features/organization/components/team-edit.component.ts">
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Team } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 團隊編輯組件
+ * 允許團隊管理員編輯團隊資訊
+ */
+⋮----
+export class TeamEditComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+async ngOnInit()
+⋮----
+// 檢查權限
+⋮----
+async loadTeam()
+⋮----
+// TODO: 實作載入團隊詳情的邏輯
+// const team = await this.orgService.getTeam(this.orgId, this.teamId).toPromise();
+// this.team.set(team || null);
+⋮----
+// 暫時使用模擬數據
+⋮----
+async saveTeam()
+⋮----
+// TODO: 實作儲存團隊變更的邏輯
+// await this.orgService.updateTeam(this.orgId, this.teamId, teamData);
+⋮----
+goBack()
+</file>
+
+<file path="angular/src/app/features/organization/components/team-management.component.ts">
+import { Component, Input, Output, EventEmitter, signal, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { Team } from '../../../core/models/auth.model';
+import { TeamCreateDialogComponent } from '../components/team-create-dialog.component';
+import { TeamCreatedEvent } from '../models/team-create.model';
+import { LoggerService } from '../../../core/services/logger.service';
+⋮----
+/**
+ * 團隊節點介面
+ */
+interface TeamNode extends Team {
+  children: TeamNode[];
+  level: number;
+  expandable: boolean;
+}
+⋮----
+/**
+ * 團隊層級管理組件
+ * 使用 Material Design 3 的 Tree 組件實作 GitHub 風格的團隊層級結構
+ */
+⋮----
+export class TeamHierarchyComponent {
+⋮----
+// 服務注入
+⋮----
+// 樹狀結構轉換器
+⋮----
+// Tree 控制
+⋮----
+// 計算屬性
+⋮----
+constructor()
+⋮----
+// 監聽 teams 變化並更新 dataSource
+⋮----
+/**
+   * 建立團隊層級結構
+   */
+private buildTeamHierarchy(teams: Team[]): TeamNode[]
+⋮----
+// 初始化所有團隊
+⋮----
+// 建立層級關係
+⋮----
+/**
+   * 獲取節點縮排
+   */
+getNodePadding(node: TeamNode): number
+⋮----
+/**
+   * 檢查是否有子節點
+   */
+⋮----
+/**
+   * 獲取團隊圖示
+   */
+getTeamIcon(privacy: 'open' | 'closed'): string
+⋮----
+/**
+   * 獲取隱私標籤
+   */
+getPrivacyLabel(privacy: 'open' | 'closed'): string
+⋮----
+/**
+   * 獲取權限標籤
+   */
+getPermissionLabel(permission: 'read' | 'write' | 'admin'): string
+⋮----
+/**
+   * 新增團隊
+   */
+onCreateTeam(): void
+⋮----
+/**
+   * 新增子團隊
+   */
+onCreateSubTeam(parentTeam: Team): void
+⋮----
+/**
+   * 檢視團隊
+   */
+onViewTeam(team: Team): void
+⋮----
+/**
+   * 編輯團隊
+   */
+onEditTeam(team: Team): void
+⋮----
+/**
+   * 管理成員
+   */
+onManageMembers(team: Team): void
+⋮----
+/**
+   * 刪除團隊
+   */
+onDeleteTeam(team: Team): void
+⋮----
+/**
+   * 打開建立團隊對話框
+   */
+private openCreateTeamDialog(parentTeamId?: string): void
+⋮----
+// 發射事件通知父組件團隊已建立
+⋮----
+// 重新載入團隊列表
+⋮----
+/**
+   * 載入團隊列表
+   */
+private loadTeams(): void
+⋮----
+// TODO: 實現載入團隊列表的邏輯
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+// Tree 相關類別
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { effect } from '@angular/core';
+</file>
+
+<file path="angular/src/app/features/organization/components/teams-list.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Team } from '../../../core/models/auth.model';
+⋮----
+/**
+ * 團隊列表組件
+ * 顯示組織的所有團隊並提供管理功能
+ */
+⋮----
+export class TeamsListComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+async ngOnInit()
+⋮----
+async loadTeams()
+⋮----
+// 使用 getOrganizationTeams 方法載入團隊列表
+⋮----
+createTeam()
+⋮----
+viewTeam(teamId: string)
+⋮----
+editTeam(teamId: string)
+⋮----
+async deleteTeam(team: Team)
+⋮----
+// 確認對話框
+⋮----
+// 重新載入團隊列表
+</file>
+
+<file path="angular/src/app/features/organization/index.ts">
+// 組織模組匯出檔案
+⋮----
+// 模型匯出 - Organization 相關模型已移至 core/models/auth.model.ts
+</file>
+
+<file path="angular/src/app/features/organization/models/organization-create.model.ts">
+/**
+ * 組織建立相關的模型定義
+ * 遵循單一職責原則：只包含組織建立所需的數據結構
+ */
+⋮----
+/**
+ * 組織建立請求介面
+ * 單一職責：定義組織建立請求的數據結構
+ */
+export interface OrganizationCreateRequest {
+  /** 組織名稱 */
+  name: string;
+  /** 組織描述（可選） */
+  description?: string;
+  /** 隱私設定 */
+  privacy: 'public' | 'private';
+  /** 擁有者 ID */
+  ownerId: string;
+  /** 組織登入名稱（唯一標識符） */
+  login: string;
+}
+⋮----
+/** 組織名稱 */
+⋮----
+/** 組織描述（可選） */
+⋮----
+/** 隱私設定 */
+⋮----
+/** 擁有者 ID */
+⋮----
+/** 組織登入名稱（唯一標識符） */
+⋮----
+/**
+ * 組織建立響應介面
+ * 單一職責：定義組織建立響應的數據結構
+ */
+export interface OrganizationCreateResponse {
+  /** 是否成功 */
+  success: boolean;
+  /** 組織 ID */
+  organizationId?: string;
+  /** 錯誤訊息 */
+  error?: string;
+  /** 建立的組織數據 */
+  organization?: {
+    id: string;
+    name: string;
+    login: string;
+    description?: string;
+    privacy: 'public' | 'private';
+    ownerId: string;
+    createdAt: Date;
+  };
+}
+⋮----
+/** 是否成功 */
+⋮----
+/** 組織 ID */
+⋮----
+/** 錯誤訊息 */
+⋮----
+/** 建立的組織數據 */
+⋮----
+/**
+ * 組織建立事件介面
+ * 單一職責：定義組織建立事件的數據結構
+ */
+export interface OrganizationCreatedEvent {
+  /** 建立的組織 */
+  organization: {
+    id: string;
+    name: string;
+    login: string;
+    description?: string;
+    privacy: 'public' | 'private';
+    ownerId: string;
+    createdAt: Date;
+  };
+  /** 是否成功 */
+  success: boolean;
+  /** 錯誤訊息（如果失敗） */
+  error?: string;
+}
+⋮----
+/** 建立的組織 */
+⋮----
+/** 是否成功 */
+⋮----
+/** 錯誤訊息（如果失敗） */
+⋮----
+/**
+ * 組織建立表單狀態介面
+ * 單一職責：定義組織建立表單的狀態
+ */
+export interface OrganizationCreateFormState {
+  /** 表單是否正在提交 */
+  isSubmitting: boolean;
+  /** 表單是否有效 */
+  isValid: boolean;
+  /** 表單錯誤 */
+  errors: {
+    name?: string;
+    login?: string;
+    description?: string;
+    privacy?: string;
+  };
+  /** 表單值 */
+  values: {
+    name: string;
+    login: string;
+    description: string;
+    privacy: 'public' | 'private';
+  };
+}
+⋮----
+/** 表單是否正在提交 */
+⋮----
+/** 表單是否有效 */
+⋮----
+/** 表單錯誤 */
+⋮----
+/** 表單值 */
+</file>
+
+<file path="angular/src/app/features/organization/models/team-create.model.ts">
+/**
+ * 團隊建立相關的模型定義
+ * 遵循單一職責原則：只包含團隊建立所需的數據結構
+ */
+⋮----
+/**
+ * 團隊建立請求介面
+ * 單一職責：定義團隊建立請求的數據結構
+ */
+export interface TeamCreateRequest {
+  /** 團隊名稱 */
+  name: string;
+  /** 團隊描述（可選） */
+  description?: string;
+  /** 所屬組織 ID */
+  organizationId: string;
+  /** 父團隊 ID（可選，用於層級團隊） */
+  parentTeamId?: string;
+  /** 隱私設定 */
+  privacy: 'open' | 'closed';
+  /** 權限等級 */
+  permission: 'read' | 'write' | 'admin';
+  /** 團隊 slug（唯一標識符） */
+  slug: string;
+}
+⋮----
+/** 團隊名稱 */
+⋮----
+/** 團隊描述（可選） */
+⋮----
+/** 所屬組織 ID */
+⋮----
+/** 父團隊 ID（可選，用於層級團隊） */
+⋮----
+/** 隱私設定 */
+⋮----
+/** 權限等級 */
+⋮----
+/** 團隊 slug（唯一標識符） */
+⋮----
+/**
+ * 團隊建立響應介面
+ * 單一職責：定義團隊建立響應的數據結構
+ */
+export interface TeamCreateResponse {
+  /** 是否成功 */
+  success: boolean;
+  /** 團隊 ID */
+  teamId?: string;
+  /** 錯誤訊息 */
+  error?: string;
+  /** 建立的團隊數據 */
+  team?: {
+    id: string;
+    name: string;
+    slug: string;
+    description?: string;
+    organizationId: string;
+    parentTeamId?: string;
+    privacy: 'open' | 'closed';
+    permission: 'read' | 'write' | 'admin';
+    createdAt: Date;
+  };
+}
+⋮----
+/** 是否成功 */
+⋮----
+/** 團隊 ID */
+⋮----
+/** 錯誤訊息 */
+⋮----
+/** 建立的團隊數據 */
+⋮----
+/**
+ * 團隊建立事件介面
+ * 單一職責：定義團隊建立事件的數據結構
+ */
+export interface TeamCreatedEvent {
+  /** 建立的團隊 */
+  team: {
+    id: string;
+    name: string;
+    slug: string;
+    description?: string;
+    organizationId: string;
+    parentTeamId?: string;
+    privacy: 'open' | 'closed';
+    permission: 'read' | 'write' | 'admin';
+    createdAt: Date;
+  };
+  /** 是否成功 */
+  success: boolean;
+  /** 錯誤訊息（如果失敗） */
+  error?: string;
+}
+⋮----
+/** 建立的團隊 */
+⋮----
+/** 是否成功 */
+⋮----
+/** 錯誤訊息（如果失敗） */
+⋮----
+/**
+ * 團隊建立表單狀態介面
+ * 單一職責：定義團隊建立表單的狀態
+ */
+export interface TeamCreateFormState {
+  /** 表單是否正在提交 */
+  isSubmitting: boolean;
+  /** 表單是否有效 */
+  isValid: boolean;
+  /** 表單錯誤 */
+  errors: {
+    name?: string;
+    slug?: string;
+    description?: string;
+    privacy?: string;
+    permission?: string;
+  };
+  /** 表單值 */
+  values: {
+    name: string;
+    slug: string;
+    description: string;
+    privacy: 'open' | 'closed';
+    permission: 'read' | 'write' | 'admin';
+  };
+}
+⋮----
+/** 表單是否正在提交 */
+⋮----
+/** 表單是否有效 */
+⋮----
+/** 表單錯誤 */
+⋮----
+/** 表單值 */
+</file>
+
+<file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
+import { Routes } from '@angular/router';
+import { permissionGuard } from '../../../core/guards/permission.guard';
+⋮----
+/**
+ * 組織詳細路由配置
+ * 支援完整的組織層級結構，包含成員、團隊、設定等子路由
+ * 對齊 docs/account.md 的設計
+ */
+⋮----
+// 組織設定 - 需要寫入權限
+⋮----
+// 成員管理 - 需要讀取成員權限
+⋮----
+// 團隊管理路由
+⋮----
+// 角色管理 - 需要管理權限
+⋮----
+// 安全管理器 - 需要管理權限
+⋮----
+// Repository 管理 - 暫時註解掉，因為組件尚未創建
+// {
+//   path: 'repositories',
+//   children: [
+//     {
+//       path: '',
+//       loadComponent: () => import('../../repository/components/repository-list.component').then(m => m.RepositoryListComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'read', resource: 'repository' } },
+//       title: 'Repository 列表'
+//     },
+//     {
+//       path: 'new',
+//       loadComponent: () => import('../../repository/components/repository-create.component').then(m => m.RepositoryCreateComponent),
+//       canActivate: [permissionGuard],
+//       data: { permission: { action: 'write', resource: 'repository' } },
+//       title: '建立 Repository'
+//     }
+//   ]
+// },
+⋮----
+// 預設重定向到組織詳情
+</file>
+
+<file path="angular/src/app/features/organization/routes/organization.routes.ts">
+import { Routes } from '@angular/router';
+⋮----
+/**
+ * 組織模組的路由配置
+ * 對齊 docs/account.md 的組織管理路由結構
+ * 支援完整的組織層級管理
+ */
+⋮----
+// 建立組織路由
+⋮----
+// 預設重定向
+</file>
+
+<file path="angular/src/app/features/organization/services/organization-api.service.ts">
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { 
+  OrganizationDetail, 
+  CreateOrganizationRequest, 
+  UpdateOrganizationRequest,
+  Team,
+  TeamMember,
+  CreateTeamRequest,
+  UpdateTeamRequest,
+  OrganizationMember,
+  InviteMemberRequest,
+  UpdateMemberRoleRequest,
+  SecurityManager,
+  OrganizationRole
+} from '../../../core/models/auth.model';
+⋮----
+/**
+ * 組織 API 服務
+ * 實作對齊 GitHub REST API 模式的組織管理 API
+ */
+⋮----
+export class OrganizationApiService {
+⋮----
+// ==================== 組織管理 API ====================
+⋮----
+/**
+   * 獲取組織資訊 (對齊 GitHub: GET /orgs/{org})
+   */
+getOrganization(orgSlug: string): Observable<OrganizationDetail>
+⋮----
+/**
+   * 創建組織 (對齊 GitHub: POST /orgs)
+   */
+createOrganization(org: CreateOrganizationRequest): Observable<OrganizationDetail>
+⋮----
+/**
+   * 更新組織 (對齊 GitHub: PUT /orgs/{org})
+   */
+updateOrganization(orgSlug: string, updates: UpdateOrganizationRequest): Observable<OrganizationDetail>
+⋮----
+/**
+   * 刪除組織 (對齊 GitHub: DELETE /orgs/{org})
+   */
+deleteOrganization(orgSlug: string): Observable<void>
+⋮----
+// ==================== 組織成員管理 API ====================
+⋮----
+/**
+   * 獲取組織成員列表 (對齊 GitHub: GET /orgs/{org}/members)
+   */
+getOrganizationMembers(orgSlug: string): Observable<OrganizationMember[]>
+⋮----
+/**
+   * 邀請成員加入組織 (對齊 GitHub: POST /orgs/{org}/members)
+   */
+inviteMember(orgSlug: string, invite: InviteMemberRequest): Observable<OrganizationMember>
+⋮----
+/**
+   * 更新成員角色 (對齊 GitHub: PUT /orgs/{org}/members/{username})
+   */
+updateMemberRole(orgSlug: string, userId: string, update: UpdateMemberRoleRequest): Observable<OrganizationMember>
+⋮----
+/**
+   * 移除組織成員 (對齊 GitHub: DELETE /orgs/{org}/members/{username})
+   */
+removeMember(orgSlug: string, userId: string): Observable<void>
+⋮----
+// ==================== 團隊管理 API ====================
+⋮----
+/**
+   * 獲取組織團隊列表 (對齊 GitHub: GET /orgs/{org}/teams)
+   */
+getTeams(orgSlug: string): Observable<Team[]>
+⋮----
+/**
+   * 創建團隊 (對齊 GitHub: POST /orgs/{org}/teams)
+   */
+createTeam(orgSlug: string, team: CreateTeamRequest): Observable<Team>
+⋮----
+/**
+   * 獲取團隊詳情 (對齊 GitHub: GET /orgs/{org}/teams/{team_slug})
+   */
+getTeam(orgSlug: string, teamSlug: string): Observable<Team>
+⋮----
+/**
+   * 更新團隊 (對齊 GitHub: PUT /orgs/{org}/teams/{team_slug})
+   */
+updateTeam(orgSlug: string, teamSlug: string, updates: UpdateTeamRequest): Observable<Team>
+⋮----
+/**
+   * 刪除團隊 (對齊 GitHub: DELETE /orgs/{org}/teams/{team_slug})
+   */
+deleteTeam(orgSlug: string, teamSlug: string): Observable<void>
+⋮----
+// ==================== 團隊成員管理 API ====================
+⋮----
+/**
+   * 獲取團隊成員列表 (對齊 GitHub: GET /orgs/{org}/teams/{team_slug}/members)
+   */
+getTeamMembers(orgSlug: string, teamSlug: string): Observable<TeamMember[]>
+⋮----
+/**
+   * 添加團隊成員 (對齊 GitHub: PUT /orgs/{org}/teams/{team_slug}/members/{username})
+   */
+addTeamMember(orgSlug: string, teamSlug: string, userId: string): Observable<TeamMember>
+⋮----
+/**
+   * 移除團隊成員 (對齊 GitHub: DELETE /orgs/{org}/teams/{team_slug}/members/{username})
+   */
+removeTeamMember(orgSlug: string, teamSlug: string, userId: string): Observable<void>
+⋮----
+// ==================== 安全管理器 API ====================
+⋮----
+/**
+   * 獲取安全管理器列表
+   */
+getSecurityManagers(orgSlug: string): Observable<SecurityManager[]>
+⋮----
+/**
+   * 創建安全管理器
+   */
+createSecurityManager(orgSlug: string, manager: Partial<SecurityManager>): Observable<SecurityManager>
+⋮----
+/**
+   * 更新安全管理器
+   */
+updateSecurityManager(orgSlug: string, managerId: string, updates: Partial<SecurityManager>): Observable<SecurityManager>
+⋮----
+/**
+   * 刪除安全管理器
+   */
+deleteSecurityManager(orgSlug: string, managerId: string): Observable<void>
+⋮----
+// ==================== 組織角色 API ====================
+⋮----
+/**
+   * 獲取組織角色列表
+   */
+getOrganizationRoles(orgSlug: string): Observable<OrganizationRole[]>
+⋮----
+/**
+   * 創建組織角色
+   */
+createOrganizationRole(orgSlug: string, role: Partial<OrganizationRole>): Observable<OrganizationRole>
+⋮----
+/**
+   * 更新組織角色
+   */
+updateOrganizationRole(orgSlug: string, roleId: string, updates: Partial<OrganizationRole>): Observable<OrganizationRole>
+⋮----
+/**
+   * 刪除組織角色
+   */
+deleteOrganizationRole(orgSlug: string, roleId: string): Observable<void>
+</file>
+
+<file path="angular/src/app/features/repository/components/collaborator-management.component.ts">
+// src/app/features/repository/components/collaborator-management.component.ts
+⋮----
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+⋮----
+import { RepositoryService } from '../../../core/services/repository.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { RepositoryCollaborator } from '../../../core/models/auth.model';
+⋮----
+export class CollaboratorManagementComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Dialog state
+⋮----
+// Table columns
+⋮----
+ngOnInit()
+⋮----
+async loadCollaborators(repoId: string)
+⋮----
+goBack()
+⋮----
+addCollaborator()
+⋮----
+closeAddDialog()
+⋮----
+async submitAddCollaborator()
+⋮----
+editPermission(collaborator: RepositoryCollaborator)
+⋮----
+// TODO: 實現編輯權限功能
+// 使用適當的日誌記錄服務替代 console.log
+⋮----
+async removeCollaborator(collaborator: RepositoryCollaborator)
+⋮----
+getPermissionLabel(permission: string): string
+⋮----
+getPermissionClass(permission: string): string
+⋮----
+formatDate(date: Date): string
+</file>
+
+<file path="angular/src/app/features/repository/components/index.ts">
+// Repository 組件匯出檔案
+// 目前暫無組件，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/repository/components/repository-detail.component.ts">
+// src/app/features/repository/components/repository-detail.component.ts
+⋮----
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
+⋮----
+import { RepositoryService } from '../../../core/services/repository.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Repository } from '../../../core/models/auth.model';
+⋮----
+export class RepositoryDetailComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+async loadRepository(repoId: string)
+⋮----
+goBack()
+⋮----
+editRepository()
+⋮----
+manageCollaborators()
+⋮----
+manageSettings()
+⋮----
+async deleteRepository()
+⋮----
+formatDate(date: Date | undefined): string
+</file>
+
+<file path="angular/src/app/features/repository/components/repository-list.component.ts">
+// src/app/features/repository/components/repository-list.component.ts
+⋮----
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
+⋮----
+import { RepositoryService } from '../../../core/services/repository.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Repository } from '../../../core/models/auth.model';
+⋮----
+export class RepositoryListComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+async loadRepositories()
+⋮----
+// 載入用戶的 Repository
+⋮----
+createRepository()
+⋮----
+viewRepository(repoId: string)
+⋮----
+editRepository(repoId: string)
+⋮----
+manageCollaborators(repoId: string)
+⋮----
+manageSettings(repoId: string)
+⋮----
+async deleteRepository(repoId: string)
+⋮----
+formatDate(date: Date): string
+</file>
+
+<file path="angular/src/app/features/repository/guards/index.ts">
+// Repository 守衛匯出檔案
+// 目前暫無守衛，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/repository/index.ts">
+// Repository 模組匯出檔案
+</file>
+
+<file path="angular/src/app/features/repository/models/index.ts">
+// Repository 模型匯出檔案
+// 目前暫無模型，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/repository/models/repository.model.ts">
+// src/app/features/repository/models/repository.model.ts
+⋮----
+import { Repository, RepositoryCollaborator, RepositoryTeamAccess } from '../../../core/models/auth.model';
+⋮----
+// Repository 相關的擴展模型
+export interface RepositorySettings {
+  defaultBranch: string;
+  allowSquashMerge: boolean;
+  allowMergeCommit: boolean;
+  allowRebaseMerge: boolean;
+  deleteBranchOnMerge: boolean;
+  hasIssues: boolean;
+  hasProjects: boolean;
+  hasWiki: boolean;
+  hasDownloads: boolean;
+}
+⋮----
+export interface RepositoryStats {
+  stars: number;
+  watchers: number;
+  forks: number;
+  openIssues: number;
+  openPullRequests: number;
+}
+⋮----
+export interface RepositoryBranch {
+  name: string;
+  protected: boolean;
+  lastCommit: {
+    sha: string;
+    message: string;
+    author: string;
+    date: Date;
+  };
+}
+⋮----
+export interface RepositoryCommit {
+  sha: string;
+  message: string;
+  author: {
+    name: string;
+    email: string;
+    avatar?: string;
+  };
+  date: Date;
+  url?: string;
+}
+⋮----
+export interface RepositoryIssue {
+  id: string;
+  number: number;
+  title: string;
+  body?: string;
+  state: 'open' | 'closed';
+  labels: string[];
+  assignees: string[];
+  author: string;
+  createdAt: Date;
+  updatedAt: Date;
+  closedAt?: Date;
+}
+⋮----
+export interface RepositoryPullRequest {
+  id: string;
+  number: number;
+  title: string;
+  body?: string;
+  state: 'open' | 'closed' | 'merged';
+  headBranch: string;
+  baseBranch: string;
+  author: string;
+  assignees: string[];
+  reviewers: string[];
+  labels: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  mergedAt?: Date;
+  closedAt?: Date;
+}
+⋮----
+// Repository 創建請求
+export interface CreateRepositoryRequest {
+  name: string;
+  description?: string;
+  private: boolean;
+  ownerId?: string;
+  initializeWithReadme?: boolean;
+  addLicense?: boolean;
+  addGitignore?: boolean;
+}
+⋮----
+// Repository 更新請求
+export interface UpdateRepositoryRequest {
+  name?: string;
+  description?: string;
+  private?: boolean;
+  defaultBranch?: string;
+  topics?: string[];
+}
+⋮----
+// 協作者邀請請求
+export interface InviteCollaboratorRequest {
+  userId: string;
+  permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin';
+  message?: string;
+}
+⋮----
+// 團隊訪問權限請求
+export interface GrantTeamAccessRequest {
+  teamId: string;
+  permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin';
+}
+⋮----
+// Repository 搜索結果
+export interface RepositorySearchResult {
+  repositories: Repository[];
+  totalCount: number;
+  hasMore: boolean;
+}
+⋮----
+// Repository 搜索參數
+export interface RepositorySearchParams {
+  query?: string;
+  ownerId?: string;
+  isPrivate?: boolean;
+  topics?: string[];
+  sortBy?: 'name' | 'created' | 'updated' | 'stars';
+  sortOrder?: 'asc' | 'desc';
+  page?: number;
+  limit?: number;
+}
+⋮----
+// Repository 權限檢查結果
+export interface RepositoryPermissionResult {
+  canRead: boolean;
+  canWrite: boolean;
+  canAdmin: boolean;
+  canDelete: boolean;
+  permission: string;
+  reason?: string;
+}
+⋮----
+// Repository 統計數據
+export interface RepositoryAnalytics {
+  commits: {
+    total: number;
+    last30Days: number;
+    contributors: number;
+  };
+  issues: {
+    open: number;
+    closed: number;
+    total: number;
+  };
+  pullRequests: {
+    open: number;
+    merged: number;
+    closed: number;
+    total: number;
+  };
+  releases: {
+    total: number;
+    latest?: {
+      version: string;
+      date: Date;
+    };
+  };
+}
+⋮----
+// Repository 模板
+export interface RepositoryTemplate {
+  id: string;
+  name: string;
+  description: string;
+  owner: string;
+  topics: string[];
+  isPublic: boolean;
+  createdAt: Date;
+}
+⋮----
+// Repository 比較結果
+export interface RepositoryComparison {
+  ahead: number;
+  behind: number;
+  commits: RepositoryCommit[];
+  files: {
+    added: string[];
+    modified: string[];
+    removed: string[];
+  };
+}
+⋮----
+// Repository 標籤
+export interface RepositoryLabel {
+  id: string;
+  name: string;
+  color: string;
+  description?: string;
+}
+⋮----
+// Repository 里程碑
+export interface RepositoryMilestone {
+  id: string;
+  title: string;
+  description?: string;
+  state: 'open' | 'closed';
+  dueDate?: Date;
+  openIssues: number;
+  closedIssues: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+⋮----
+// Repository Webhook
+export interface RepositoryWebhook {
+  id: string;
+  url: string;
+  events: string[];
+  active: boolean;
+  createdAt: Date;
+  lastDelivery?: {
+    status: number;
+    date: Date;
+  };
+}
+⋮----
+// Repository 部署
+export interface RepositoryDeployment {
+  id: string;
+  environment: string;
+  ref: string;
+  sha: string;
+  status: 'pending' | 'success' | 'failure' | 'error';
+  createdAt: Date;
+  updatedAt: Date;
+  url?: string;
+}
+⋮----
+// Repository 環境
+export interface RepositoryEnvironment {
+  name: string;
+  protectionRules: {
+    requiredReviewers: string[];
+    waitTimer: number;
+  };
+  deploymentBranchPolicy: {
+    protectedBranches: boolean;
+    customBranchPolicy: boolean;
+  };
+}
+⋮----
+// Repository 安全警報
+export interface RepositorySecurityAlert {
+  id: string;
+  type: 'vulnerability' | 'secret' | 'dependency';
+  severity: 'low' | 'moderate' | 'high' | 'critical';
+  package?: string;
+  description: string;
+  state: 'open' | 'dismissed' | 'fixed';
+  createdAt: Date;
+  updatedAt: Date;
+  url?: string;
+}
+⋮----
+// Repository 代碼掃描結果
+export interface RepositoryCodeScanningResult {
+  id: string;
+  rule: string;
+  severity: 'error' | 'warning' | 'note';
+  message: string;
+  path: string;
+  line: number;
+  column: number;
+  createdAt: Date;
+  state: 'open' | 'dismissed' | 'fixed';
+}
+</file>
+
+<file path="angular/src/app/features/repository/routes/index.ts">
+// Repository 路由匯出檔案
+// 目前暫無路由，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/repository/routes/repository.routes.ts">
+// src/app/features/repository/routes/repository.routes.ts
+⋮----
+import { Routes } from '@angular/router';
+import { authGuard } from '../../user/auth/auth.guard';
+import { repositoryReadGuard, repositoryManageGuard } from '../../../core/guards/permission.guard';
+</file>
+
+<file path="angular/src/app/features/repository/services/index.ts">
+// Repository 服務匯出檔案
+// 目前暫無服務，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/repository/utils/index.ts">
+// Repository 工具匯出檔案
+// 目前暫無工具，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/features/user/auth/auth.guard.ts">
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
+⋮----
+export const authGuard: CanActivateFn = (route, state) =>
+⋮----
+// 重定向到登入頁面
+</file>
+
+<file path="angular/src/app/features/user/auth/index.ts">
+/**
+ * 認證模組匯出檔案
+ * 對齊 TREE.md 結構要求
+ */
+⋮----
+// 組件匯出
+⋮----
+// 服務匯出 - AuthService 已移至 core/services/auth.service.ts
+⋮----
+// 守衛匯出 - 認證守衛已移至 core/guards/permission.guard.ts
+</file>
+
+<file path="angular/src/app/features/user/auth/login.component.ts">
+import {
+  Component,
+  inject,
+  runInInjectionContext,
+  EnvironmentInjector
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+⋮----
+export class LoginComponent {
+⋮----
+// 使用 Signals 獲取狀態
+⋮----
+async onLogin()
+⋮----
+// 錯誤處理已經在 AuthService 中完成
+⋮----
+async onGoogleLogin()
+⋮----
+// 錯誤處理已經在 AuthService 中完成
+</file>
+
+<file path="angular/src/app/features/user/auth/signup.component.ts">
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RouterModule } from '@angular/router';
+⋮----
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+⋮----
+export class SignupComponent {
+⋮----
+// 使用 Signals 獲取狀態
+⋮----
+// 密碼強度要求
+⋮----
+validateEmail(email: string): boolean
+⋮----
+validatePassword(password: string): string[]
+⋮----
+validateForm(): string[]
+⋮----
+async onSignup()
+⋮----
+// 錯誤處理已經在 AuthService 中完成
+</file>
+
+<file path="angular/src/app/features/user/auth/unauthorized.component.ts">
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+⋮----
+export class UnauthorizedComponent {
+⋮----
+constructor(private router: Router)
+⋮----
+logout()
+</file>
+
+<file path="angular/src/app/features/user/index.ts">
+// 用戶模組匯出檔案
+⋮----
+// User 模型已移至 core/models/auth.model.ts
+</file>
+
+<file path="angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.html">
+<mat-card class="avatar-upload-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>account_circle</mat-icon>
+      頭像設定
+    </mat-card-title>
+    <mat-card-subtitle>管理您的個人頭像</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="avatar-container">
+      <!-- Avatar Display -->
+      <div class="avatar-display">
+        <img [src]="getAvatarDisplayUrl()" 
+             alt="用戶頭像" 
+             class="avatar-image"
+             [class.loading]="loading()">
+        
+        @if (loading()) {
+          <div class="avatar-overlay">
+            <mat-progress-bar 
+              mode="determinate" 
+              [value]="uploadProgress()">
+            </mat-progress-bar>
+            <span class="upload-text">上傳中...</span>
+          </div>
+        }
+      </div>
+
+      <!-- Upload Progress -->
+      @if (loading()) {
+        <div class="upload-progress">
+          <mat-progress-bar 
+            mode="determinate" 
+            [value]="uploadProgress()">
+          </mat-progress-bar>
+          <span class="progress-text">{{ uploadProgress() }}%</span>
+        </div>
+      }
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button mat-raised-button 
+                color="primary"
+                (click)="onUploadClick()"
+                [disabled]="!canUpload()">
+          @if (hasAvatar()) {
+            <ng-container>
+              <mat-icon>edit</mat-icon>
+              更換頭像
+            </ng-container>
+          } @else {
+            <ng-container>
+              <mat-icon>add_a_photo</mat-icon>
+              上傳頭像
+            </ng-container>
+          }
+        </button>
+
+        @if (hasAvatar()) {
+          <button mat-button 
+                  (click)="onPreviewAvatar()">
+            <mat-icon>visibility</mat-icon>
+            預覽
+          </button>
+
+          <button mat-button 
+                  color="warn"
+                  (click)="onRemoveAvatar()">
+            <mat-icon>delete</mat-icon>
+            移除
+          </button>
+        }
+      </div>
+
+      <!-- Upload Instructions -->
+      <div class="upload-instructions">
+        <p><strong>上傳須知：</strong></p>
+        <ul>
+          <li>支援格式：JPG、PNG、GIF</li>
+          <li>檔案大小：最大 5MB</li>
+          <li>建議尺寸：150x150 像素</li>
+        </ul>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+</file>
+
+<file path="angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.scss">
+.avatar-upload-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.avatar-display {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e0e0;
+  transition: opacity 0.3s ease;
+}
+
+.avatar-image.loading {
+  opacity: 0.7;
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: white;
+  gap: 8px;
+}
+
+.upload-progress {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.upload-instructions {
+  max-width: 400px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.upload-instructions p {
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.upload-instructions ul {
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.upload-instructions li {
+  margin-bottom: 4px;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-buttons button {
+    width: 100%;
+  }
+}
+</file>
+
+<file path="angular/src/app/features/user/profile/components/avatar-upload/avatar-upload.component.ts">
+import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { UserService } from '../../../services/user.service';
+import { NotificationService } from '../../../../../core/services/notification.service';
+⋮----
+/**
+ * AvatarUploadComponent - 頭像上傳組件
+ * 單一職責：處理用戶頭像的上傳和預覽
+ * 遵循單一職責原則：只負責頭像上傳相關的業務邏輯
+ */
+⋮----
+export class AvatarUploadComponent {
+⋮----
+// Signals for state management
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+private loadCurrentAvatar()
+⋮----
+// TODO: Load current avatar from service
+⋮----
+onUploadClick()
+⋮----
+// 使用 Angular 模板系統替代直接 DOM 操作
+// 觸發隱藏的文件輸入元素
+⋮----
+onFileSelected(event: any)
+⋮----
+private validateAndUploadFile(file: File)
+⋮----
+// Validate file type
+⋮----
+// Validate file size (max 5MB)
+const maxSize = 5 * 1024 * 1024; // 5MB
+⋮----
+private uploadFile(file: File)
+⋮----
+// Simulate upload progress
+⋮----
+// TODO: Replace with actual upload service call
+⋮----
+// 模擬異步操作 - 應該替換為真實的服務調用
+⋮----
+onRemoveAvatar()
+⋮----
+// TODO: Remove avatar from service
+⋮----
+onPreviewAvatar()
+⋮----
+// TODO: Open preview dialog
+⋮----
+getAvatarDisplayUrl(): string
+</file>
+
+<file path="angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.html">
+<mat-card class="notification-settings-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>notifications</mat-icon>
+      通知設定
+    </mat-card-title>
+    <mat-card-subtitle>管理您的通知偏好設定</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="notificationForm" (ngSubmit)="onSave()">
+      <!-- Email Notifications -->
+      <div class="notification-section">
+        <h3>
+          <mat-icon>email</mat-icon>
+          電子郵件通知
+        </h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>通知頻率</mat-label>
+            <mat-select formControlName="emailFrequency">
+              @for (frequency of emailFrequencies; track frequency.value) {
+                <mat-option [value]="frequency.value">
+                  {{ frequency.label }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="toggle-group">
+          <mat-slide-toggle formControlName="emailMarketing">
+            行銷通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="emailUpdates">
+            產品更新
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="emailSecurity">
+            安全通知
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <!-- Push Notifications -->
+      <div class="notification-section">
+        <h3>
+          <mat-icon>notifications_active</mat-icon>
+          推播通知
+        </h3>
+        
+        <div class="toggle-group">
+          <mat-slide-toggle formControlName="pushEnabled" 
+                           (change)="onPushToggleChanged($event.checked)">
+            啟用推播通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushMarketing" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            行銷通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushUpdates" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            產品更新
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushSecurity" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            安全通知
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button 
+            type="button"
+            (click)="onReset()"
+            [disabled]="!canReset()">
+      <mat-icon>refresh</mat-icon>
+      重置
+    </button>
+    
+    <button mat-raised-button 
+            color="primary"
+            type="button"
+            (click)="onSave()"
+            [disabled]="!canSave()">
+      @if (loading()) {
+        <ng-container>
+          <mat-icon>hourglass_empty</mat-icon>
+          儲存中...
+        </ng-container>
+      } @else {
+        <ng-container>
+          <mat-icon>save</mat-icon>
+          儲存
+        </ng-container>
+      }
+    </button>
+  </mat-card-actions>
+</mat-card>
+</file>
+
+<file path="angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.scss">
+.notification-settings-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.notification-section {
+  margin-bottom: 32px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.notification-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.toggle-group mat-slide-toggle {
+  margin: 0;
+}
+
+mat-card-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+mat-card-actions button {
+  margin-left: 8px;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.notification-section mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .half-width {
+    width: 100%;
+  }
+}
+</file>
+
+<file path="angular/src/app/features/user/profile/components/notification-settings/notification-settings.component.ts">
+import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NotificationService } from '../../../../../core/services/notification.service';
+import { NotificationPreferences } from '../../../../../core/models/auth.model';
+⋮----
+/**
+ * NotificationSettingsComponent - 通知設定組件
+ * 單一職責：處理用戶通知偏好設定
+ * 遵循單一職責原則：只負責通知設定相關的業務邏輯
+ */
+⋮----
+export class NotificationSettingsComponent {
+⋮----
+// Signals for state management
+⋮----
+// Form
+⋮----
+// Options
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+private initializeForm()
+⋮----
+private loadNotificationPreferences()
+⋮----
+// TODO: Load from service
+// 模擬異步操作 - 應該替換為真實的服務調用
+⋮----
+private setupFormChangeTracking()
+⋮----
+onSave()
+⋮----
+// TODO: Save to service
+// 模擬異步操作 - 應該替換為真實的服務調用
+⋮----
+onReset()
+⋮----
+onPushToggleChanged(enabled: boolean)
+⋮----
+// Disable all push notifications when push is disabled
+⋮----
+getFrequencyLabel(value: string): string
+</file>
+
+<file path="angular/src/app/features/user/profile/components/profile-basic-info/profile-basic-info.component.ts">
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../../../core/models/auth.model';
+import { AvatarUtils } from '../../../../../core/utils/avatar.utils';
+⋮----
+/**
+ * 基本資料管理組件
+ * 單一職責：處理用戶基本資料的編輯和更新
+ */
+⋮----
+export class ProfileBasicInfoComponent implements OnInit {
+⋮----
+// Signals for state management
+⋮----
+// Form
+⋮----
+ngOnInit()
+⋮----
+private initializeForm()
+⋮----
+private loadUserData()
+⋮----
+// Load user data from service
+// This would typically come from a user service or state management
+⋮----
+onUpdateProfile()
+⋮----
+// Update user profile
+⋮----
+onResetProfile()
+</file>
+
+<file path="angular/src/app/features/user/profile/components/profile-form/profile-form.component.html">
+<mat-card class="profile-form-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>person</mat-icon>
+      個人資料
+    </mat-card-title>
+    <mat-card-subtitle>管理您的個人資料資訊</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="profileForm" (ngSubmit)="onSave()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>顯示名稱</mat-label>
+          <input matInput 
+                 formControlName="displayName" 
+                 placeholder="請輸入您的顯示名稱"
+                 [class.error]="isFieldInvalid('displayName')">
+          <mat-error>{{ getFieldError('displayName') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>個人簡介</mat-label>
+          <textarea matInput 
+                    formControlName="bio" 
+                    placeholder="請輸入您的個人簡介"
+                    rows="3"
+                    [class.error]="isFieldInvalid('bio')"></textarea>
+          <mat-error>{{ getFieldError('bio') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>所在地</mat-label>
+          <input matInput 
+                 formControlName="location" 
+                 placeholder="請輸入您的所在地"
+                 [class.error]="isFieldInvalid('location')">
+          <mat-error>{{ getFieldError('location') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>公司</mat-label>
+          <input matInput 
+                 formControlName="company" 
+                 placeholder="請輸入您的公司"
+                 [class.error]="isFieldInvalid('company')">
+          <mat-error>{{ getFieldError('company') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>個人網站</mat-label>
+          <input matInput 
+                 formControlName="website" 
+                 placeholder="https://example.com"
+                 [class.error]="isFieldInvalid('website')">
+          <mat-error>{{ getFieldError('website') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>部落格</mat-label>
+          <input matInput 
+                 formControlName="blog" 
+                 placeholder="https://blog.example.com"
+                 [class.error]="isFieldInvalid('blog')">
+          <mat-error>{{ getFieldError('blog') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button 
+            type="button"
+            (click)="onReset()"
+            [disabled]="!canReset()">
+      <mat-icon>refresh</mat-icon>
+      重置
+    </button>
+    
+    <button mat-raised-button 
+            color="primary"
+            type="button"
+            (click)="onSave()"
+            [disabled]="!canSave()">
+      @if (loading()) {
+        <ng-container>
+          <mat-icon>hourglass_empty</mat-icon>
+          儲存中...
+        </ng-container>
+      } @else {
+        <ng-container>
+          <mat-icon>save</mat-icon>
+          儲存
+        </ng-container>
+      }
+    </button>
+  </mat-card-actions>
+</mat-card>
+</file>
+
+<file path="angular/src/app/features/user/profile/components/profile-form/profile-form.component.scss">
+.profile-form-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.error {
+  border-color: #f44336 !important;
+}
+
+mat-card-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+mat-card-actions button {
+  margin-left: 8px;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .half-width {
+    width: 100%;
+  }
+}
+</file>
+
+<file path="angular/src/app/features/user/profile/components/profile-form/profile-form.component.ts">
+import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../../services/user.service';
+import { NotificationService } from '../../../../../core/services/notification.service';
+import { User } from '../../../../../core/models/auth.model';
+⋮----
+/**
+ * ProfileFormComponent - 個人資料表單組件
+ * 單一職責：處理個人資料的表單輸入和驗證
+ * 遵循單一職責原則：只負責個人資料相關的表單邏輯
+ */
+⋮----
+export class ProfileFormComponent {
+⋮----
+// Signals for state management
+⋮----
+// Form
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+private initializeForm()
+⋮----
+private loadUserData()
+⋮----
+private updateFormWithUserData(user: User)
+⋮----
+// Reset dirty state after loading
+⋮----
+private setupFormChangeTracking()
+⋮----
+onSave()
+⋮----
+onReset()
+⋮----
+// Form field helpers
+getFieldError(fieldName: string): string
+⋮----
+isFieldInvalid(fieldName: string): boolean
+</file>
+
+<file path="angular/src/app/features/user/profile/components/social-account/social-account.component.html">
+<mat-card class="social-account-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>share</mat-icon>
+      社交帳戶
+    </mat-card-title>
+    <mat-card-subtitle>管理您的社交媒體帳戶連結</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Existing Accounts -->
+    @if (hasAccounts()) {
+      <div class="accounts-list">
+        @for (account of socialAccounts(); track account.id) {
+          <mat-chip-set>
+            <mat-chip>
+              <mat-icon>{{ getProviderInfo(account.provider).icon }}</mat-icon>
+              {{ getProviderInfo(account.provider).name }}
+              <button mat-icon-button 
+                      (click)="onRemoveAccount(account)"
+                      class="remove-button">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-chip>
+          </mat-chip-set>
+        }
+      </div>
+    } @else {
+      <div class="no-accounts">
+        <mat-icon>link_off</mat-icon>
+        <p>尚未添加任何社交帳戶</p>
+      </div>
+    }
+
+    <!-- Add Form -->
+    @if (showAddForm()) {
+      <div class="add-form">
+        <form [formGroup]="socialAccountForm" (ngSubmit)="onAddAccount()">
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>平台</mat-label>
+              <mat-select formControlName="provider">
+                @for (provider of providers; track provider.key) {
+                  <mat-option [value]="provider.key">
+                    <mat-icon>{{ provider.icon }}</mat-icon>
+                    {{ provider.name }}
+                  </mat-option>
+                }
+              </mat-select>
+              <mat-error>{{ getFieldError('provider') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>用戶名</mat-label>
+              <input matInput 
+                     formControlName="username" 
+                     placeholder="可選"
+                     [class.error]="isFieldInvalid('username')">
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>URL</mat-label>
+              <input matInput 
+                     formControlName="url" 
+                     placeholder="https://example.com"
+                     [class.error]="isFieldInvalid('url')">
+              <mat-error>{{ getFieldError('url') }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-button 
+                    type="button"
+                    (click)="onCancelAdd()">
+              取消
+            </button>
+            
+            <button mat-raised-button 
+                    color="primary"
+                    type="submit"
+                    [disabled]="!canAdd()">
+              @if (loading()) {
+                <ng-container>
+                  <mat-icon>hourglass_empty</mat-icon>
+                  添加中...
+                </ng-container>
+              } @else {
+                <ng-container>
+                  <mat-icon>add</mat-icon>
+                  添加
+                </ng-container>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    } @else {
+      <div class="add-button-container">
+        <button mat-raised-button 
+                color="primary"
+                (click)="onShowAddForm()">
+          <mat-icon>add</mat-icon>
+          添加社交帳戶
+        </button>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>
+</file>
+
+<file path="angular/src/app/features/user/profile/components/social-account/social-account.component.scss">
+.social-account-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accounts-list {
+  margin-bottom: 24px;
+}
+
+.accounts-list mat-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.accounts-list mat-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remove-button {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.remove-button mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.no-accounts {
+  text-align: center;
+  padding: 32px;
+  color: #666;
+}
+
+.no-accounts mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.add-form {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.add-button-container {
+  text-align: center;
+  margin-top: 16px;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.error {
+  border-color: #f44336 !important;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .half-width {
+    width: 100%;
+  }
+}
+</file>
+
+<file path="angular/src/app/features/user/profile/components/social-account/social-account.component.ts">
+import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { NotificationService } from '../../../../../core/services/notification.service';
+import { SocialAccount } from '../../../../../core/models/auth.model';
+⋮----
+/**
+ * SocialAccountComponent - 社交帳戶管理組件
+ * 單一職責：處理社交帳戶的添加、編輯和刪除
+ * 遵循單一職責原則：只負責社交帳戶相關的業務邏輯
+ */
+⋮----
+export class SocialAccountComponent {
+⋮----
+// Signals for state management
+⋮----
+// Form
+⋮----
+// Available providers
+⋮----
+// Computed signals
+⋮----
+ngOnInit()
+⋮----
+private initializeForm()
+⋮----
+private loadSocialAccounts()
+⋮----
+// TODO: Load from service
+⋮----
+onAddAccount()
+⋮----
+// TODO: Save to service
+// 模擬異步操作 - 應該替換為真實的服務調用
+⋮----
+onRemoveAccount(account: SocialAccount)
+⋮----
+// TODO: Remove from service
+⋮----
+onEditAccount(account: SocialAccount)
+⋮----
+onCancelAdd()
+⋮----
+onShowAddForm()
+⋮----
+getProviderInfo(providerKey: string)
+⋮----
+getFieldError(fieldName: string): string
+⋮----
+isFieldInvalid(fieldName: string): boolean
+</file>
+
+<file path="angular/src/app/features/user/profile/profile-management.component.ts">
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+⋮----
+import { UserService } from '../services/user.service';
+import { User } from '../../../core/models/auth.model';
+import { ProfileBasicInfoComponent } from './components/profile-basic-info/profile-basic-info.component';
+import { SocialAccountComponent } from './components/social-account/social-account.component';
+import { NotificationSettingsComponent } from './components/notification-settings/notification-settings.component';
+import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
+⋮----
+/**
+ * 個人資料管理組件 - 重構版本
+ * 使用子組件模式，遵循單一職責原則
+ */
+⋮----
+export class ProfileManagementComponent implements OnInit {
+⋮----
+// Signals for state management
+⋮----
+ngOnInit()
+⋮----
+private loadUserData()
+⋮----
+// Load user data from service
+⋮----
+getAvatarUrl(avatar?: string): string
+⋮----
+// Generate default avatar based on user name
+</file>
+
+<file path="angular/src/app/features/user/profile/services/form-state.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+⋮----
+export interface FormState {
+  isValid: boolean;
+  isDirty: boolean;
+  isTouched: boolean;
+  errors: Record<string, string>;
+  values: Record<string, any>;
+}
+⋮----
+export interface FormFieldState {
+  value: any;
+  valid: boolean;
+  invalid: boolean;
+  dirty: boolean;
+  touched: boolean;
+  error: string | null;
+}
+⋮----
+/**
+ * FormStateService - 表單狀態管理服務
+ * 使用 Angular Signals 統一管理表單狀態
+ * 遵循單一職責原則：只負責表單狀態管理
+ */
+⋮----
+export class FormStateService {
+⋮----
+// Form states registry
+⋮----
+// Public readonly signals
+⋮----
+// Register a form
+registerForm(formId: string, form: FormGroup)
+⋮----
+// Register field states
+⋮----
+// Subscribe to form changes
+⋮----
+// Register form fields
+private registerFormFields(formId: string, form: FormGroup)
+⋮----
+// Update form state
+private updateFormState(formId: string, form: FormGroup)
+⋮----
+// Update field states
+⋮----
+// Update field states
+private updateFieldStates(formId: string, form: FormGroup)
+⋮----
+// Get form state
+getFormState(formId: string): FormState | undefined
+⋮----
+// Get field state
+getFieldState(formId: string, fieldName: string): FormFieldState | undefined
+⋮----
+// Computed signals for specific forms
+getFormValid(formId: string)
+⋮----
+getFormDirty(formId: string)
+⋮----
+getFormTouched(formId: string)
+⋮----
+getFormErrors(formId: string)
+⋮----
+getFormValues(formId: string)
+⋮----
+// Field-specific computed signals
+getFieldValid(formId: string, fieldName: string)
+⋮----
+getFieldInvalid(formId: string, fieldName: string)
+⋮----
+getFieldDirty(formId: string, fieldName: string)
+⋮----
+getFieldTouched(formId: string, fieldName: string)
+⋮----
+getFieldErrorSignal(formId: string, fieldName: string)
+⋮----
+getFieldValue(formId: string, fieldName: string)
+⋮----
+// Utility methods
+private extractFormErrors(form: FormGroup): Record<string, string>
+⋮----
+private getFieldError(control: AbstractControl): string
+⋮----
+// Unregister form
+unregisterForm(formId: string)
+⋮----
+// Clear all states
+clearAll()
+</file>
+
+<file path="angular/src/app/features/user/profile/services/notification-state.service.ts">
+import { Injectable, signal, computed } from '@angular/core';
+⋮----
+export interface NotificationState {
+  enabled: boolean;
+  type: 'success' | 'error' | 'warning' | 'info';
+  message: string;
+  duration: number;
+  timestamp: number;
+}
+⋮----
+export interface NotificationHistory {
+  notifications: NotificationState[];
+  maxHistory: number;
+}
+⋮----
+export interface NotificationSettings {
+  autoHide: boolean;
+  defaultDuration: number;
+  maxNotifications: number;
+  position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+}
+⋮----
+/**
+ * NotificationStateService - 通知狀態管理服務
+ * 使用 Angular Signals 統一管理通知狀態
+ * 遵循單一職責原則：只負責通知狀態管理
+ */
+⋮----
+export class NotificationStateService {
+⋮----
+// Core notification state
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+// Notification management methods
+showSuccess(message: string, duration?: number)
+⋮----
+showError(message: string, duration?: number)
+⋮----
+showWarning(message: string, duration?: number)
+⋮----
+showInfo(message: string, duration?: number)
+⋮----
+// Add notification
+private addNotification(notification: NotificationState)
+⋮----
+// Limit notifications based on settings
+⋮----
+// Add to history
+⋮----
+// Auto-hide if enabled
+⋮----
+// Remove notification
+removeNotification(timestamp: number)
+⋮----
+// Clear all notifications
+clearAll()
+⋮----
+// History management
+private addToHistory(notification: NotificationState)
+⋮----
+getHistory(): NotificationState[]
+⋮----
+clearHistory()
+⋮----
+// Settings management
+updateSettings(settings: Partial<NotificationSettings>)
+⋮----
+getSettings(): NotificationSettings
+⋮----
+// Utility methods
+getNotificationsByType(type: NotificationState['type']): NotificationState[]
+⋮----
+getSuccessNotifications(): NotificationState[]
+⋮----
+getErrorNotifications(): NotificationState[]
+⋮----
+getWarningNotifications(): NotificationState[]
+⋮----
+getInfoNotifications(): NotificationState[]
+⋮----
+// Statistics
+getNotificationStats()
+⋮----
+// Persistence (for future implementation)
+saveSettings()
+⋮----
+// TODO: Implement settings persistence
+⋮----
+loadSettings()
+⋮----
+// TODO: Implement settings loading
+</file>
+
+<file path="angular/src/app/features/user/profile/services/profile-state.service.ts">
+import { Injectable, signal, computed, effect } from '@angular/core';
+import { User, SocialAccount, NotificationPreferences } from '../../../../core/models/auth.model';
+⋮----
+export interface ProfileState {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+  isDirty: boolean;
+}
+⋮----
+// SocialAccount 和 NotificationPreferences 接口已移至 core/models/auth.model.ts
+⋮----
+/**
+ * ProfileStateService - 個人資料狀態管理服務
+ * 使用 Angular Signals 統一管理個人資料相關的狀態
+ * 遵循單一職責原則：只負責個人資料狀態管理
+ */
+⋮----
+export class ProfileStateService {
+⋮----
+// Core state signals
+⋮----
+// Social accounts state
+⋮----
+// Notification preferences state
+⋮----
+// Avatar state
+⋮----
+// Public readonly signals
+⋮----
+// Computed signals
+⋮----
+// State management methods
+setUser(user: User | null)
+⋮----
+setLoading(loading: boolean)
+⋮----
+setError(error: string | null)
+⋮----
+setDirty(dirty: boolean)
+⋮----
+// Social accounts management
+addSocialAccount(account: SocialAccount)
+⋮----
+removeSocialAccount(accountId: string)
+⋮----
+updateSocialAccount(accountId: string, updates: Partial<SocialAccount>)
+⋮----
+// Notification preferences management
+updateNotificationPreferences(preferences: NotificationPreferences)
+⋮----
+// Avatar management
+setAvatarUrl(url: string)
+⋮----
+setUploadProgress(progress: number)
+⋮----
+// Reset methods
+resetUser()
+⋮----
+resetSocialAccounts()
+⋮----
+resetNotificationPreferences()
+⋮----
+resetAvatar()
+⋮----
+// Clear all state
+clearAll()
+⋮----
+// State persistence (for future implementation)
+saveState()
+⋮----
+// TODO: Implement state persistence
+⋮----
+loadState()
+⋮----
+// TODO: Implement state loading
+</file>
+
+<file path="angular/src/app/features/user/services/user.service.ts">
+import { Injectable, inject } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { User, UpdateUserRequest } from '../../../core/models/auth.model';
+import { AuthService } from '../../../core/services/auth.service';
+⋮----
+export class UserService {
+⋮----
+getCurrentUser(): Observable<User | null>
+⋮----
+// 使用 AuthService 獲取當前用戶
+⋮----
+updateUserProfile(request: UpdateUserRequest): Observable<User>
+⋮----
+// 暫時返回模擬數據
+⋮----
+updateUser(request: UpdateUserRequest): Observable<User>
+⋮----
+uploadAvatar(file: File): Observable<any>
+⋮----
+// 暫時返回模擬數據
+</file>
+
+<file path="angular/src/app/features/user/user.routes.ts">
+import { Routes } from '@angular/router';
+⋮----
+/**
+ * 用戶模組路由配置
+ * 對齊 TREE.md 結構和 GitHub Account 設計
+ */
+</file>
+
+<file path="angular/src/app/landing/landing.component.ts">
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+⋮----
+export class LandingComponent {
+⋮----
+navigateToLogin()
+⋮----
+navigateToSignup()
+</file>
+
+<file path="angular/src/app/shared/components/index.ts">
+// 共享組件匯出檔案
+// 目前暫無共享組件，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/app/shared/index.ts">
+// 共享模組匯出檔案
+</file>
+
+<file path="angular/src/app/shared/types/dialog-event.types.ts">
+/**
+ * 對話框事件相關的類型定義
+ * 遵循單一職責原則：只包含對話框事件所需的數據結構
+ */
+⋮----
+/**
+ * 對話框關閉事件介面
+ * 單一職責：定義對話框關閉事件的數據結構
+ */
+export interface DialogCloseEvent {
+  /** 關閉原因 */
+  reason: 'cancel' | 'confirm' | 'backdrop' | 'escape';
+  /** 對話框數據 */
+  data?: any;
+  /** 是否成功 */
+  success?: boolean;
+}
+⋮----
+/** 關閉原因 */
+⋮----
+/** 對話框數據 */
+⋮----
+/** 是否成功 */
+⋮----
+/**
+ * 對話框狀態介面
+ * 單一職責：定義對話框狀態的數據結構
+ */
+export interface DialogState {
+  /** 對話框是否打開 */
+  isOpen: boolean;
+  /** 對話框是否正在加載 */
+  isLoading: boolean;
+  /** 對話框標題 */
+  title: string;
+  /** 對話框數據 */
+  data?: any;
+  /** 對話框配置 */
+  config?: DialogConfig;
+}
+⋮----
+/** 對話框是否打開 */
+⋮----
+/** 對話框是否正在加載 */
+⋮----
+/** 對話框標題 */
+⋮----
+/** 對話框數據 */
+⋮----
+/** 對話框配置 */
+⋮----
+/**
+ * 對話框配置介面
+ * 單一職責：定義對話框配置的數據結構
+ */
+export interface DialogConfig {
+  /** 對話框寬度 */
+  width?: string;
+  /** 對話框高度 */
+  height?: string;
+  /** 是否禁用關閉 */
+  disableClose?: boolean;
+  /** 是否顯示關閉按鈕 */
+  hasCloseIcon?: boolean;
+  /** 是否顯示確認按鈕 */
+  hasConfirmButton?: boolean;
+  /** 是否顯示取消按鈕 */
+  hasCancelButton?: boolean;
+  /** 確認按鈕文字 */
+  confirmButtonText?: string;
+  /** 取消按鈕文字 */
+  cancelButtonText?: string;
+  /** 確認按鈕顏色 */
+  confirmButtonColor?: 'primary' | 'accent' | 'warn';
+  /** 取消按鈕顏色 */
+  cancelButtonColor?: 'primary' | 'accent' | 'warn';
+}
+⋮----
+/** 對話框寬度 */
+⋮----
+/** 對話框高度 */
+⋮----
+/** 是否禁用關閉 */
+⋮----
+/** 是否顯示關閉按鈕 */
+⋮----
+/** 是否顯示確認按鈕 */
+⋮----
+/** 是否顯示取消按鈕 */
+⋮----
+/** 確認按鈕文字 */
+⋮----
+/** 取消按鈕文字 */
+⋮----
+/** 確認按鈕顏色 */
+⋮----
+/** 取消按鈕顏色 */
+⋮----
+/**
+ * 對話框結果介面
+ * 單一職責：定義對話框結果的數據結構
+ */
+export interface DialogResult<T = any> {
+  /** 是否確認 */
+  confirmed: boolean;
+  /** 結果數據 */
+  data?: T;
+  /** 錯誤訊息 */
+  error?: string;
+  /** 關閉原因 */
+  reason?: 'cancel' | 'confirm' | 'backdrop' | 'escape';
+}
+⋮----
+/** 是否確認 */
+⋮----
+/** 結果數據 */
+⋮----
+/** 錯誤訊息 */
+⋮----
+/** 關閉原因 */
+⋮----
+/**
+ * 對話框事件類型
+ * 單一職責：定義對話框事件類型
+ */
+export type DialogEventType = 
+  | 'open'
+  | 'close'
+  | 'confirm'
+  | 'cancel'
+  | 'backdrop'
+  | 'escape'
+  | 'loading'
+  | 'loaded'
+  | 'error';
+⋮----
+/**
+ * 對話框事件介面
+ * 單一職責：定義對話框事件的數據結構
+ */
+export interface DialogEvent {
+  /** 事件類型 */
+  type: DialogEventType;
+  /** 事件數據 */
+  data?: any;
+  /** 時間戳 */
+  timestamp: Date;
+  /** 對話框 ID */
+  dialogId?: string;
+}
+⋮----
+/** 事件類型 */
+⋮----
+/** 事件數據 */
+⋮----
+/** 時間戳 */
+⋮----
+/** 對話框 ID */
+</file>
+
+<file path="angular/src/app/shared/types/index.ts">
+// 共享類型匯出檔案
+</file>
+
+<file path="angular/src/app/shared/types/validation.types.ts">
+/**
+ * 驗證相關的類型定義
+ * 遵循單一職責原則：只包含驗證所需的數據結構
+ */
+⋮----
+/**
+ * 驗證結果介面
+ * 單一職責：定義驗證結果的數據結構
+ */
+export interface ValidationResult {
+  /** 驗證是否通過 */
+  isValid: boolean;
+  /** 錯誤訊息列表 */
+  errors: string[];
+  /** 警告訊息列表（可選） */
+  warnings?: string[];
+  /** 驗證的字段名稱 */
+  field?: string;
+  /** 驗證的值 */
+  value?: any;
+}
+⋮----
+/** 驗證是否通過 */
+⋮----
+/** 錯誤訊息列表 */
+⋮----
+/** 警告訊息列表（可選） */
+⋮----
+/** 驗證的字段名稱 */
+⋮----
+/** 驗證的值 */
+⋮----
+/**
+ * 表單驗證狀態介面
+ * 單一職責：定義表單驗證狀態的數據結構
+ */
+export interface FormValidationState {
+  /** 整個表單是否有效 */
+  isValid: boolean;
+  /** 是否正在驗證 */
+  isValidating: boolean;
+  /** 字段驗證結果 */
+  fieldResults: Record<string, ValidationResult>;
+  /** 表單級別錯誤 */
+  formErrors: string[];
+  /** 表單級別警告 */
+  formWarnings: string[];
+}
+⋮----
+/** 整個表單是否有效 */
+⋮----
+/** 是否正在驗證 */
+⋮----
+/** 字段驗證結果 */
+⋮----
+/** 表單級別錯誤 */
+⋮----
+/** 表單級別警告 */
+⋮----
+/**
+ * 驗證規則介面
+ * 單一職責：定義驗證規則的數據結構
+ */
+export interface ValidationRule {
+  /** 規則名稱 */
+  name: string;
+  /** 規則描述 */
+  description: string;
+  /** 驗證函數 */
+  validator: (value: any) => ValidationResult;
+  /** 是否必填 */
+  required?: boolean;
+  /** 最小長度 */
+  minLength?: number;
+  /** 最大長度 */
+  maxLength?: number;
+  /** 正則表達式 */
+  pattern?: RegExp;
+  /** 自定義錯誤訊息 */
+  errorMessage?: string;
+}
+⋮----
+/** 規則名稱 */
+⋮----
+/** 規則描述 */
+⋮----
+/** 驗證函數 */
+⋮----
+/** 是否必填 */
+⋮----
+/** 最小長度 */
+⋮----
+/** 最大長度 */
+⋮----
+/** 正則表達式 */
+⋮----
+/** 自定義錯誤訊息 */
+⋮----
+/**
+ * 驗證配置介面
+ * 單一職責：定義驗證配置的數據結構
+ */
+export interface ValidationConfig {
+  /** 字段驗證規則 */
+  fields: Record<string, ValidationRule[]>;
+  /** 表單級別驗證規則 */
+  formRules?: ValidationRule[];
+  /** 是否實時驗證 */
+  realTimeValidation?: boolean;
+  /** 驗證延遲時間（毫秒） */
+  validationDelay?: number;
+}
+⋮----
+/** 字段驗證規則 */
+⋮----
+/** 表單級別驗證規則 */
+⋮----
+/** 是否實時驗證 */
+⋮----
+/** 驗證延遲時間（毫秒） */
+</file>
+
+<file path="angular/src/app/shared/utils/index.ts">
+// 共享工具匯出檔案
+// 目前暫無共享工具，未來可在此添加
+⋮----
+// 導出空對象以滿足模組要求
+</file>
+
+<file path="angular/src/environments/environment.prod.ts">
+// reCAPTCHA Enterprise site key for production
+</file>
+
+<file path="angular/src/environments/environment.sample.ts">
+//All this info will be in firebase console -> project overview -> project settings -> your apps (ex: webapp)
+⋮----
+// Debug token for local development
+⋮----
+// reCAPTCHA Enterprise site key for production
+</file>
+
+<file path="angular/src/index.html">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularFireRolekit</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+</body>
+</html>
+</file>
+
+<file path="angular/src/main.ts">
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+</file>
+
+<file path="angular/src/styles.scss">
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f3f4f6;
+}
+</file>
+
+<file path="angular/tsconfig.app.json">
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}
+</file>
+
+<file path="angular/tsconfig.json">
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "typeCheckHostBindings": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
+</file>
+
+<file path="angular/src/app/core/models/auth.model.ts">
+// src/app/core/models/auth.model.ts
+⋮----
+import { signal, computed, Signal } from '@angular/core';
+⋮----
+// Account 基礎介面 - GitHub 的核心概念
+export interface Account {
+  id: string;
+  type: 'user' | 'organization';  // 使用 type 區分用戶和組織
+  login: string;                   // GitHub 的唯一識別碼 (username/org-slug)
+  profile: ProfileVO;              // 使用 Value Object 封裝檔案資訊
+  permissions: PermissionVO;        // 使用 Value Object 封裝權限資訊
+  settings: SettingsVO;            // 使用 Value Object 封裝設定資訊
+  projectsOwned: string[];          // 擁有的專案列表
+  createdAt: Date;
+  updatedAt: Date;
+}
+⋮----
+type: 'user' | 'organization';  // 使用 type 區分用戶和組織
+login: string;                   // GitHub 的唯一識別碼 (username/org-slug)
+profile: ProfileVO;              // 使用 Value Object 封裝檔案資訊
+permissions: PermissionVO;        // 使用 Value Object 封裝權限資訊
+settings: SettingsVO;            // 使用 Value Object 封裝設定資訊
+projectsOwned: string[];          // 擁有的專案列表
+⋮----
+// 現代化的 Account 狀態管理
+export class AccountState {
+⋮----
+// 只讀 Signals
+⋮----
+// Computed Signals
+⋮----
+// 更新方法
+setAccount(account: Account | null)
+⋮----
+setLoading(loading: boolean)
+⋮----
+setError(error: string | null)
+⋮----
+clearError()
+⋮----
+// User 繼承 Account - 整合完整的用戶資料結構
+export interface User extends Account {
+  type: 'user';
+  uid: string;  // Firebase Auth UID
+  username: string;
+  email: string;
+  displayName: string;
+  avatar?: string;
+  photoURL?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  company?: string;
+  blog?: string;
+  twitter?: string;
+  github?: string;
+  linkedin?: string;
+  status: 'active' | 'inactive' | 'suspended' | 'pending';
+  emailVerified: boolean;
+  twoFactorEnabled: boolean;
+  lastLoginAt?: Date;
+  lastActiveAt?: Date;
+  
+  // GitHub 對齊的社交帳戶
+  socialAccounts: SocialAccount[];
+  
+  // 專業證照
+  certificates: Certificate[];
+  
+  // 組織成員資格
+  organizationMemberships: OrganizationMembership[];
+  
+  // 通知偏好
+  notificationPreferences: NotificationPreferences;
+  
+  // 隱私設定
+  privacySettings: PrivacySettings;
+  
+  // 保留原有的 Value Objects 以保持向後兼容
+  socialRelations?: SocialRelationVO;   // 社交關係
+}
+⋮----
+uid: string;  // Firebase Auth UID
+⋮----
+// GitHub 對齊的社交帳戶
+⋮----
+// 專業證照
+⋮----
+// 組織成員資格
+⋮----
+// 通知偏好
+⋮----
+// 隱私設定
+⋮----
+// 保留原有的 Value Objects 以保持向後兼容
+socialRelations?: SocialRelationVO;   // 社交關係
+⋮----
+// Organization 繼承 Account
+export interface Organization extends Account {
+  type: 'organization';
+  description?: string;
+  ownerId: string; // 組織擁有者
+  businessLicense?: BusinessLicenseVO;   // 商業許可證
+  // 移除 members 和 teams 的 Map 定義，這些應該通過子集合查詢獲取
+  // 移除重複的 settings 欄位，使用繼承的 SettingsVO
+}
+⋮----
+ownerId: string; // 組織擁有者
+businessLicense?: BusinessLicenseVO;   // 商業許可證
+// 移除 members 和 teams 的 Map 定義，這些應該通過子集合查詢獲取
+// 移除重複的 settings 欄位，使用繼承的 SettingsVO
+⋮----
+// Repository 介面 - GitHub 的核心概念
+export interface Repository {
+  id: string;
+  name: string;
+  fullName: string; // owner/repo
+  description?: string;
+  private: boolean;
+  ownerId: string; // Account ID (可以是 User 或 Organization)
+  ownerType: 'user' | 'organization';
+  createdAt: Date;
+  updatedAt: Date;
+  defaultBranch: string;
+  topics: string[];
+}
+⋮----
+fullName: string; // owner/repo
+⋮----
+ownerId: string; // Account ID (可以是 User 或 Organization)
+⋮----
+// 組織詳細模型 - 包含完整的組織信息，包括成員、團隊等詳細數據
+export interface OrganizationDetail {
+  id: string;
+  slug: string; // GitHub 風格的 URL-friendly 名稱
+  name: string;
+  description?: string;
+  type: 'construction' | 'consulting' | 'supplier';
+  profile: OrganizationProfile;
+  members: OrganizationMember[];
+  teams: Team[];
+  securityManagers: SecurityManager[];
+  organizationRoles: OrganizationRole[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+⋮----
+slug: string; // GitHub 風格的 URL-friendly 名稱
+⋮----
+export interface OrganizationProfile {
+  website?: string;
+  location?: string;
+  email?: string;
+  phone?: string;
+  avatar?: string;
+  banner?: string;
+}
+⋮----
+export interface OrganizationMember {
+  id: string;
+  userId: string;
+  username: string;
+  email: string;
+  role: OrgRole;
+  status: 'active' | 'pending' | 'suspended';
+  joinedAt: Date;
+  lastActiveAt: Date;
+}
+⋮----
+export interface Team {
+  id: string;
+  organizationId: string;
+  slug: string; // GitHub 風格的 slug
+  name: string;
+  description: string;
+  parentTeamId?: string; // 支援層級結構
+  privacy: 'open' | 'closed';
+  permission: 'read' | 'write' | 'admin';
+  permissions: TeamPermissions;
+  members: TeamMember[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+⋮----
+slug: string; // GitHub 風格的 slug
+⋮----
+parentTeamId?: string; // 支援層級結構
+⋮----
+export interface TeamMember {
+  id: string;
+  userId: string;
+  username: string;
+  role: TeamRole;
+  joinedAt: Date;
+}
+⋮----
+export interface SecurityManager {
+  id: string;
+  type: 'user' | 'team';
+  entityId: string; // userId 或 teamId
+  permissions: SecurityPermission[];
+  assignedAt: Date;
+  assignedBy: string;
+}
+⋮----
+entityId: string; // userId 或 teamId
+⋮----
+export interface SecurityPermission {
+  id: string;
+  name: string;
+  description: string;
+  resource: string; // 資源類型
+  action: string; // 操作類型
+  conditions?: Record<string, any>; // 額外條件
+}
+⋮----
+resource: string; // 資源類型
+action: string; // 操作類型
+conditions?: Record<string, any>; // 額外條件
+⋮----
+export interface OrganizationRole {
+  id: string;
+  name: string;
+  description: string;
+  permissions: Permission[];
+  level: number; // 角色等級
+  isSystemRole: boolean; // 是否為系統預設角色
+  createdAt: Date;
+}
+⋮----
+level: number; // 角色等級
+isSystemRole: boolean; // 是否為系統預設角色
+⋮----
+export interface Permission {
+  id: string;
+  name: string;
+  description: string;
+  resource: string;
+  action: string;
+  scope: 'organization' | 'team' | 'project' | 'user';
+}
+⋮----
+// API 請求/響應模型
+export interface CreateOrganizationRequest {
+  name: string;
+  slug: string;
+  description?: string;
+  type: 'construction' | 'consulting' | 'supplier';
+  profile?: Partial<OrganizationProfile>;
+}
+⋮----
+export interface UpdateOrganizationRequest {
+  name?: string;
+  description?: string;
+  profile?: Partial<OrganizationProfile>;
+}
+⋮----
+export interface CreateTeamRequest {
+  name: string;
+  slug: string;
+  description: string;
+  parentTeamId?: string;
+  privacy: 'open' | 'closed';
+  permission: 'read' | 'write' | 'admin';
+}
+⋮----
+export interface UpdateTeamRequest {
+  name?: string;
+  description?: string;
+  privacy?: 'open' | 'closed';
+  permission?: 'read' | 'write' | 'admin';
+}
+⋮----
+export interface InviteMemberRequest {
+  email: string;
+  role: string;
+  message?: string;
+}
+⋮----
+export interface UpdateMemberRoleRequest {
+  userId: string;
+  role: string;
+}
+⋮----
+// 權限檢查結果
+export interface PermissionResult {
+  granted: boolean;
+  reason?: string;
+  level?: 'read' | 'write' | 'admin' | 'none';
+  expiresAt?: Date;
+}
+⋮----
+// Repository Collaborator - 個人協作者
+export interface RepositoryCollaborator {
+  id: string;
+  repositoryId: string;
+  userId: string;
+  permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin';
+  roleName: string;
+  invitedBy?: string;
+  invitedAt: Date;
+}
+⋮----
+// Repository Team Access - 團隊訪問權限
+export interface RepositoryTeamAccess {
+  id: string;
+  repositoryId: string;
+  teamId: string;
+  permission: 'read' | 'triage' | 'write' | 'maintain' | 'admin';
+  roleName: string;
+  grantedBy?: string;
+  grantedAt: Date;
+}
+⋮----
+// 組織層級角色
+export enum OrgRole {
+  OWNER = 'owner',           // 擁有者 - 完整控制權
+  ADMIN = 'admin',           // 管理員 - 可管理成員和設定
+  MEMBER = 'member',         // 成員 - 基本權限
+  BILLING = 'billing',       // 帳務管理員
+  OUTSIDE_COLLABORATOR = 'outside_collaborator' // 外部協作者
+}
+⋮----
+OWNER = 'owner',           // 擁有者 - 完整控制權
+ADMIN = 'admin',           // 管理員 - 可管理成員和設定
+MEMBER = 'member',         // 成員 - 基本權限
+BILLING = 'billing',       // 帳務管理員
+OUTSIDE_COLLABORATOR = 'outside_collaborator' // 外部協作者
+⋮----
+// 團隊層級角色
+export enum TeamRole {
+  MAINTAINER = 'maintainer', // 維護者
+  MEMBER = 'member'          // 成員
+}
+⋮----
+MAINTAINER = 'maintainer', // 維護者
+MEMBER = 'member'          // 成員
+⋮----
+// 細粒度權限
+export interface TeamPermissions {
+  repository: {
+    read: boolean;
+    write: boolean;
+    admin: boolean;
+  };
+  issues: {
+    read: boolean;
+    write: boolean;
+    delete: boolean;
+  };
+  pullRequests: {
+    read: boolean;
+    write: boolean;
+    merge: boolean;
+  };
+}
+⋮----
+// ACL 能力定義
+export interface ACLAbility {
+  action: string;      // 'read', 'write', 'delete', 'admin'
+  resource: string;    // 'organization', 'team', 'repository', 'member'
+}
+⋮----
+action: string;      // 'read', 'write', 'delete', 'admin'
+resource: string;    // 'organization', 'team', 'repository', 'member'
+⋮----
+// Value Objects - 領域驅動設計的優點整合
+export interface ProfileVO {
+  name: string;
+  email: string;
+  avatar?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+}
+⋮----
+export interface PermissionVO {
+  roles: string[];
+  abilities: ACLAbility[];
+}
+⋮----
+export interface SettingsVO {
+  language: string;
+  theme: 'light' | 'dark';
+  notifications: {
+    email: boolean;
+    push: boolean;
+    sms: boolean;
+  };
+  privacy: {
+    profilePublic: boolean;
+    showEmail: boolean;
+  };
+  // 組織特定設定
+  organization?: {
+    defaultMemberRole: OrgRole;
+    visibility: 'public' | 'private';
+  };
+}
+⋮----
+// 組織特定設定
+⋮----
+// 額外的 Value Objects
+export interface CertificateVO {
+  id: string;
+  name: string;
+  issuer: string;
+  issuedAt: Date;
+  expiresAt?: Date;
+}
+⋮----
+export interface SocialRelationVO {
+  followers: string[];
+  following: string[];
+  connections: string[];
+}
+⋮----
+export interface BusinessLicenseVO {
+  licenseNumber: string;
+  companyName: string;
+  issuedBy: string;
+  issuedAt: Date;
+  expiresAt: Date;
+}
+⋮----
+// 整合 features/user/models/user.model.ts 的相關介面
+export interface SocialAccount {
+  id: string;
+  provider: 'twitter' | 'facebook' | 'linkedin' | 'youtube' | 'instagram' | 'github';
+  url: string;
+  username?: string;
+  verified: boolean;
+  addedAt: Date;
+}
+⋮----
+export interface Certificate {
+  id: string;
+  name: string;
+  issuer: string;
+  issueDate: Date;
+  expiryDate?: Date;
+  credentialId?: string;
+  credentialUrl?: string;
+  status: 'valid' | 'expired' | 'pending' | 'revoked';
+  category: 'professional' | 'safety' | 'technical' | 'management';
+  uploadedAt: Date;
+  verifiedAt?: Date;
+}
+⋮----
+export interface OrganizationMembership {
+  id: string;
+  organizationId: string;
+  organizationName: string;
+  role: OrgRole;
+  status: 'active' | 'pending' | 'suspended';
+  joinedAt: Date;
+  permissions: string[];
+}
+⋮----
+export interface NotificationPreferences {
+  email: {
+    enabled: boolean;
+    frequency: 'immediate' | 'daily' | 'weekly' | 'never';
+    types: string[];
+    marketing: boolean;
+    updates: boolean;
+    security: boolean;
+  };
+  push: {
+    enabled: boolean;
+    types: string[];
+    marketing: boolean;
+    updates: boolean;
+    security: boolean;
+  };
+  inApp: {
+    enabled: boolean;
+    types: string[];
+  };
+}
+⋮----
+export interface PrivacySettings {
+  profileVisibility: 'public' | 'private' | 'organization';
+  emailVisibility: 'public' | 'private' | 'organization';
+  socialAccountsVisibility: 'public' | 'private' | 'organization';
+  certificatesVisibility: 'public' | 'private' | 'organization';
+  activityVisibility: 'public' | 'private' | 'organization';
+}
+⋮----
+// API 請求/響應模型
+export interface CreateUserRequest {
+  username: string;
+  email: string;
+  displayName: string;
+  password: string;
+}
+⋮----
+export interface UpdateUserRequest {
+  displayName?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  company?: string;
+  blog?: string;
+  twitter?: string;
+  github?: string;
+  linkedin?: string;
+}
+⋮----
+export interface AddSocialAccountRequest {
+  provider: string;
+  url: string;
+  username?: string;
+}
+⋮----
+export interface UpdateNotificationPreferencesRequest {
+  email?: Partial<NotificationPreferences['email']>;
+  push?: Partial<NotificationPreferences['push']>;
+  inApp?: Partial<NotificationPreferences['inApp']>;
+}
+⋮----
+export interface UpdatePrivacySettingsRequest {
+  profileVisibility?: 'public' | 'private' | 'organization';
+  emailVisibility?: 'public' | 'private' | 'organization';
+  socialAccountsVisibility?: 'public' | 'private' | 'organization';
+  certificatesVisibility?: 'public' | 'private' | 'organization';
+  activityVisibility?: 'public' | 'private' | 'organization';
+}
+⋮----
+// GitHub 對齊的 API 響應
+export interface UserApiResponse {
+  id: string;
+  username: string;
+  email: string;
+  displayName: string;
+  avatar?: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  company?: string;
+  blog?: string;
+  twitter?: string;
+  github?: string;
+  linkedin?: string;
+  status: string;
+  emailVerified: boolean;
+  twoFactorEnabled: boolean;
+  createdAt: string;
+  updatedAt: string;
+  lastLoginAt?: string;
+  lastActiveAt?: string;
+}
+⋮----
+export interface SocialAccountApiResponse {
+  provider: string;
+  url: string;
+  username?: string;
+  verified: boolean;
+  addedAt: string;
+}
+⋮----
+// 分頁響應
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: {
+    page: number;
+    perPage: number;
+    total: number;
+    totalPages: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+  };
+}
+⋮----
+export interface MemberVO {
+  userId: string;
+  role: OrgRole;
+  joinedAt: Date;
+  invitedBy?: string;
+}
+⋮----
+export interface TeamVO {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  permissions: TeamPermissions;
+  assignedProjects: string[];
+}
+⋮----
+// 驗證工具函數已移至 core/utils/validation.utils.ts
+</file>
+
+<file path="angular/src/app/core/services/organization.service.ts">
+// src/app/core/services/organization.service.ts
+⋮----
+import { Injectable, inject, signal, computed } from '@angular/core';
+import {
+  Firestore,
+  doc,
+  docData,
+  collection,
+  collectionData,
+  query,
+  where,
+  addDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+  getDocs,
+  writeBatch,
+  DocumentData
+} from '@angular/fire/firestore';
+import { Observable, map, switchMap, combineLatest, of, catchError, throwError, firstValueFrom } from 'rxjs';
+import { 
+  Organization, 
+  OrganizationMember, 
+  Team,
+  TeamMember,
+  OrgRole,
+  TeamRole,
+  ProfileVO,
+  PermissionVO,
+  SettingsVO
+} from '../models/auth.model';
+import { ValidationUtils } from '../utils/validation.utils';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { AuthService } from './auth.service';
+import { NotificationService } from './notification.service';
+⋮----
+export class OrganizationService {
+⋮----
+// Signals for state management
+⋮----
+// Readonly signals
+⋮----
+// Computed signals
+⋮----
+return org ? [] : []; // 這裡應該實現成員查詢
+⋮----
+async createOrganization(
+    name: string,
+    login: string,
+    ownerId: string,
+    description?: string
+): Promise<string>
+⋮----
+// 驗證組織名稱
+⋮----
+// 驗證登入名稱
+⋮----
+// 建立 ProfileVO
+⋮----
+email: '', // 組織沒有電子郵件
+⋮----
+// 建立 PermissionVO
+⋮----
+// 建立 SettingsVO
+⋮----
+getOrganization(orgId: string): Observable<Organization>
+⋮----
+/**
+   * 獲取用戶的所有組織
+   * 修復：使用 Firestore where 查詢避免 N+1 查詢問題
+   */
+getUserOrganizations(userId: string): Observable<Organization[]>
+⋮----
+// 使用 where 查詢直接在資料庫層面過濾組織
+⋮----
+// 檢查用戶是否為這些組織的成員
+⋮----
+// 檢查成員文檔是否存在
+⋮----
+// 使用錯誤處理服務記錄錯誤，而不是 console.warn
+⋮----
+// 繼續處理其他組織，不中斷整個流程
+⋮----
+async loadOrganization(orgId: string): Promise<void>
+⋮----
+getOrganizationMembers(orgId: string): Observable<OrganizationMember[]>
+⋮----
+async addOrganizationMember(
+    orgId: string,
+    userId: string,
+    role: OrgRole,
+    invitedBy?: string
+): Promise<void>
+⋮----
+async updateMemberRole(
+    orgId: string,
+    userId: string,
+    newRole: OrgRole
+): Promise<void>
+⋮----
+async removeOrganizationMember(orgId: string, userId: string): Promise<void>
+⋮----
+getTeams(orgId: string): Observable<Team[]>
+⋮----
+/**
+   * 獲取組織的所有團隊（別名方法，保持向後兼容）
+   */
+getOrganizationTeams(orgId: string): Observable<Team[]>
+⋮----
+async createTeam(
+    orgId: string,
+    name: string,
+    slug: string,
+    description?: string,
+    privacy: 'open' | 'closed' = 'open',
+    permissions?: {
+      repository: { read: boolean; write: boolean; admin: boolean };
+      issues: { read: boolean; write: boolean; delete: boolean };
+      pullRequests: { read: boolean; write: boolean; merge: boolean };
+    }
+): Promise<string>
+⋮----
+// 驗證團隊名稱
+⋮----
+// 驗證團隊 slug
+⋮----
+// 使用預設權限或用戶設定的權限
+⋮----
+async updateTeam(
+    orgId: string,
+    teamId: string,
+    updates: Partial<Team>
+): Promise<void>
+⋮----
+async deleteTeam(orgId: string, teamId: string): Promise<void>
+⋮----
+getTeamMembers(orgId: string, teamId: string): Observable<TeamMember[]>
+⋮----
+async addTeamMember(
+    orgId: string,
+    teamId: string,
+    userId: string,
+    role: TeamRole,
+    addedBy?: string
+): Promise<void>
+⋮----
+async removeTeamMember(
+    orgId: string,
+    teamId: string,
+    userId: string
+): Promise<void>
+⋮----
+async updateOrganizationProfile(
+    orgId: string,
+    profile: ProfileVO
+): Promise<void>
+⋮----
+// 驗證 Profile
+⋮----
+// 更新本地狀態
+⋮----
+async updateOrganizationSettings(
+    orgId: string,
+    settings: SettingsVO
+): Promise<void>
+⋮----
+// 驗證 Settings
+⋮----
+// 更新本地狀態
+⋮----
+// 批次更新組織完整資訊（事務性操作）
+async updateOrganizationComplete(orgId: string, profile: ProfileVO, settings: SettingsVO): Promise<void>
+⋮----
+// 驗證 Profile 和 Settings
+⋮----
+// 添加更新操作到批次
+⋮----
+// 執行批次操作
+⋮----
+// 更新本地狀態
+⋮----
+async deleteOrganization(orgId: string): Promise<void>
+⋮----
+// 檢查是否為擁有者
+⋮----
+// 刪除組織及其所有子集合
+⋮----
+// 刪除成員子集合
+⋮----
+// 刪除團隊子集合
+⋮----
+// 刪除組織文檔
+⋮----
+// 記錄詳細錯誤信息
+⋮----
+// 清除錯誤
+clearError()
+⋮----
+// 清除組織上下文
+clearOrganizationContext()
+</file>
+
+<file path="angular/src/app/core/services/permission.service.ts">
+// src/app/core/services/permission.service.ts
+⋮----
+import { Injectable, inject, signal, computed } from '@angular/core';
+import { Firestore, doc, docData } from '@angular/fire/firestore';
+import { AuthService } from './auth.service';
+import { OrganizationService } from './organization.service';
+import { OrgRole, TeamRole, ACLAbility } from '../models/auth.model';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
+⋮----
+export class PermissionService {
+⋮----
+// 當前組織 ID Signal
+⋮----
+// 組織成員資格 Signal
+⋮----
+// Computed Signals for permissions
+⋮----
+// 設置當前組織
+async setCurrentOrganization(orgId: string)
+⋮----
+// 載入組織成員資格
+private async loadOrganizationMembership(orgId: string)
+⋮----
+// 先檢查是否為組織擁有者
+⋮----
+// 如果是擁有者，直接設為擁有者權限
+⋮----
+// 檢查成員文檔
+⋮----
+// 記錄詳細錯誤信息
+⋮----
+// 權限檢查方法
+can(action: string, resource: string): boolean
+⋮----
+// 對於組織相關資源，優先檢查組織權限
+⋮----
+// 如果是組織擁有者，擁有所有權限
+⋮----
+// 如果是組織管理員，擁有大部分權限
+⋮----
+// 如果是成員，只有讀取權限
+⋮----
+// 其他資源使用基本權限檢查
+⋮----
+// 團隊權限檢查
+async canManageTeam(teamId: string): Promise<boolean>
+⋮----
+// 組織管理員和擁有者可以管理所有團隊
+⋮----
+// 檢查是否為團隊維護者
+⋮----
+// Repository 權限檢查
+async canAccessRepository(repositoryId: string): Promise<boolean>
+⋮----
+// 如果是公開 Repository，任何人都可以讀取
+⋮----
+// 檢查是否為擁有者
+⋮----
+// 檢查是否為協作者
+⋮----
+// 檢查 Repository 寫入權限
+async canWriteRepository(repositoryId: string): Promise<boolean>
+⋮----
+// 檢查是否為擁有者
+⋮----
+// 檢查協作者權限
+⋮----
+// 檢查權限等級
+⋮----
+// 檢查 Repository 管理權限
+async canManageRepository(repositoryId: string): Promise<boolean>
+⋮----
+// 檢查是否為擁有者
+⋮----
+// 檢查協作者權限
+⋮----
+// 檢查權限等級
+⋮----
+// 清除組織上下文
+clearOrganizationContext()
+⋮----
+// 檢查用戶角色
+hasRole(role: string): boolean
+⋮----
+// 檢查組織角色
+hasOrgRole(role: OrgRole): boolean
+⋮----
+// 檢查是否為組織擁有者
+isOrganizationOwner(): boolean
+⋮----
+// 檢查是否為組織管理員
+isOrganizationAdmin(): boolean
+</file>
+
+</files>
