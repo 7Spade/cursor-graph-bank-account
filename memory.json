@@ -8,21 +8,9 @@
         "使用繁體中文進行交流",
         "基於 Cursor 的記憶銀行系統",
         "提供分層任務管理和自定義模式整合",
-        "開發環境：Windows 11，包管理器：pnpm",
+        "開發環境：Windows 11，包管理器：yarn",
         "編輯器：Cursor (版本 0.48 或更高)",
         "AI 模型：Claude 4 Sonnet 或 Claude 4 Opus"
-      ]
-    },
-    {
-      "name": "AI_Agents",
-      "entityType": "agent_collection",
-      "observations": [
-        "VAN_Agent：專案分析師，分析專案結構和複雜度，確定任務級別 (Level 1-4)",
-        "PLAN_Agent：專案規劃師，將複雜任務分解為可管理的子任務，建立詳細的實施計劃",
-        "CREATIVE_Agent：設計決策專家，探索設計選項和替代方案，進行技術選型分析",
-        "IMPLEMENT_Agent：代碼實施專家，系統性地實施計劃的組件，編寫高品質的代碼",
-        "REFLECT_Agent：代碼審查和學習專家，審查實施的代碼品質，識別改進機會",
-        "ARCHIVE_Agent：文件管理專家，建立全面的專案文件，整理和歸檔專案資產"
       ]
     },
     {
@@ -85,22 +73,12 @@
         "語言：繁體中文",
         "溝通風格：專業且友善",
         "開發環境：Windows 11",
-        "包管理器：pnpm",
+        "包管理器：yarn",
         "偏好 AI：Claude 4 Sonnet"
       ]
     }
   ],
   "relations": [
-    {
-      "from": "AI_Agents",
-      "to": "Memory_Bank_System",
-      "relationType": "collaborates_with"
-    },
-    {
-      "from": "Workflow_Levels",
-      "to": "AI_Agents",
-      "relationType": "uses"
-    },
     {
       "from": "GitHub_Style_Permission_System",
       "to": "Angular_v20_Technology_Stack",
@@ -130,96 +108,6 @@
       "from": "User_Preferences",
       "to": "Memory_Bank_System",
       "relationType": "configures"
-    },
-    {
-      "from": "VAN_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "analyzes"
-    },
-    {
-      "from": "PLAN_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "plans"
-    },
-    {
-      "from": "CREATIVE_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "designs"
-    },
-    {
-      "from": "IMPLEMENT_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "implements"
-    },
-    {
-      "from": "REFLECT_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "reviews"
-    },
-    {
-      "from": "ARCHIVE_Agent",
-      "to": "Memory_Bank_System",
-      "relationType": "archives"
-    },
-    {
-      "from": "Workflow_Level_1",
-      "to": "VAN_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_1",
-      "to": "IMPLEMENT_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_2",
-      "to": "VAN_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_2",
-      "to": "PLAN_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_2",
-      "to": "IMPLEMENT_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_2",
-      "to": "REFLECT_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "VAN_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "PLAN_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "CREATIVE_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "IMPLEMENT_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "REFLECT_Agent",
-      "relationType": "uses"
-    },
-    {
-      "from": "Workflow_Level_3_4",
-      "to": "ARCHIVE_Agent",
-      "relationType": "uses"
     }
   ]
 }

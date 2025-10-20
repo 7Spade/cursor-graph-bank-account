@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  context7:
+    image: node:20-alpine
+    container_name: context7-mcp
+    working_dir: /srv
+    environment:
+      - CONTEXT7_API_KEY=${CONTEXT7_API_KEY}
+      - NODE_OPTIONS=--experimental-fetch
+    command: sh -c "npx -y @upstash/context7-mcp --transport http --port 3000"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

@@ -99,19 +99,12 @@
       ]
     },
     "Context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {},
+      "url": "http://localhost:3000/mcp",
+      "disabled": false,
       "autoApprove": [
         "resolve-library-id",
         "get-library-docs"
-      ],
-      "retry": {
-        "enabled": true,
-        "maxAttempts": 3,
-        "delay": 3000,
-        "backoffMultiplier": 1.5,
-        "maxDelay": 12000
-      }
+      ]
     },
     "repomix": {
       "command": "npx",
