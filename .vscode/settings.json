@@ -1,0 +1,53 @@
+{
+    "typescript.tsserver.nodePath": "C:/nvm4w/nodejs/node.exe",
+    "typescript.tsserver.maxTsServerMemory": 8192,
+    
+    // TypeScript 內聯提示優化
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "editor.inlayHints.enabled": "on",
+    
+    // Angular 特定配置
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    
+    // 編輯器優化
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    
+    // Angular 模板優化
+    "html.format.indentInnerHtml": true,
+    "html.format.wrapLineLength": 120,
+    
+    // 檔案關聯
+    "files.associations": {
+        "*.html": "html"
+    },
+    
+    // 搜尋排除
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/out-tsc": true,
+        "**/.angular": true
+    },
+    
+    // 檔案監視排除
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/out-tsc/**": true,
+        "**/.angular/**": true
+    }
+}

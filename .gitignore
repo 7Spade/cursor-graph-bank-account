@@ -4,7 +4,6 @@ Thumbs.db
 desktop.ini
 
 # Editor specific files
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -74,10 +73,3 @@ pids
 #claude.code specific
 .claude/
 CLAUDE.md
-
-#Ignore vscode AI rules
-.github\instructions\codacy.instructions.md
-
-
-#Ignore cursor AI rules
-.cursor\rules\codacy.mdc
