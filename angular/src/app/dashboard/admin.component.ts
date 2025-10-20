@@ -25,12 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-
-interface UserData {
-  uid: string;
-  email: string;
-  role: string;
-}
+import { UserData } from '@core/models';
 
 @Component({
   selector: 'app-admin',

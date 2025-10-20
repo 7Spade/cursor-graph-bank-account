@@ -6,13 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-
-interface Article {
-  id?: string;
-  title: string;
-  content: string;
-  createdAt: Date;
-}
+import { Article } from '@core/models';
 
 @Component({
   selector: 'app-viewer',
