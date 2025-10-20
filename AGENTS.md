@@ -256,9 +256,13 @@ Graph Bank System 整合了多個 MCP (Model Context Protocol) 服務，提供�
 | `pw7` | playwright | 瀏覽器自動化 | 網頁測試、截圖 | `.cursor/rules/playwright.mdc` | v1.0+ |
 | `rmx7` | repomix-docker | 程式碼分析 | 專案結構分析 | `.cursor/rules/repomix.mdc` | v1.0+ |
 
-**rmx7 標準執行命令：**
+**rmx7 標準執行命令（雙輸出格式）：**
 ```bash
+# 輸出 Markdown 格式
 npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ../angular-dev-focused.md
+
+# 輸出 XML 格式
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ../angular-dev-analysis.xml
 ```
 | `cdt7` | Chrome DevTools | 瀏覽器除錯 | 網頁除錯、效能分析 | `.cursor/rules/chrome-devtools.mdc` | v1.0+ |
 | `codacy7` | codacy | 程式碼品質檢查 | 靜態分析、安全檢查 | `.cursor/rules/codacy.mdc` | v1.0+ |
@@ -351,8 +355,11 @@ mem7: 記錄技術升級決策和原因
 
 # 程式碼重構工作流程
 rmx7: 分析現有程式碼結構和依賴關係
-# 執行命令：
+# 執行命令（雙輸出格式）：
+# 輸出 Markdown 格式
 npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ../angular-dev-focused.md
+# 輸出 XML 格式
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ../angular-dev-analysis.xml
 st7: 識別重構機會和潛在問題
 uc7: 查詢重構相關的最佳實踐
 st7: 制定重構計劃和實施步驟
