@@ -1,5 +1,10 @@
 # Progress
 
+- 2025-10-21: ✅ BUILD 模式完成 - 權限問題修復實施
+  - 創建 `organization-context.resolver.ts` 解析器
+  - 修改 `permissionGuard` 支持組織上下文自動設置
+  - 更新 `organization-detail.routes.ts` 添加解析器到所有組織路由
+  - 建置成功，無 TypeScript 錯誤
 - 2025-10-21: ✅ VAN 模式完成 - 技術驗證與問題診斷
   - 分析 angular-dev-analysis.xml 找出權限問題根本原因
   - 診斷：PermissionService 未設置組織上下文
