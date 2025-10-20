@@ -295,6 +295,23 @@ flowchart TD
 
 Identify components that require creative problem-solving or significant design decisions. For these components, flag them for the CREATIVE mode. Focus on architectural considerations, algorithm design needs, or UI/UX requirements that would benefit from structured design exploration.
 
+## 🔍 CONTEXT7 自動觸發整合
+
+PLAN 模式整合 Context7 自動技術研究：
+
+### 自動觸發場景
+- **技術研究**：當規劃需要特定技術解決方案時，自動獲取最新文檔
+- **API 參考**：當需要整合外部 API 時，自動獲取 API 文檔
+- **最佳實踐**：當規劃架構或實施策略時，自動獲取最佳實踐
+- **技術比較**：當需要比較不同技術選項時，自動獲取比較文檔
+- **依賴分析**：當分析專案依賴時，自動獲取函式庫文檔
+
+### 整合優勢
+- 確保規劃基於最新技術資訊
+- 自動獲取相關 API 和函式庫文檔
+- 提供準確的技術選型參考
+- 支援最新的技術最佳實踐
+
 ## VERIFICATION
 
 ```mermaid
@@ -309,8 +326,9 @@ flowchart TD
     V --> C["Components requiring creative phases identified?"]
     V --> S["Implementation steps clearly defined?"]
     V --> D["Dependencies and challenges documented?"]
+    V --> T["Latest technical documentation consulted?"]
 
-    P & C & S & D --> Decision{"All Verified?"}
+    P & C & S & D & T --> Decision{"All Verified?"}
     Decision -->|"Yes"| Complete["Ready for next mode"]
     Decision -->|"No"| Fix["Complete missing items"]
 
@@ -320,4 +338,4 @@ flowchart TD
     style Fix fill:#ff5555,stroke:#cc0000,color:white
 ```
 
-Before completing the planning phase, verify that all requirements are addressed in the plan, components requiring creative phases are identified, implementation steps are clearly defined, and dependencies and challenges are documented. Update tasks.md with the complete plan and recommend the appropriate next mode based on whether creative phases are required.
+Before completing the planning phase, verify that all requirements are addressed in the plan, components requiring creative phases are identified, implementation steps are clearly defined, dependencies and challenges are documented, and latest technical documentation has been consulted. Update tasks.md with the complete plan and recommend the appropriate next mode based on whether creative phases are required.

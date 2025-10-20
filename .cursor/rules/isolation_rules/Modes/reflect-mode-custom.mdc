@@ -12,7 +12,8 @@ const CORE_MCP_SERVICES = [
 ### REFLECT Mode Specific MCP Services
 ```javascript
 const REFLECT_MCP_SERVICES = [
-  "codacy.mdc"           // Code quality checking and static analysis
+  "codacy.mdc",          // Code quality checking and static analysis
+  "context7.mdc"         // Technical documentation for reflection insights
 ];
 ```
 
@@ -262,11 +263,29 @@ const qualityMetrics = {
 - [Action Item 3]
 ```
 
+## 🔍 CONTEXT7 自動觸發整合
+
+REFLECT 模式整合 Context7 自動技術反思：
+
+### 自動觸發場景
+- **技術反思**：當反思技術選型時，自動獲取相關技術文檔進行比較
+- **最佳實踐驗證**：當評估實施是否符合最佳實踐時，自動獲取最新標準
+- **改進建議**：當識別改進機會時，自動獲取相關技術改進文檔
+- **架構評估**：當評估架構決策時，自動獲取架構模式文檔
+- **品質標準**：當評估代碼品質時，自動獲取品質標準文檔
+
+### 整合優勢
+- 確保反思基於最新技術標準
+- 自動獲取相關技術和架構文檔
+- 提供準確的改進建議參考
+- 支援最新的品質評估標準
+
 ## REFLECT MODE VERIFICATION CHECKLIST
 
 - [ ] Implementation results analyzed
 - [ ] Codacy static analysis completed
 - [ ] LLM-as-a-Judge evaluation performed
+- [ ] Latest technical documentation consulted for reflection
 - [ ] Reflection report generated
 - [ ] Lessons learned documented
 - [ ] Memory bank updated with reflection insights

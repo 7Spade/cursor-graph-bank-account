@@ -352,6 +352,23 @@ flowchart TD
     style Exit fill:#f5d9f0,stroke:#e699d9,color:black
 ```
 
+## 🔍 CONTEXT7 自動觸發整合
+
+CREATIVE 模式整合 Context7 自動設計研究：
+
+### 自動觸發場景
+- **架構研究**：當探索架構選項時，自動獲取最新架構模式和最佳實踐
+- **技術選型**：當比較不同技術方案時，自動獲取技術比較文檔
+- **設計模式**：當需要設計模式參考時，自動獲取相關文檔
+- **API 設計**：當設計 API 時，自動獲取 API 設計最佳實踐
+- **效能優化**：當考慮效能時，自動獲取效能優化技術文檔
+
+### 整合優勢
+- 確保設計決策基於最新技術資訊
+- 自動獲取相關設計模式和最佳實踐
+- 提供準確的技術選型參考
+- 支援最新的架構和設計趨勢
+
 ## VERIFICATION
 
 ```mermaid
@@ -368,8 +385,9 @@ flowchart TD
     V --> R["Recommendations justified against requirements?"]
     V --> I["Implementation guidelines provided?"]
     V --> D["Design decisions documented in Graph Bank?"]
+    V --> T["Latest technical documentation consulted for design decisions?"]
 
-    C & O & A & R & I & D --> Decision{"All Verified?"}
+    C & O & A & R & I & D & T --> Decision{"All Verified?"}
     Decision -->|"Yes"| Complete["Ready for IMPLEMENT mode"]
     Decision -->|"No"| Fix["Complete missing items"]
 
@@ -379,4 +397,4 @@ flowchart TD
     style Fix fill:#ff5555,stroke:#cc0000,color:white
 ```
 
-Before completing the creative phase, verify that all flagged components have been addressed with multiple options explored, pros and cons analyzed, recommendations justified, and implementation guidelines provided. Update tasks.md with the design decisions and prepare for the implementation phase.
+Before completing the creative phase, verify that all flagged components have been addressed with multiple options explored, pros and cons analyzed, recommendations justified, implementation guidelines provided, and latest technical documentation consulted for design decisions. Update tasks.md with the design decisions and prepare for the implementation phase.

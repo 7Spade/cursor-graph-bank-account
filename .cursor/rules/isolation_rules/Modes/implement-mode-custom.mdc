@@ -320,6 +320,23 @@ flowchart TD
 
 Focus on effective building while adapting your approach to the platform environment. Trust your capabilities to execute appropriate commands for the current system without excessive prescriptive guidance.
 
+## 🔍 CONTEXT7 自動觸發整合
+
+IMPLEMENT 模式整合 Context7 自動 API 文檔獲取：
+
+### 自動觸發場景
+- **API 使用**：當使用特定 API 時，自動獲取最新 API 文檔和範例
+- **函式庫整合**：當整合外部函式庫時，自動獲取整合指南
+- **語法參考**：當需要特定語法或方法時，自動獲取官方文檔
+- **最佳實踐**：當實施特定功能時，自動獲取最佳實踐文檔
+- **除錯參考**：當遇到問題時，自動獲取相關除錯文檔
+
+### 整合優勢
+- 確保實施基於最新 API 文檔
+- 自動獲取相關函式庫和工具文檔
+- 提供準確的語法和方法參考
+- 支援最新的實施最佳實踐
+
 ## VERIFICATION
 
 ```mermaid
@@ -335,8 +352,9 @@ flowchart TD
     V --> R["Build meets requirements?"]
     V --> D["Build details documented?"]
     V --> U["tasks.md updated with status?"]
+    V --> A["Latest API documentation consulted during implementation?"]
 
-    I & T & R & D & U --> Decision{"All Verified?"}
+    I & T & R & D & U & A --> Decision{"All Verified?"}
     Decision -->|"Yes"| Complete["Ready for REFLECT mode"]
     Decision -->|"No"| Fix["Complete missing items"]
 
@@ -346,4 +364,4 @@ flowchart TD
     style Fix fill:#ff5555,stroke:#cc0000,color:white
 ```
 
-Before completing the build phase, verify that all build steps have been completed, changes have been thoroughly tested, the build meets all requirements, details have been documented, and tasks.md has been updated with the current status. Once verified, prepare for the reflection phase.
+Before completing the build phase, verify that all build steps have been completed, changes have been thoroughly tested, the build meets all requirements, details have been documented, tasks.md has been updated with the current status, and latest API documentation has been consulted during implementation. Once verified, prepare for the reflection phase.
