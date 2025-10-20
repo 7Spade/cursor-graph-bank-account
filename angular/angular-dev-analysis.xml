@@ -2408,59 +2408,6 @@ this.authService.currentAccount()?.id || '', // 從 AuthService 獲取當前用�
 goBack()
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-edit-dialog.component.ts">
-import { Component, Inject, OnInit, signal, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { firstValueFrom } from 'rxjs';
-import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
-⋮----
-import { Organization } from '../../../core/models/auth.model';
-import { OrganizationService } from '../../../core/services/organization.service';
-import { NotificationService } from '../../../core/services/notification.service';
-⋮----
-/**
- * 組織編輯對話框組件
- * 允許用戶編輯組織的基本信息
- */
-⋮----
-export class OrganizationEditDialogComponent implements OnInit
-⋮----
-// Signals
-⋮----
-// Form
-⋮----
-constructor(
-    private dialogRef: MatDialogRef<OrganizationEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Organization
-)
-⋮----
-async ngOnInit()
-⋮----
-private async loadOrganizationData()
-⋮----
-// 填充表單數據
-⋮----
-async onSave()
-⋮----
-// 準備更新數據
-⋮----
-email: this.data.profile.email, // 保持原有電子郵件
-avatar: this.data.profile.avatar, // 保持原有頭像
-⋮----
-// 更新組織檔案
-⋮----
-// 如果有描述變更，也需要更新組織描述
-⋮----
-onCancel()
-</file>
-
 <file path="angular/src/app/features/organization/components/organization-fixes-test.component.ts">
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6066,70 +6013,56 @@ constructor()
 // Firebase 和 App Check 已正確配置
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-detail.component.ts">
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+<file path="angular/src/app/features/organization/components/organization-edit-dialog.component.ts">
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { Component, Inject, OnInit, inject, signal } from '@angular/core';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatDialog } from '@angular/material/dialog';
-import { firstValueFrom } from 'rxjs';
 ⋮----
-import { OrganizationService } from '../../../core/services/organization.service';
-import { PermissionService } from '../../../core/services/permission.service';
-import { AuthService } from '../../../core/services/auth.service';
-import { LoggerService } from '../../../core/services/logger.service';
+import { OrganizationDetail } from '../../../core/models/auth.model';
 import { NotificationService } from '../../../core/services/notification.service';
-import { Organization, Team, OrganizationMember, OrgRole } from '../../../core/models/auth.model';
-import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
-import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
+import { OrganizationService } from '../../../core/services/organization.service';
 ⋮----
 /**
- * 組織詳情組件
- * 顯示組織的基本信息和統計數據
+ * 組織編輯對話框組件
+ * 允許用戶編輯組織的基本信息
  */
 ⋮----
-export class OrganizationDetailComponent implements OnInit {
+export class OrganizationEditDialogComponent implements OnInit
 ⋮----
 // Signals
 ⋮----
-// Computed signals
+// Form
+⋮----
+constructor(
+    private dialogRef: MatDialogRef<OrganizationEditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: OrganizationDetail
+)
 ⋮----
 async ngOnInit()
 ⋮----
-// 設置當前組織到權限服務
+private async loadOrganizationData()
 ⋮----
-// 載入組織詳情
+// 填充表單數據
 ⋮----
-async loadOrganization()
+async onSave()
 ⋮----
-// 載入組織資訊
+// 準備更新數據
 ⋮----
-// 載入團隊列表
+email: this.data.profile.email || '', // 確保 email 不為 undefined
+avatar: this.data.profile.avatar || '', // 確保 avatar 不為 undefined
 ⋮----
-// 載入成員列表
+// 更新組織檔案
 ⋮----
-editOrganization()
+// 如果有描述變更，也需要更新組織描述
 ⋮----
-// 重新載入組織信息
-⋮----
-async deleteOrganization()
-⋮----
-// 檢查權限
-⋮----
-// 顯示確認對話框
-⋮----
-goToMembers()
-⋮----
-goToTeams()
-⋮----
-goToSettings()
-⋮----
-viewTeam(teamId: string)
+onCancel()
 </file>
 
 <file path="angular/src/app/features/organization/components/organization-list.component.ts">
@@ -6307,138 +6240,6 @@ onDeleteOrganization(organization: OrganizationDetail): void
     "typescript": "~5.8.2"
   }
 }
-</file>
-
-<file path="angular/src/app/core/guards/permission.guard.ts">
-// src/app/core/guards/permission.guard.ts
-⋮----
-import { inject } from '@angular/core';
-import { CanActivateFn, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
-import { authState } from 'rxfire/auth';
-import { map } from 'rxjs';
-import { PermissionService } from '../services/permission.service';
-import { AuthService } from '../services/auth.service';
-import { OrgRole } from '../models/auth.model';
-⋮----
-// authGuard 已移至 features/user/auth/auth.guard.ts
-// 請使用統一的 authGuard 實作
-⋮----
-/**
- * 用戶角色守衛工廠函數
- * @param expectedRole 預期的用戶角色
- * @returns CanActivateFn
- */
-export function roleGuard(expectedRole: string): CanActivateFn
-⋮----
-// 檢查用戶角色
-⋮----
-// 檢查是否有預期角色
-⋮----
-// 如果沒有預期角色，重定向到未授權頁面
-⋮----
-// 組織帳戶不支援角色守衛
-⋮----
-/**
- * 通用權限守衛
- * 從路由數據中讀取權限配置
- */
-export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
-⋮----
-// 從路由數據中獲取權限配置
-⋮----
-return true; // 如果沒有權限配置，允許訪問
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 權限守衛工廠函數
- * @param action 權限動作 (read, write, admin, delete)
- * @param resource 資源類型 (organization, team, repository, member)
- * @returns CanActivateFn
- */
-export function createPermissionGuard(action: string, resource: string): CanActivateFn
-⋮----
-// 檢查權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織權限守衛工廠函數
- * @param role 組織角色
- * @returns CanActivateFn
- */
-export function orgRoleGuard(role: OrgRole): CanActivateFn
-⋮----
-// 檢查組織角色
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織管理員守衛
- * 檢查用戶是否為組織管理員或擁有者
- */
-export const orgAdminGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織管理員
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 組織擁有者守衛
- * 檢查用戶是否為組織擁有者
- */
-export const orgOwnerGuard: CanActivateFn = () =>
-⋮----
-// 檢查是否為組織擁有者
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 讀取權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryReadGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 讀取權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 寫入權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryWriteGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 寫入權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * Repository 管理權限守衛
- * @param repositoryId Repository ID
- * @returns CanActivateFn
- */
-export function repositoryManageGuard(repositoryId: string): CanActivateFn
-⋮----
-// 檢查 Repository 管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
-⋮----
-/**
- * 團隊管理權限守衛
- * @param teamId 團隊 ID
- * @returns CanActivateFn
- */
-export function teamManageGuard(teamId: string): CanActivateFn
-⋮----
-// 檢查團隊管理權限
-⋮----
-// 沒有權限，重定向到未授權頁面
 </file>
 
 <file path="angular/src/app/core/models/auth.model.ts">
@@ -7035,6 +6836,72 @@ export interface TeamVO {
 // 驗證工具函數已移至 core/utils/validation.utils.ts
 </file>
 
+<file path="angular/src/app/features/organization/components/organization-detail.component.ts">
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { OrganizationDetail, OrganizationMember, OrgRole, Team } from '../../../core/models/auth.model';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoggerService } from '../../../core/services/logger.service';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/components/confirm-dialog.component';
+import { OrganizationEditDialogComponent } from './organization-edit-dialog.component';
+⋮----
+/**
+ * 組織詳情組件
+ * 顯示組織的基本信息和統計數據
+ */
+⋮----
+export class OrganizationDetailComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Computed signals
+⋮----
+async ngOnInit()
+⋮----
+// 設置當前組織到權限服務
+⋮----
+// 載入組織詳情
+⋮----
+async loadOrganization()
+⋮----
+// 使用統一的 getOrganization 方法，支援 ID 和 slug
+⋮----
+// 載入團隊列表 - 使用組織的實際 ID
+⋮----
+// 載入成員列表 - 使用組織的實際 ID
+⋮----
+editOrganization()
+⋮----
+// 重新載入組織信息
+⋮----
+async deleteOrganization()
+⋮----
+// 檢查權限
+⋮----
+// 顯示確認對話框
+⋮----
+goToMembers()
+⋮----
+goToTeams()
+⋮----
+goToSettings()
+⋮----
+viewTeam(teamId: string)
+</file>
+
 <file path="angular/src/app/features/organization/routes/organization-detail.routes.ts">
 import { Routes } from '@angular/router';
 import { permissionGuard } from '../../../core/guards/permission.guard';
@@ -7079,22 +6946,157 @@ import { permissionGuard } from '../../../core/guards/permission.guard';
 // 預設重定向到組織詳情
 </file>
 
+<file path="angular/src/app/core/guards/permission.guard.ts">
+// src/app/core/guards/permission.guard.ts
+⋮----
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
+import { OrgRole } from '../models/auth.model';
+import { AuthService } from '../services/auth.service';
+import { PermissionService } from '../services/permission.service';
+⋮----
+// authGuard 已移至 features/user/auth/auth.guard.ts
+// 請使用統一的 authGuard 實作
+⋮----
+/**
+ * 用戶角色守衛工廠函數
+ * @param expectedRole 預期的用戶角色
+ * @returns CanActivateFn
+ */
+export function roleGuard(expectedRole: string): CanActivateFn
+⋮----
+// 檢查用戶角色
+⋮----
+// 檢查是否有預期角色
+⋮----
+// 如果沒有預期角色，重定向到未授權頁面
+⋮----
+// 組織帳戶不支援角色守衛
+⋮----
+/**
+ * 通用權限守衛
+ * 從路由數據中讀取權限配置
+ */
+export const permissionGuard: CanActivateFn = async (route: ActivatedRouteSnapshot) =>
+⋮----
+// 從路由參數中獲取組織ID，並設置組織上下文
+⋮----
+// 如果設置組織上下文失敗，仍然繼續權限檢查
+⋮----
+// 從路由數據中獲取權限配置
+⋮----
+return true; // 如果沒有權限配置，允許訪問
+⋮----
+// 檢查權限 - 現在正確處理異步
+⋮----
+// 如果權限檢查失敗，為了安全起見，拒絕訪問
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 權限守衛工廠函數
+ * @param action 權限動作 (read, write, admin, delete)
+ * @param resource 資源類型 (organization, team, repository, member)
+ * @returns CanActivateFn
+ */
+export function createPermissionGuard(action: string, resource: string): CanActivateFn
+⋮----
+// 檢查權限 - 現在正確處理異步
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織權限守衛工廠函數
+ * @param role 組織角色
+ * @returns CanActivateFn
+ */
+export function orgRoleGuard(role: OrgRole): CanActivateFn
+⋮----
+// 檢查組織角色 - 使用正確的方法名
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織管理員守衛
+ * 檢查用戶是否為組織管理員或擁有者
+ */
+export const orgAdminGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織管理員
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 組織擁有者守衛
+ * 檢查用戶是否為組織擁有者
+ */
+export const orgOwnerGuard: CanActivateFn = () =>
+⋮----
+// 檢查是否為組織擁有者
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 讀取權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryReadGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 讀取權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 寫入權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryWriteGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 寫入權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * Repository 管理權限守衛
+ * @param repositoryId Repository ID
+ * @returns CanActivateFn
+ */
+export function repositoryManageGuard(repositoryId: string): CanActivateFn
+⋮----
+// 檢查 Repository 管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+⋮----
+/**
+ * 團隊管理權限守衛
+ * @param teamId 團隊 ID
+ * @returns CanActivateFn
+ */
+export function teamManageGuard(teamId: string): CanActivateFn
+⋮----
+// 檢查團隊管理權限
+⋮----
+// 沒有權限，重定向到未授權頁面
+</file>
+
 <file path="angular/src/app/features/organization/components/organization-settings.component.ts">
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 ⋮----
-import { Organization } from '../../../core/models/auth.model';
+import { OrganizationDetail } from '../../../core/models/auth.model';
 import { NotificationService } from '../../../core/services/notification.service';
 import { OrganizationService } from '../../../core/services/organization.service';
 import { PermissionService } from '../../../core/services/permission.service';
@@ -7116,11 +7118,17 @@ hasFormChanged(): boolean
 ⋮----
 async ngOnInit()
 ⋮----
-// 檢查權限
+// 先載入組織，然後檢查權限
+⋮----
+// 載入組織後設置組織上下文並檢查權限
 ⋮----
 async loadOrganization()
 ⋮----
+// 使用統一的 getOrganization 方法，支援 ID 和 slug
+⋮----
 // 填充表單數據
+⋮----
+visibility: 'private', // 暫時設為 private，可以後續優化
 ⋮----
 isFormValid(): boolean
 ⋮----
@@ -7137,6 +7145,11 @@ async onSubmit()
 // 準備 Profile 和 Settings 數據
 ⋮----
 email: '', // 組織沒有電子郵件
+⋮----
+language: 'zh-TW', // 暫時設為預設值
+theme: 'light' as 'light' | 'dark', // 確保類型正確
+notifications: { email: true, push: true, sms: false }, // 暫時設為預設值
+privacy: { profilePublic: true, showEmail: false }, // 暫時設為預設值
 ⋮----
 // 使用批次更新確保事務性
 ⋮----
@@ -7171,6 +7184,7 @@ import { Observable, catchError, firstValueFrom, map, switchMap, throwError } fr
 import {
   OrgRole,
   Organization,
+  OrganizationDetail,
   OrganizationMember,
   PermissionVO,
   ProfileVO,
@@ -7213,7 +7227,47 @@ email: '', // 組織沒有電子郵件
 ⋮----
 // 建立 SettingsVO
 ⋮----
-getOrganization(orgId: string): Observable<Organization>
+/**
+   * 統一的組織獲取方法 - 支援 ID 和 slug 參數
+   * 根據 CREATIVE 階段的架構設計決策實現
+   */
+getOrganization(identifier: string): Observable<OrganizationDetail>
+⋮----
+// 判斷是 ID 還是 slug
+const isId = identifier.length > 20 || identifier.includes('-'); // Firestore ID 通常較長或包含連字符
+⋮----
+/**
+   * 根據 Firestore ID 獲取組織
+   */
+private getOrganizationById(orgId: string): Observable<OrganizationDetail>
+⋮----
+/**
+   * 根據 slug 獲取組織
+   */
+private getOrganizationBySlug(slug: string): Observable<OrganizationDetail>
+⋮----
+/**
+   * 將 Organization 轉換為 OrganizationDetail
+   * 實現資料轉換層，確保資料結構一致性
+   */
+private convertToOrganizationDetail(org: Organization): OrganizationDetail
+⋮----
+type: 'construction' as const, // 暫時設為 construction，可以後續優化
+⋮----
+phone: undefined, // ProfileVO 沒有 phone 字段
+⋮----
+banner: undefined // ProfileVO 沒有 banner 字段
+⋮----
+members: [], // 將在需要時動態載入
+teams: [],   // 將在需要時動態載入
+securityManagers: [], // 將在需要時動態載入
+organizationRoles: [], // 將在需要時動態載入
+⋮----
+/**
+   * 保留原有的 getOrganization 方法以保持向後相容性
+   * @deprecated 使用 getOrganization(identifier) 替代
+   */
+getOrganizationLegacy(orgId: string): Observable<Organization>
 ⋮----
 /**
    * 獲取用戶的所有組織
@@ -7371,12 +7425,46 @@ export class PermissionService
 // Computed Signals for permissions
 ⋮----
 // 設置當前組織
+/**
+   * 混合策略權限檢查 - 支援 ID 和 slug 參數
+   * 根據 CREATIVE 階段的設計決策實現
+   */
+async setCurrentOrganizationByIdentifier(identifier: string)
+⋮----
+// 判斷是 ID 還是 slug
+⋮----
+// 直接使用 ID
+⋮----
+// 如果是 slug，需要先查詢到對應的 ID
+⋮----
+/**
+   * 快速權限檢查 - 優先使用快取，必要時進行即時查詢
+   */
+async can(action: string, resource: string): Promise<boolean>
+⋮----
+// 如果快取中有足夠的資訊，直接返回
+⋮----
+// 如果快取中沒有足夠的資訊，進行即時查詢
+⋮----
+return this.can(action, resource); // 遞歸調用，但這次會使用更新後的快取
+⋮----
+/**
+   * 檢查是否為組織擁有者 - Computed Signal
+   */
+⋮----
+/**
+   * 檢查是否為組織管理員 - Computed Signal
+   */
+⋮----
+/**
+   * 設置當前組織 - 原有方法保持向後相容性
+   */
 async setCurrentOrganization(orgId: string)
 ⋮----
 // 載入組織成員資格
 private async loadOrganizationMembership(orgId: string)
 ⋮----
-// 先檢查是否為組織擁有者
+// 使用 getOrganizationLegacy 來獲取包含 ownerId 的 Organization 對象
 ⋮----
 // 如果是擁有者，直接設為擁有者權限
 ⋮----
@@ -7384,18 +7472,7 @@ private async loadOrganizationMembership(orgId: string)
 ⋮----
 // 記錄詳細錯誤信息
 ⋮----
-// 權限檢查方法
-can(action: string, resource: string): boolean
-⋮----
-// 對於組織相關資源，優先檢查組織權限
-⋮----
-// 如果是組織擁有者，擁有所有權限
-⋮----
-// 如果是組織管理員，擁有大部分權限
-⋮----
-// 如果是成員，只有讀取權限
-⋮----
-// 其他資源使用基本權限檢查
+// 權限檢查方法 - 使用上面的 async can 方法
 ⋮----
 // 團隊權限檢查
 async canManageTeam(teamId: string): Promise<boolean>
@@ -7437,14 +7514,7 @@ clearOrganizationContext()
 // 檢查用戶角色
 hasRole(role: string): boolean
 ⋮----
-// 檢查組織角色
-hasOrgRole(role: OrgRole): boolean
-⋮----
-// 檢查是否為組織擁有者
-isOrganizationOwner(): boolean
-⋮----
-// 檢查是否為組織管理員
-isOrganizationAdmin(): boolean
+// 檢查組織角色 - 使用上面的 hasOrgRole 方法
 </file>
 
 </files>
