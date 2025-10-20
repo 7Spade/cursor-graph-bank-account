@@ -1,37 +1,38 @@
 // src/app/core/services/organization.service.ts
 
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import {
-    DocumentData,
-    Firestore,
-    collection,
-    collectionData,
-    deleteDoc,
-    doc,
-    docData,
-    getDoc,
-    getDocs,
-    query,
-    setDoc,
-    updateDoc,
-    where,
-    writeBatch
+  Firestore,
+  doc,
+  docData,
+  collection,
+  collectionData,
+  query,
+  where,
+  addDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+  getDocs,
+  writeBatch,
+  DocumentData
 } from '@angular/fire/firestore';
-import { Observable, catchError, firstValueFrom, map, switchMap, throwError } from 'rxjs';
-import {
-    OrgRole,
-    Organization,
-    OrganizationMember,
-    PermissionVO,
-    ProfileVO,
-    SettingsVO,
-    Team,
-    TeamMember,
-    TeamRole
+import { Observable, map, switchMap, combineLatest, of, catchError, throwError, firstValueFrom } from 'rxjs';
+import { 
+  Organization, 
+  OrganizationMember, 
+  Team,
+  TeamMember,
+  OrgRole,
+  TeamRole,
+  ProfileVO,
+  PermissionVO,
+  SettingsVO
 } from '../models/auth.model';
 import { ValidationUtils } from '../utils/validation.utils';
-import { AuthService } from './auth.service';
 import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { AuthService } from './auth.service';
 import { NotificationService } from './notification.service';
 
 @Injectable({ providedIn: 'root' })
@@ -168,21 +169,21 @@ export class OrganizationService {
     // 使用 where 查詢直接在資料庫層面過濾組織
     const accountsCol = collection(this.firestore, 'accounts');
     const q = query(
-      accountsCol,
+      accountsCol, 
       where('type', '==', 'organization')
     );
-
+    
     return collectionData(q, { idField: 'id' }).pipe(
       switchMap(async (organizations) => {
         // 檢查用戶是否為這些組織的成員
         const userOrganizations: Organization[] = [];
-
+        
         for (const org of organizations) {
           try {
             // 檢查成員文檔是否存在
             const memberRef = doc(this.firestore, `accounts/${org.id}/members/${userId}`);
             const memberDoc = await getDoc(memberRef);
-
+            
             if (memberDoc.exists()) {
               userOrganizations.push(org as Organization);
             }
@@ -209,7 +210,7 @@ export class OrganizationService {
             // 繼續處理其他組織，不中斷整個流程
           }
         }
-
+        
         return userOrganizations;
       }),
       catchError((error: any) => {
@@ -553,16 +554,16 @@ export class OrganizationService {
 
       const batch = writeBatch(this.firestore);
       const orgRef = doc(this.firestore, `accounts/${orgId}`);
-
+      
       // 添加更新操作到批次
-      batch.update(orgRef, {
+      batch.update(orgRef, { 
         profile: { ...profile, updatedAt: new Date() },
         settings: { ...settings, updatedAt: new Date() }
       });
-
+      
       // 執行批次操作
       await batch.commit();
-
+      
       // 更新本地狀態
       const currentOrg = this._currentOrganization();
       if (currentOrg && currentOrg.id === orgId) {
@@ -573,28 +574,11 @@ export class OrganizationService {
         });
       }
 
-      // 使用現有 logError 機制記錄資訊級別改為 console.info，避免不存在的 logInfo 方法
-      console.info('組織完整資訊批次更新成功', { orgId, profile, settings });
+      this.errorLoggingService.logInfo('組織完整資訊批次更新成功', { orgId, profile, settings });
     } catch (error) {
       const errorMessage = `批次更新組織資訊失敗: ${error instanceof Error ? error.message : '未知錯誤'}`;
       this._error.set(errorMessage);
-      this.errorLoggingService.logError(
-        {
-          message: errorMessage,
-          stack: error instanceof Error ? error.stack : undefined,
-          name: error instanceof Error ? error.name : 'UnknownError',
-          context: {
-            component: 'OrganizationService',
-            action: 'updateOrganizationComplete',
-            timestamp: Date.now(),
-            userAgent: navigator.userAgent,
-            url: window.location.href
-          },
-          severity: 'high',
-          category: 'system'
-        },
-        ['organization', 'batch', 'update']
-      );
+      this.errorLoggingService.logError(errorMessage, error);
       throw new Error(errorMessage);
     } finally {
       this._isLoading.set(false);
@@ -608,41 +592,41 @@ export class OrganizationService {
 
       // 檢查是否為擁有者
       const currentUser = this.authService.currentAccount();
-      const org = await firstValueFrom(this.getOrganization(orgId));
-
+      const org = await this.getOrganization(orgId);
+      
       if (!org || org.ownerId !== currentUser?.id) {
         throw new Error('只有組織擁有者可以刪除組織');
       }
 
       // 刪除組織及其所有子集合
       const batch = writeBatch(this.firestore);
-
+      
       // 刪除成員子集合
       const membersRef = collection(this.firestore, `accounts/${orgId}/members`);
       const membersSnapshot = await getDocs(membersRef);
       membersSnapshot.forEach(doc => {
         batch.delete(doc.ref);
       });
-
+      
       // 刪除團隊子集合
       const teamsRef = collection(this.firestore, `accounts/${orgId}/teams`);
       const teamsSnapshot = await getDocs(teamsRef);
       teamsSnapshot.forEach(doc => {
         batch.delete(doc.ref);
       });
-
+      
       // 刪除組織文檔
       const orgRef = doc(this.firestore, `accounts/${orgId}`);
       batch.delete(orgRef);
-
+      
       await batch.commit();
-
+      
       this.notificationService.showSuccess('組織已刪除');
     } catch (error) {
       const errorMessage = `刪除組織失敗: ${error instanceof Error ? error.message : '未知錯誤'}`;
       this._error.set(errorMessage);
       this.notificationService.showError(errorMessage);
-
+      
       // 記錄詳細錯誤信息
       this.errorLoggingService.logError(
         {
@@ -659,11 +643,11 @@ export class OrganizationService {
             userId: currentUser?.id
           },
           severity: 'high',
-          category: 'authorization'
+          category: 'organization'
         },
         ['organization', 'delete', 'permission']
       );
-
+      
       throw error;
     } finally {
       this._isLoading.set(false);
