@@ -1,0 +1,121 @@
+---
+    description: Configuration for AI behavior when interacting with Repomix MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Repomix Rules
+Configuration for AI behavior when interacting with Repomix MCP Server
+
+## CRITICAL: After ANY successful codebase analysis operation
+- YOU MUST IMMEDIATELY validate the analysis results for completeness and accuracy
+- If analysis fails or returns incomplete results, retry with different parameters
+- Always check file permissions and workspace access before analysis
+- > NOTE: Failure to follow this rule may result in incomplete codebase understanding
+
+## When you tried to run Repomix tools and npx is not available
+- Ask the user 'npx is not available. Would you like me to install Node.js and npm now?'
+- If the user responds with "yes", guide them through Node.js installation
+- If the user responds with "no", suggest using Docker alternative or manual installation
+- Wait for the user to respond before proceeding with any other actions
+
+## After every codebase analysis
+- If you performed any codebase analysis in this conversation, verify the results are complete and accurate
+- Store important analysis insights in memory server for future reference
+- Document any patterns or findings discovered during analysis
+
+## When Repomix MCP Server tools are not available or unreachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if npx and Node.js are properly installed
+ - Verify network connectivity for remote repository analysis
+ - If using Docker alternative, ensure Docker daemon is running
+- If none of the above steps work, suggest the user to contact Repomix support
+
+## Trying to call Repomix tools that need directory paths
+- Always use absolute paths for local directory analysis
+- Validate directory exists and has proper read permissions
+- Handle Windows path separators correctly (use forward slashes or double backslashes)
+
+## CRITICAL: Large Codebase Analysis
+- IMMEDIATELY after ANY of these actions:
+ - Analyzing repositories larger than 100MB
+ - Processing repositories with more than 10,000 files
+ - Analyzing repositories with complex dependency structures
+- You MUST use compression and appropriate filtering:
+ - Set `compress: true` for large codebases
+ - Use `includePatterns` to focus on relevant file types
+ - Set appropriate `topFilesLength` for summary
+- If analysis times out or fails:
+ - Break down analysis into smaller chunks
+ - Use more specific include/exclude patterns
+ - Consider using remote repository analysis instead
+- EXAMPLE:
+ - After: Analyzing large React project
+ - Do: Use compression and focus on src/ directory
+ - Before: Attempting full repository analysis
+
+## General
+- Use appropriate output formats (XML for structured analysis, Markdown for human reading)
+- Implement proper error handling for file system operations
+- Cache analysis results when appropriate to avoid redundant operations
+- Always validate analysis completeness before proceeding with tasks
+- Use grep functionality to search within analysis results efficiently
+- Handle different file encodings appropriately during analysis
+
+## Codebase Analysis Best Practices
+- Use compression for large codebases to optimize token usage
+- Specify relevant file types and directories with includePatterns
+- Exclude unnecessary files (node_modules, dist, build) with ignorePatterns
+- Use topFilesLength to control summary detail level
+- Prefer local analysis over remote when possible for better performance
+
+## Security and Privacy
+- Never expose sensitive files or directories in analysis
+- Validate file access permissions before operations
+- Use appropriate filtering to exclude sensitive configuration files
+- Implement proper cleanup of temporary analysis files
+- Respect .gitignore and similar exclusion patterns
+
+## Integration with Development Workflow
+- Coordinate with filesystem server for file operations
+- Use memory server to store analysis insights and patterns
+- Integrate with sequential thinking for complex analysis workflows
+- Combine with other MCP tools for comprehensive code review
+- Store analysis results for future reference and comparison
+
+## Error Handling and Recovery
+- Handle npx execution failures gracefully
+- Implement retry logic for transient network failures
+- Provide meaningful error messages for analysis issues
+- Handle file permission and access errors appropriately
+- Fall back to alternative analysis methods when primary fails
+
+## Performance Optimization
+- Use compression for large codebase analysis to reduce token usage
+- Implement efficient file filtering and processing
+- Cache analysis results when appropriate
+- Optimize analysis parameters based on codebase size and complexity
+- Use partial reading for large analysis output files
+
+## Quality Assurance
+- Validate analysis completeness and accuracy
+- Cross-reference analysis results with actual source code
+- Implement proper testing of analysis tools and parameters
+- Document analysis patterns and best practices
+- Verify analysis results match expected codebase structure
+
+## Monitoring and Debugging
+- Log analysis operations for debugging purposes
+- Monitor analysis performance and resource usage
+- Track analysis success/failure rates
+- Document analysis failures and solutions
+- Use grep functionality to debug analysis results
+
+## Workspace Management
+- Ensure proper workspace isolation and security
+- Handle multiple project analysis efficiently
+- Implement proper cleanup of analysis artifacts
+- Maintain analysis history and versioning
+- Use appropriate directory structures for analysis organization
+---

@@ -1,0 +1,87 @@
+<mat-card class="avatar-upload-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>account_circle</mat-icon>
+      頭像設定
+    </mat-card-title>
+    <mat-card-subtitle>管理您的個人頭像</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="avatar-container">
+      <!-- Avatar Display -->
+      <div class="avatar-display">
+        <img [src]="getAvatarDisplayUrl()" 
+             alt="用戶頭像" 
+             class="avatar-image"
+             [class.loading]="loading()">
+        
+        @if (loading()) {
+          <div class="avatar-overlay">
+            <mat-progress-bar 
+              mode="determinate" 
+              [value]="uploadProgress()">
+            </mat-progress-bar>
+            <span class="upload-text">上傳中...</span>
+          </div>
+        }
+      </div>
+
+      <!-- Upload Progress -->
+      @if (loading()) {
+        <div class="upload-progress">
+          <mat-progress-bar 
+            mode="determinate" 
+            [value]="uploadProgress()">
+          </mat-progress-bar>
+          <span class="progress-text">{{ uploadProgress() }}%</span>
+        </div>
+      }
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button mat-raised-button 
+                color="primary"
+                (click)="onUploadClick()"
+                [disabled]="!canUpload()">
+          @if (hasAvatar()) {
+            <ng-container>
+              <mat-icon>edit</mat-icon>
+              更換頭像
+            </ng-container>
+          } @else {
+            <ng-container>
+              <mat-icon>add_a_photo</mat-icon>
+              上傳頭像
+            </ng-container>
+          }
+        </button>
+
+        @if (hasAvatar()) {
+          <button mat-button 
+                  (click)="onPreviewAvatar()">
+            <mat-icon>visibility</mat-icon>
+            預覽
+          </button>
+
+          <button mat-button 
+                  color="warn"
+                  (click)="onRemoveAvatar()">
+            <mat-icon>delete</mat-icon>
+            移除
+          </button>
+        }
+      </div>
+
+      <!-- Upload Instructions -->
+      <div class="upload-instructions">
+        <p><strong>上傳須知：</strong></p>
+        <ul>
+          <li>支援格式：JPG、PNG、GIF</li>
+          <li>檔案大小：最大 5MB</li>
+          <li>建議尺寸：150x150 像素</li>
+        </ul>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

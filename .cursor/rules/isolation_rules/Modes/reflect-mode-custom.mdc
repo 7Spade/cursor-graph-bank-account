@@ -1,0 +1,293 @@
+## 🔧 MCP SERVICES INTEGRATION
+
+### Core MCP Services (Required for all modes)
+```javascript
+const CORE_MCP_SERVICES = [
+  "filesystem.mdc",      // File system operations
+  "memory.mdc",          // Memory bank system
+  "sequential-thinking.mdc" // Structured thinking for complex decisions
+];
+```
+
+### REFLECT Mode Specific MCP Services
+```javascript
+const REFLECT_MCP_SERVICES = [
+  "codacy.mdc"           // Code quality checking and static analysis
+];
+```
+
+### MCP Service Loading Function
+```javascript
+function loadMCPServicesForREFLECT() {
+  // Load core MCP services
+  CORE_MCP_SERVICES.forEach(service => {
+    fetch_rules({ rule_names: [service] });
+  });
+  
+  // Load REFLECT-specific MCP services
+  REFLECT_MCP_SERVICES.forEach(service => {
+    fetch_rules({ rule_names: [service] });
+  });
+  
+  // Validate MCP services availability
+  validateMCPServices([...CORE_MCP_SERVICES, ...REFLECT_MCP_SERVICES]);
+}
+```
+
+### MCP Service Validation
+```javascript
+function validateMCPServices(requiredServices) {
+  const availableServices = [];
+  const missingServices = [];
+  
+  requiredServices.forEach(service => {
+    if (isMCPServiceAvailable(service)) {
+      availableServices.push(service);
+    } else {
+      missingServices.push(service);
+    }
+  });
+  
+  if (missingServices.length > 0) {
+    console.warn(`Missing MCP services: ${missingServices.join(', ')}`);
+    console.info(`Available services: ${availableServices.join(', ')}`);
+  }
+  
+  return { availableServices, missingServices };
+}
+```
+
+# GRAPH BANK REFLECT MODE
+
+> **TL;DR:** 反思模式，基於 LangGraph Reflection 機制進行代碼審查、經驗總結和品質評估。
+
+Your role is to perform comprehensive reflection on the implementation, using LLM-as-a-Judge mechanisms and code quality analysis to identify improvements and document lessons learned.
+
+```mermaid
+---
+config:
+  layout: dagre
+  look: classic
+  theme: default
+---
+flowchart TD
+    Start["🚀 START REFLECT MODE"] --> ReadImplementation["📚 Read Implementation<br/>Results & Progress"]
+    
+    %% Initial Assessment
+    ReadImplementation --> AssessScope["🔍 Assess Reflection<br/>Scope"]
+    AssessScope --> SelectReflectionType{"Reflection<br/>Type?"}
+    
+    %% Reflection Types
+    SelectReflectionType -->|"Code Quality"| CodeReflection["🔍 CODE QUALITY<br/>REFLECTION"]
+    SelectReflectionType -->|"Architecture"| ArchReflection["🏗️ ARCHITECTURE<br/>REFLECTION"]
+    SelectReflectionType -->|"Process"| ProcessReflection["⚙️ PROCESS<br/>REFLECTION"]
+    
+    %% Code Quality Reflection (Based on LangGraph Reflection)
+    CodeReflection --> CodacyAnalysis["📊 Codacy Static<br/>Analysis"]
+    CodacyAnalysis --> LLMJudge["🤖 LLM-as-a-Judge<br/>Evaluation"]
+    LLMJudge --> CodeReview["👁️ Manual Code<br/>Review"]
+    CodeReview --> QualityScore["📈 Generate Quality<br/>Score"]
+    
+    %% Architecture Reflection
+    ArchReflection --> ArchAnalysis["🏗️ Architecture<br/>Analysis"]
+    ArchAnalysis --> DesignPatterns["🎨 Design Pattern<br/>Evaluation"]
+    DesignPatterns --> ScalabilityCheck["📈 Scalability<br/>Assessment"]
+    ScalabilityCheck --> ArchScore["📊 Generate Architecture<br/>Score"]
+    
+    %% Process Reflection
+    ProcessReflection --> ProcessAnalysis["⚙️ Process<br/>Analysis"]
+    ProcessAnalysis --> EfficiencyCheck["⚡ Efficiency<br/>Assessment"]
+    EfficiencyCheck --> LessonsLearned["📚 Lessons Learned<br/>Documentation"]
+    LessonsLearned --> ProcessScore["📊 Generate Process<br/>Score"]
+    
+    %% Reflection Synthesis
+    QualityScore --> ReflectionSynthesis["🔄 REFLECTION<br/>SYNTHESIS"]
+    ArchScore --> ReflectionSynthesis
+    ProcessScore --> ReflectionSynthesis
+    
+    %% LLM-as-a-Judge Implementation (Based on LangGraph Reflection)
+    ReflectionSynthesis --> JudgeResponse["🤖 Judge Response<br/>Generation"]
+    JudgeResponse --> JudgeEvaluation{"Judge<br/>Approval?"}
+    JudgeEvaluation -->|"Approved"| GenerateReport["📝 Generate Reflection<br/>Report"]
+    JudgeEvaluation -->|"Needs Improvement"| IdentifyImprovements["🔧 Identify<br/>Improvements"]
+    
+    %% Improvement Identification
+    IdentifyImprovements --> ImprovementAnalysis["🔍 Improvement<br/>Analysis"]
+    ImprovementAnalysis --> ImprovementPlan["📋 Create Improvement<br/>Plan"]
+    ImprovementPlan --> UpdateTasks["📝 Update tasks.md<br/>with Improvements"]
+    UpdateTasks --> TransitionToImplement["→ Transition to<br/>IMPLEMENT Mode"]
+    
+    %% Report Generation
+    GenerateReport --> StoreReflection["💾 Store Reflection<br/>in Memory"]
+    StoreReflection --> UpdateProgress["📊 Update progress.md<br/>with Reflection"]
+    UpdateProgress --> TransitionToArchive["→ Transition to<br/>ARCHIVE Mode"]
+    
+    %% Error Handling
+    Error["⚠️ ERROR<br/>DETECTION"] -->|"Analysis Failed"| RetryAnalysis["🔄 Retry<br/>Analysis"]
+    Error -->|"Judge Unavailable"| FallbackReview["📝 Fallback to<br/>Manual Review"]
+    Error -->|"Memory Issues"| ContinueWithoutMemory["💾 Continue without<br/>Memory Storage"]
+    
+    RetryAnalysis --> ReflectionSynthesis
+    FallbackReview --> GenerateReport
+    ContinueWithoutMemory --> GenerateReport
+    
+    %% Styling
+    style Start fill:#f8d486,stroke:#e8b84d,color:black
+    style CodeReflection fill:#ff6b6b,stroke:#e74c3c,color:white
+    style ArchReflection fill:#4ecdc4,stroke:#26a69a,color:white
+    style ProcessReflection fill:#45b7d1,stroke:#2980b9,color:white
+    style JudgeEvaluation fill:#96ceb4,stroke:#6c7b7f,color:black
+    style GenerateReport fill:#f39c12,stroke:#e67e22,color:white
+    style Error fill:#ff9ff3,stroke:#f368e0,color:black
+```
+
+## REFLECT MODE PROCESS FLOW
+
+### Step 1: LLM-as-a-Judge Implementation (Based on LangGraph Reflection)
+```javascript
+// Implement LLM-as-a-Judge Reflection Agent
+function judgeImplementation(state, config) {
+  // Use Codacy for static analysis
+  const codacyResult = codacy_cli_analyze({
+    rootPath: state.workspacePath,
+    file: state.currentFile
+  });
+  
+  // Use Sequential Thinking for deep analysis
+  const analysisResult = sequentialThinking({
+    problem: "Analyze implementation quality and identify improvements",
+    context: state.implementationContext,
+    complexity: "high"
+  });
+  
+  // Judge evaluation based on LangGraph Reflection pattern
+  const judgePrompt = `
+    Evaluate the following implementation:
+    - Codacy Score: ${codacyResult.score}
+    - Analysis Result: ${analysisResult.conclusion}
+    - Implementation Context: ${state.implementationContext}
+    
+    Provide a pass/fail judgment with specific feedback.
+  `;
+  
+  const judgeResult = llmJudge({
+    prompt: judgePrompt,
+    model: "claude-3-sonnet",
+    feedbackKey: "pass"
+  });
+  
+  if (judgeResult.score) {
+    return { 
+      status: "approved", 
+      feedback: "Implementation meets quality standards",
+      nextAction: "generate_report"
+    };
+  } else {
+    return { 
+      status: "needs_improvement", 
+      feedback: judgeResult.comment,
+      nextAction: "identify_improvements"
+    };
+  }
+}
+```
+
+### Step 2: Reflection Graph Creation
+```javascript
+// Create reflection graph combining implementation and judge
+function createReflectionGraph(implementationGraph, judgeGraph) {
+  return StateGraph(MessagesState)
+    .add_node("implementation", implementationGraph)
+    .add_node("judge", judgeGraph)
+    .add_edge("implementation", "judge")
+    .add_conditional_edges("judge", shouldContinueReflection)
+    .add_edge("judge", "implementation") // Loop back if improvements needed
+    .compile();
+}
+
+function shouldContinueReflection(state) {
+  if (state.judgeResult.status === "approved") {
+    return "generate_report";
+  } else {
+    return "identify_improvements";
+  }
+}
+```
+
+### Step 3: Code Quality Analysis
+```bash
+# Run Codacy analysis
+codacy_cli_analyze({
+  rootPath: workspacePath,
+  tool: "eslint"  # or appropriate tool
+});
+
+# Generate quality metrics
+const qualityMetrics = {
+  codeQuality: codacyResult.score,
+  maintainability: codacyResult.maintainability,
+  security: codacyResult.security,
+  performance: codacyResult.performance
+};
+```
+
+### Step 4: Reflection Report Generation
+```markdown
+# Reflection Report
+
+## Implementation Quality Assessment
+- **Overall Score**: [Score]/10
+- **Code Quality**: [Codacy Score]
+- **Architecture**: [Architecture Score]
+- **Process Efficiency**: [Process Score]
+
+## Key Findings
+- [Finding 1]
+- [Finding 2]
+- [Finding 3]
+
+## Lessons Learned
+- [Lesson 1]
+- [Lesson 2]
+- [Lesson 3]
+
+## Recommendations
+- [Recommendation 1]
+- [Recommendation 2]
+- [Recommendation 3]
+
+## Next Steps
+- [Action Item 1]
+- [Action Item 2]
+- [Action Item 3]
+```
+
+## REFLECT MODE VERIFICATION CHECKLIST
+
+- [ ] Implementation results analyzed
+- [ ] Codacy static analysis completed
+- [ ] LLM-as-a-Judge evaluation performed
+- [ ] Reflection report generated
+- [ ] Lessons learned documented
+- [ ] Memory bank updated with reflection insights
+- [ ] Ready for ARCHIVE mode transition or IMPLEMENT mode improvement
+
+## ERROR HANDLING
+
+### Common Issues and Solutions
+1. **Codacy Analysis Failed**: Use alternative static analysis tools
+2. **LLM Judge Unavailable**: Fallback to manual review process
+3. **Memory Bank Issues**: Continue without memory storage
+4. **Analysis Timeout**: Retry with reduced scope
+
+## MODE TRANSITION
+
+### Approved Implementation
+- Generate comprehensive reflection report
+- Store insights in memory bank
+- Transition to ARCHIVE mode for documentation
+
+### Needs Improvement
+- Create improvement plan
+- Update tasks.md with specific improvements
+- Transition to IMPLEMENT mode for corrections

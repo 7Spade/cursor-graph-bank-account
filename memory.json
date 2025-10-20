@@ -1,0 +1,225 @@
+{
+  "entities": [
+    {
+      "name": "Memory_Bank_System",
+      "entityType": "project",
+      "observations": [
+        "AI Agent Collaboration Framework",
+        "使用繁體中文進行交流",
+        "基於 Cursor 的記憶銀行系統",
+        "提供分層任務管理和自定義模式整合",
+        "開發環境：Windows 11，包管理器：yarn",
+        "編輯器：Cursor (版本 0.48 或更高)",
+        "AI 模型：Claude 4 Sonnet 或 Claude 4 Opus"
+      ]
+    },
+    {
+      "name": "AI_Agents",
+      "entityType": "agent_collection",
+      "observations": [
+        "VAN_Agent：專案分析師，分析專案結構和複雜度，確定任務級別 (Level 1-4)",
+        "PLAN_Agent：專案規劃師，將複雜任務分解為可管理的子任務，建立詳細的實施計劃",
+        "CREATIVE_Agent：設計決策專家，探索設計選項和替代方案，進行技術選型分析",
+        "IMPLEMENT_Agent：代碼實施專家，系統性地實施計劃的組件，編寫高品質的代碼",
+        "REFLECT_Agent：代碼審查和學習專家，審查實施的代碼品質，識別改進機會",
+        "ARCHIVE_Agent：文件管理專家，建立全面的專案文件，整理和歸檔專案資產"
+      ]
+    },
+    {
+      "name": "Workflow_Levels",
+      "entityType": "workflow_collection",
+      "observations": [
+        "Level 1：快速錯誤修復，工作流程 VAN → IMPLEMENT，適用於單一組件，完成時間：分鐘到小時",
+        "Level 2：簡單增強，工作流程 VAN → PLAN → IMPLEMENT → REFLECT，適用於單一組件或子系統，完成時間：小時到 1-2 天",
+        "Level 3-4：中級功能/複雜系統，工作流程 VAN → PLAN → CREATIVE → IMPLEMENT → REFLECT → ARCHIVE，適用於多個組件或完整功能，完成時間：天到週"
+      ]
+    },
+    {
+      "name": "Angular_v20_Technology_Stack",
+      "entityType": "technology",
+      "observations": [
+        "Signals：響應式狀態管理，Computed Signals 自動計算衍生狀態",
+        "Control Flow：@if, @for, @switch 替代傳統結構指令，內建控制流無需導入 CommonModule",
+        "Signal Inputs：input() 函數替代 @Input() 裝飾器，類型安全且不可變",
+        "Standalone Components：無需 NgModule，inject() 函數現代化依賴注入",
+        "Type Narrowing：更好的類型安全和控制流分析",
+        "Performance Optimization：更高效的變更檢測和渲染，使用 track 表達式優化列表渲染"
+      ]
+    },
+    {
+      "name": "GitHub_Style_Permission_System",
+      "entityType": "architecture",
+      "observations": [
+        "Angular v20 + Signals + Firebase 實現的 GitHub 式權限系統",
+        "使用統一的 Account 模型，通過 type 區分用戶和組織，使用 login 作為唯一識別碼",
+        "統一的 /accounts 集合路徑，Repository 擁有者支援（個人/組織），完整的協作者系統",
+        "多層級權限：個人 → 組織 → 團隊 → 資源的層級結構",
+        "5 種組織角色：Owner, Admin, Member, Billing, Outside Collaborator",
+        "2 種團隊角色：Maintainer, Member，Repository 權限：read, triage, write, maintain, admin"
+      ]
+    },
+    {
+      "name": "System_Architecture",
+      "entityType": "architecture",
+      "observations": [
+        "Value Objects Pattern：ProfileVO, PermissionVO, SettingsVO 等，提高程式碼可讀性和可維護性，符合領域驅動設計（DDD）原則",
+        "Firestore Database Design：統一集合結構，所有 Account 存儲在 accounts 集合中，子集合模式存儲組織成員和團隊，權限繼承通過資料庫結構設計實現",
+        "Service Layer Architecture：AuthService 整合 Firebase Auth 和 Firestore，OrganizationService 處理組織相關業務邏輯，PermissionService 使用 Signals 管理權限狀態",
+        "Security Design Patterns：多層安全防護（前端路由守衛 + Firestore 安全規則 + 後端權限驗證），基於角色的存取控制（RBAC），統一的錯誤處理和重定向"
+      ]
+    },
+    {
+      "name": "Modern_UI_Design",
+      "entityType": "ui_design",
+      "observations": [
+        "使用 Control Flow（@if, @for, @switch）替代傳統結構指令",
+        "Standalone Components 無需 NgModule，Signals 基礎的響應式 UI",
+        "權限驅動的 UI：根據權限動態顯示/隱藏",
+        "使用 Computed Signals 自動更新 UI 狀態，權限檢查與 UI 邏輯分離"
+      ]
+    },
+    {
+      "name": "User_Preferences",
+      "entityType": "preferences",
+      "observations": [
+        "語言：繁體中文",
+        "溝通風格：專業且友善",
+        "開發環境：Windows 11",
+        "包管理器：yarn",
+        "偏好 AI：Claude 4 Sonnet"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "AI_Agents",
+      "to": "Memory_Bank_System",
+      "relationType": "collaborates_with"
+    },
+    {
+      "from": "Workflow_Levels",
+      "to": "AI_Agents",
+      "relationType": "uses"
+    },
+    {
+      "from": "GitHub_Style_Permission_System",
+      "to": "Angular_v20_Technology_Stack",
+      "relationType": "built_with"
+    },
+    {
+      "from": "GitHub_Style_Permission_System",
+      "to": "System_Architecture",
+      "relationType": "implements"
+    },
+    {
+      "from": "System_Architecture",
+      "to": "Angular_v20_Technology_Stack",
+      "relationType": "uses"
+    },
+    {
+      "from": "Modern_UI_Design",
+      "to": "Angular_v20_Technology_Stack",
+      "relationType": "uses"
+    },
+    {
+      "from": "Modern_UI_Design",
+      "to": "GitHub_Style_Permission_System",
+      "relationType": "displays"
+    },
+    {
+      "from": "User_Preferences",
+      "to": "Memory_Bank_System",
+      "relationType": "configures"
+    },
+    {
+      "from": "VAN_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "analyzes"
+    },
+    {
+      "from": "PLAN_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "plans"
+    },
+    {
+      "from": "CREATIVE_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "designs"
+    },
+    {
+      "from": "IMPLEMENT_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "implements"
+    },
+    {
+      "from": "REFLECT_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "reviews"
+    },
+    {
+      "from": "ARCHIVE_Agent",
+      "to": "Memory_Bank_System",
+      "relationType": "archives"
+    },
+    {
+      "from": "Workflow_Level_1",
+      "to": "VAN_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_1",
+      "to": "IMPLEMENT_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_2",
+      "to": "VAN_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_2",
+      "to": "PLAN_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_2",
+      "to": "IMPLEMENT_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_2",
+      "to": "REFLECT_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "VAN_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "PLAN_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "CREATIVE_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "IMPLEMENT_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "REFLECT_Agent",
+      "relationType": "uses"
+    },
+    {
+      "from": "Workflow_Level_3_4",
+      "to": "ARCHIVE_Agent",
+      "relationType": "uses"
+    }
+  ]
+}

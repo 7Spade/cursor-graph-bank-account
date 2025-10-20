@@ -1,0 +1,120 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 統一的 accounts 集合 - GitHub 式設計
+    match /accounts/{accountId} {
+      // 讀取：用戶可以讀取自己，或讀取自己所屬組織
+      allow read: if request.auth != null && (
+        request.auth.uid == accountId ||
+        (resource.data.type == 'organization' && isOrganizationMember(accountId))
+      );
+      
+      // 創建用戶 account
+      allow create: if request.auth != null && 
+                      request.resource.data.type == 'user' &&
+                      request.auth.uid == accountId;
+      
+      // 創建組織 account
+      allow create: if request.auth != null && 
+                      request.resource.data.type == 'organization';
+      
+      // 更新：用戶更新自己 or 組織管理員更新組織
+      allow update: if request.auth != null && (
+        (request.auth.uid == accountId && resource.data.type == 'user') ||
+        (resource.data.type == 'organization' && hasOrgPermission(accountId, 'write'))
+      );
+      
+      // 刪除：只有組織擁有者可以刪除組織
+      allow delete: if request.auth != null &&
+                       resource.data.type == 'organization' && 
+                       isOrganizationOwner(accountId);
+      
+      // 組織成員子集合
+      match /members/{memberId} {
+        allow read: if request.auth != null && isOrganizationMember(accountId);
+        allow write: if request.auth != null && hasOrgPermission(accountId, 'admin');
+      }
+      
+      // 團隊子集合
+      match /teams/{teamId} {
+        allow read: if request.auth != null && isOrganizationMember(accountId);
+        allow create: if request.auth != null && hasOrgPermission(accountId, 'admin');
+        allow update: if request.auth != null && (
+          hasOrgPermission(accountId, 'admin') || 
+          isTeamMaintainer(accountId, teamId)
+        );
+        allow delete: if request.auth != null && hasOrgPermission(accountId, 'admin');
+        
+        // 團隊成員子集合
+        match /members/{memberId} {
+          allow read: if request.auth != null && isOrganizationMember(accountId);
+          allow write: if request.auth != null && (
+            hasOrgPermission(accountId, 'admin') || 
+            isTeamMaintainer(accountId, teamId)
+          );
+        }
+      }
+    }
+    
+    // Repository 集合 - GitHub 式設計
+    match /repositories/{repositoryId} {
+      allow read: if request.auth != null && (
+        !resource.data.private ||
+        resource.data.ownerId == request.auth.uid ||
+        isRepositoryCollaborator(repositoryId)
+      );
+      
+      allow write: if request.auth != null && (
+        resource.data.ownerId == request.auth.uid ||
+        isRepositoryCollaborator(repositoryId)
+      );
+      
+      // Repository 協作者子集合
+      match /collaborators/{userId} {
+        allow read: if request.auth != null && (
+          resource.data.repositoryId == repositoryId &&
+          (isRepositoryOwner(repositoryId) || request.auth.uid == userId)
+        );
+        allow write: if request.auth != null && isRepositoryOwner(repositoryId);
+      }
+      
+      // Repository 團隊訪問子集合
+      match /teamAccess/{teamId} {
+        allow read: if request.auth != null && (
+          resource.data.repositoryId == repositoryId &&
+          isRepositoryOwner(repositoryId)
+        );
+        allow write: if request.auth != null && isRepositoryOwner(repositoryId);
+      }
+    }
+    
+    // 輔助函數 - 組織權限檢查
+    function isOrganizationMember(accountId) {
+      return exists(/databases/$(database)/documents/accounts/$(accountId)/members/$(request.auth.uid));
+    }
+    
+    function isOrganizationOwner(accountId) {
+      return get(/databases/$(database)/documents/accounts/$(accountId)).data.ownerId == request.auth.uid;
+    }
+    
+    function hasOrgPermission(accountId, level) {
+      let member = get(/databases/$(database)/documents/accounts/$(accountId)/members/$(request.auth.uid));
+      return member.data.role == 'owner' || member.data.role == 'admin' || 
+             (level == 'write' && member.data.role == 'admin');
+    }
+    
+    function isTeamMaintainer(accountId, teamId) {
+      let teamMember = get(/databases/$(database)/documents/accounts/$(accountId)/teams/$(teamId)/members/$(request.auth.uid));
+      return teamMember.data.role == 'maintainer';
+    }
+    
+    function isRepositoryOwner(repositoryId) {
+      return get(/databases/$(database)/documents/repositories/$(repositoryId)).data.ownerId == request.auth.uid;
+    }
+    
+    function isRepositoryCollaborator(repositoryId) {
+      return exists(/databases/$(database)/documents/repositories/$(repositoryId)/collaborators/$(request.auth.uid));
+    }
+  }
+}

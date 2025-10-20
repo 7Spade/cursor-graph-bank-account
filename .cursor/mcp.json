@@ -1,0 +1,172 @@
+{
+  "retry": {
+    "globalEnabled": true,
+    "defaultMaxAttempts": 3,
+    "defaultDelay": 2000,
+    "defaultBackoffMultiplier": 1.5,
+    "defaultMaxDelay": 10000
+  },
+  "errorHandling": {
+    "logRetries": true,
+    "logErrors": true,
+    "fallbackEnabled": true
+  },
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "read_text_file",
+        "read_media_file",
+        "list_directory",
+        "list_directory_with_sizes",
+        "directory_tree",
+        "list_allowed_directories",
+        "get_file_info",
+        "search_files"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=1024"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "sequentialthinking"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "./memory.json",
+        "NODE_OPTIONS": "--max-old-space-size=1024"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "create_entities",
+        "create_relations",
+        "read_graph",
+        "search_nodes",
+        "open_nodes",
+        "add_observations"
+      ],
+      "retry": {
+        "enabled": true,
+        "maxAttempts": 5,
+        "delay": 1000,
+        "backoffMultiplier": 2.0,
+        "maxDelay": 15000
+      }
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kazuph/mcp-fetch"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "fetch_url",
+        "fetch_content"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "navigate_to_url",
+        "take_screenshot",
+        "snapshot",
+        "wait_for"
+      ]
+    },
+    "Context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {},
+      "autoApprove": [
+        "resolve-library-id",
+        "get-library-docs"
+      ],
+      "retry": {
+        "enabled": true,
+        "maxAttempts": 3,
+        "delay": 3000,
+        "backoffMultiplier": 1.5,
+        "maxDelay": 12000
+      }
+    },
+    "repomix": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "pack_codebase",
+        "pack_remote_repository",
+        "attach_packed_output",
+        "read_repomix_output",
+        "grep_repomix_output",
+        "file_system_read_file",
+        "file_system_read_directory"
+      ],
+      "retry": {
+        "enabled": true,
+        "maxAttempts": 3,
+        "delay": 2000,
+        "backoffMultiplier": 1.5,
+        "maxDelay": 10000
+      }
+    },
+    "codacy": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@codacy/codacy-mcp@latest"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "codacy_cli_analyze",
+        "codacy_get_pattern",
+        "codacy_list_tools"
+      ]
+    },
+    "Chrome DevTools": {
+      "command": "npx chrome-devtools-mcp@latest",
+      "env": {},
+      "args": [],
+      "disabled": false,
+      "autoApprove": [
+        "take_screenshot",
+        "snapshot",
+        "navigate_to_url",
+        "click",
+        "type",
+        "evaluate_script",
+        "list_pages",
+        "select_page",
+        "wait_for"
+      ]
+    }
+  }
+}

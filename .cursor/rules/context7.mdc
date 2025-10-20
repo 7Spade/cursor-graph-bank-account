@@ -1,0 +1,136 @@
+---
+    description: Configuration for AI behavior when interacting with Context7 MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Context7 Rules
+Configuration for AI behavior when interacting with Context7 MCP Server
+
+## CRITICAL: Library Documentation Access
+- ALWAYS use resolve-library-id before get-library-docs
+- Use specific library names for accurate resolution
+- Verify library compatibility and trust scores
+- Prefer official libraries over community alternatives
+
+## When you tried to run Context7 tools and the MCP Server is not available
+- Ask the user 'Context7 MCP Server is not available. Would you like me to help you configure it?'
+- If the user responds with "yes", provide configuration instructions for their editor
+- If the user responds with "no", suggest manual documentation lookup alternatives
+- Wait for the user to respond before proceeding with any other actions
+
+## After every Context7 operation
+- If you used Context7 tools in this conversation, verify the results are complete and accurate
+- Store important documentation insights in memory server for future reference
+- Document any patterns or findings discovered during research
+
+## When there are no Context7 MCP Server tools available, or the MCP Server is not reachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if the API key is properly configured in the MCP settings
+ - Verify network connectivity for Context7 service access
+ - Ensure the Context7 MCP server is properly installed and running
+- If none of the above steps work, suggest the user to contact Context7 support or check their documentation
+
+## Trying to call Context7 tools that need library resolution
+- Always use exact package names when possible for better resolution accuracy
+- Check multiple matches and select the most appropriate based on trust score and relevance
+- Consider trust scores and code snippet availability when selecting libraries
+- Validate library versions and compatibility before proceeding
+
+## CRITICAL: Documentation Retrieval and Usage
+- IMMEDIATELY after resolving a library ID:
+ - Specify appropriate token limits for documentation (default: 5000 tokens)
+ - Use topic parameters to focus on relevant information when available
+ - Handle large documentation sets efficiently by using focused queries
+ - Cache frequently accessed documentation for repeated use
+- If documentation retrieval fails:
+ - Try with different token limits or topic parameters
+ - Attempt resolution with alternative library names or variations
+ - Suggest manual documentation lookup as fallback
+- EXAMPLE:
+ - After: resolve-library-id for "react"
+ - Do: Use get-library-docs with appropriate tokens and topic
+ - Before: Proceeding with implementation
+
+## General
+- Repeat the relevant steps for each library documentation request.
+- "Provide documentation" means to both retrieve and explain the relevant information.
+- You MUST NOT wait for the user to ask for documentation or remind you to use Context7.
+- Do not use Context7 for simple API lookups that can be found in standard documentation.
+- Always prefer Context7 over manual web searches for library-specific documentation.
+- When calling Context7 tools, use the most specific library names possible.
+
+## Library Resolution Best Practices
+- Use exact package names when possible for better accuracy
+- Check multiple matches and select the most appropriate based on:
+ - Trust score (prefer scores 7+ for critical libraries)
+ - Code snippet availability (more snippets = better documentation)
+ - Description relevance to the query
+- Validate library versions and compatibility before proceeding
+- Prefer official libraries over community alternatives when available
+
+## Documentation Retrieval Guidelines
+- Specify appropriate token limits for documentation (default: 5000, max: 10000)
+- Use topic parameters to focus on relevant information (e.g., "hooks", "routing", "authentication")
+- Handle large documentation sets efficiently by using focused queries
+- Cache frequently accessed documentation for repeated use
+- Prefer structured documentation over raw code examples when available
+
+## Error Handling and Fallbacks
+- Handle library resolution failures gracefully by:
+ - Trying alternative library names or variations
+ - Suggesting similar libraries when exact match fails
+ - Providing manual documentation lookup alternatives
+- Implement retry logic for transient failures (network issues, timeouts)
+- Suggest manual documentation lookup when MCP fails completely
+- Always provide fallback options to users when Context7 is unavailable
+
+## Performance Optimization
+- Use appropriate token limits to balance detail and efficiency
+- Cache resolved library IDs for repeated access within the same session
+- Implement smart topic filtering for focused results
+- Optimize documentation retrieval patterns based on library type
+- Prefer smaller, focused queries over large, comprehensive ones
+
+## Integration with Development Workflow
+- Use Context7 for API documentation and code examples
+- Integrate with sequential thinking for complex library analysis
+- Combine with memory server to store library insights and patterns
+- Coordinate with other MCP tools for comprehensive research
+- Document findings in project-specific context files when relevant
+
+## Quality Assurance
+- Validate documentation accuracy through cross-referencing with official sources
+- Check multiple sources for critical information when available
+- Verify API compatibility and version requirements before implementation
+- Document library usage patterns and best practices for future reference
+- Always verify that retrieved documentation matches the intended library version
+
+## Security and Privacy
+- Never expose API keys or sensitive configuration in documentation requests
+- Respect library licensing and usage terms when accessing documentation
+- Handle proprietary or restricted documentation appropriately
+- Implement proper access controls for sensitive libraries
+- Ensure that documentation requests don't expose sensitive project information
+
+## Research and Learning
+- Use Context7 for learning new technologies and frameworks
+- Research best practices and implementation patterns
+- Explore alternative libraries and solutions
+- Document research findings for future reference
+- Use Context7 to understand migration paths between library versions
+
+## Troubleshooting and Support
+- Use Context7 to find solutions to common problems and error messages
+- Research debugging techniques and troubleshooting guides
+- Find community discussions and issue resolutions
+- Access official documentation for complex scenarios
+- Document troubleshooting patterns for future reference
+
+## Whenever a call to Context7 tools returns an error or empty results
+- Offer to try alternative library names or search terms
+- If the user accepts, retry with suggested alternatives
+- Do not retry more than 3 times with different approaches
+- After failed attempts, suggest manual documentation lookup or alternative resources
+---

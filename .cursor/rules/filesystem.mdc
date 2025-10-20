@@ -1,0 +1,49 @@
+---
+description: Configuration for AI behavior when interacting with Filesystem MCP Server
+globs: 
+alwaysApply: true
+---
+# Filesystem MCP Server Rules
+Configuration for AI behavior when interacting with Filesystem MCP Server
+
+## CRITICAL: File System Security
+- ALWAYS verify file paths before performing operations
+- NEVER allow access to system directories outside the workspace
+- Use relative paths when possible, absolute paths only when necessary
+- Validate file extensions and types before operations
+
+## File Operations Best Practices
+- Before creating files, check if they already exist to avoid overwriting
+- When reading files, handle encoding issues gracefully (UTF-8 preferred)
+- For large files, consider streaming or chunked reading
+- Always close file handles after operations
+
+## Directory Operations
+- When listing directories, respect hidden files (.gitignore, .env, etc.)
+- Use recursive operations carefully to avoid infinite loops
+- Validate directory permissions before operations
+- Handle symbolic links appropriately
+
+## Error Handling
+- If file operations fail, provide clear error messages
+- Suggest alternative approaches when operations are blocked
+- Handle permission denied errors gracefully
+- Check disk space before large file operations
+
+## Security Considerations
+- Never expose sensitive file contents (passwords, keys, tokens)
+- Validate file paths to prevent directory traversal attacks
+- Be cautious with executable files and scripts
+- Respect file system permissions and ownership
+
+## Performance Guidelines
+- Use efficient file operations for large datasets
+- Consider file locking for concurrent access
+- Optimize directory traversal for large folder structures
+- Cache frequently accessed file metadata when appropriate
+
+## Integration with Other Tools
+- When files are modified, notify relevant MCP servers (like Codacy for analysis)
+- Coordinate with version control systems when applicable
+- Maintain consistency with project structure and conventions
+- Document file changes in appropriate logs or tracking systems

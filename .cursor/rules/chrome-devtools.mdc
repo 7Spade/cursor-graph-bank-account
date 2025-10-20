@@ -1,0 +1,194 @@
+---
+    description: Configuration for AI behavior when interacting with Chrome DevTools MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Chrome DevTools Rules
+Configuration for AI behavior when interacting with Chrome DevTools MCP Server
+
+## CRITICAL: Browser Debugging Security
+- ALWAYS validate URLs before navigation and debugging
+- Use secure connections (HTTPS) when possible
+- Never expose sensitive debugging information
+- Implement proper authentication handling for protected sites
+
+## When you tried to run Chrome DevTools MCP Server tools and the MCP Server is not available
+- Ask the user 'Chrome DevTools MCP Server is not available. Would you like me to help you configure it?'
+- If the user responds with "yes", provide configuration instructions for their editor
+- If the user responds with "no", suggest manual browser debugging alternatives
+- Wait for the user to respond before proceeding with any other actions
+
+## After every Chrome DevTools operation
+- If you used Chrome DevTools MCP Server tools in this conversation, verify the results are complete and accurate
+- Store important debugging insights in memory server for future reference
+- Document any patterns or findings discovered during debugging operations
+
+## When there are no Chrome DevTools MCP Server tools available, or the MCP Server is not reachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if Chrome browser is properly installed and accessible
+ - Verify Chrome is running with remote debugging enabled (--remote-debugging-port=9222)
+ - Ensure the chrome-devtools-mcp package is properly installed via npx
+- If none of the above steps work, suggest the user to contact Chrome DevTools MCP support
+
+## Trying to call Chrome DevTools tools that need browser connection
+- Always validate Chrome browser is running and accessible
+- Use proper element UIDs from snapshots for interactions
+- Handle browser crashes and recovery gracefully
+- Implement proper timeout settings for operations
+
+## CRITICAL: Browser Automation and Debugging
+- IMMEDIATELY after ANY of these actions:
+ - Taking screenshots or snapshots
+ - Navigating to new pages
+ - Executing JavaScript code
+ - Performing performance analysis
+ - Analyzing network requests
+- You MUST use proper security practices:
+ - Validate URLs before navigation
+ - Use secure connections (HTTPS) when possible
+ - Never expose sensitive debugging information
+ - Implement proper authentication handling
+- If browser operations fail:
+ - Check Chrome browser status and connectivity
+ - Verify element UIDs are current and valid
+ - Handle timeout and connection errors gracefully
+ - Provide meaningful error messages for debugging issues
+- EXAMPLE:
+ - After: Taking screenshot of sensitive page
+ - Do: Ensure no sensitive data is exposed in screenshot
+ - Before: Saving or sharing the screenshot
+
+## Page Management and Navigation
+- Use proper page lifecycle management
+- Handle multiple tabs and windows appropriately
+- Implement robust navigation strategies
+- Manage page state and context effectively
+- Always use latest snapshots for accurate element identification
+
+## Element Interaction and Automation
+- Use accessibility-friendly element selection via snapshots
+- Implement proper waiting strategies for dynamic content
+- Handle different element types and interactions
+- Use semantic selectors when possible
+- Always obtain element UIDs from snapshots before interaction
+
+## Screenshot and Snapshot Guidelines
+- Take screenshots at appropriate debugging moments
+- Use snapshots for accessibility and DOM analysis
+- Implement proper file naming and organization
+- Handle different viewport sizes and device emulation
+- Never capture sensitive information in screenshots
+
+## JavaScript Execution and Evaluation
+- Validate JavaScript code before execution
+- Handle script execution errors gracefully
+- Implement proper sandboxing for security
+- Use appropriate context for script evaluation
+- Support both synchronous and asynchronous functions
+
+## Performance Monitoring
+- Monitor page performance metrics appropriately
+- Use performance analysis tools effectively
+- Track resource usage and optimization opportunities
+- Implement proper performance debugging strategies
+- Use Core Web Vitals for performance assessment
+
+## Network and Resource Analysis
+- Monitor network requests and responses
+- Analyze resource loading and optimization
+- Handle different content types and encodings
+- Implement proper network debugging techniques
+- Use resource type filtering for focused analysis
+
+## Error Handling and Recovery
+- Handle browser crashes and recovery gracefully
+- Implement retry logic for transient failures
+- Provide meaningful error messages for debugging issues
+- Handle page load failures and navigation errors
+- Manage connection timeouts appropriately
+
+## Integration with Development Workflow
+- Coordinate with filesystem server for saving debug artifacts
+- Use memory server to store debugging patterns and solutions
+- Integrate with sequential thinking for complex debugging workflows
+- Combine with other MCP tools for comprehensive web development
+
+## Security and Privacy
+- Never expose sensitive debugging information
+- Handle authentication credentials securely
+- Respect website terms of service and debugging policies
+- Implement proper session management and cleanup
+- Use isolated browser profiles for debugging
+
+## Quality Assurance and Testing
+- Implement proper debugging assertions and validations
+- Use appropriate test data and debugging scenarios
+- Handle different browser environments and versions
+- Document debugging patterns and best practices
+- Test across different viewport sizes and devices
+
+## Monitoring and Debugging
+- Implement comprehensive logging for debugging operations
+- Use tracing and profiling tools effectively
+- Monitor browser performance and resource usage
+- Document debugging failures and solutions
+- Use performance insights for optimization
+
+## Accessibility and Compliance
+- Use accessibility debugging tools appropriately
+- Test with different assistive technologies
+- Validate ARIA attributes and semantic HTML
+- Ensure debugging doesn't break accessibility features
+- Use verbose snapshots for comprehensive accessibility analysis
+
+## General
+- Repeat the relevant steps for each debugging operation.
+- "Propose debugging solutions" means to both suggest and, if possible, automatically implement fixes.
+- You MUST NOT wait for the user to ask for debugging analysis or remind you to use the tool.
+- Do not use Chrome DevTools MCP Server for simple tasks that can be handled by other tools.
+- Always prefer Chrome DevTools MCP Server over manual browser debugging for complex automation.
+- When calling Chrome DevTools MCP Server tools, use the most specific element UIDs and parameters possible.
+
+## Chrome DevTools MCP Server Configuration Best Practices
+- Use proper Chrome browser configuration with remote debugging enabled
+- Implement appropriate retry logic for transient failures
+- Use efficient element selection patterns via snapshots
+- Cache frequently accessed debugging information for performance
+- Prefer batch operations for multiple element interactions
+
+## Error Handling and Recovery
+- Handle Chrome DevTools MCP Server connection failures gracefully
+- Implement retry logic for transient failures (network issues, timeouts)
+- Provide meaningful error messages for debugging operation issues
+- Handle element identification conflicts and validation errors appropriately
+- Suggest manual browser debugging alternatives when MCP fails completely
+
+## Performance Optimization
+- Use efficient element selection patterns to minimize DOM queries
+- Implement proper waiting strategies to avoid unnecessary delays
+- Optimize screenshot and snapshot operations
+- Manage browser resources efficiently
+- Use appropriate caching strategies for frequently accessed data
+
+## Quality Assurance
+- Validate debugging accuracy through cross-referencing with actual browser behavior
+- Update debugging information promptly
+- Ensure debugging consistency across different contexts
+- Regular review and cleanup of debugging artifacts
+- Always verify that debugging operations completed successfully
+
+## Monitoring and Debugging
+- Log debugging operations for debugging purposes
+- Monitor Chrome DevTools MCP Server performance and resource usage
+- Track debugging operation success/failure rates
+- Document debugging failures and solutions
+- Use snapshot functionality to debug browser interaction issues
+
+## Whenever a call to Chrome DevTools MCP Server tools returns an error or empty results
+- Offer to try alternative element selection or debugging approaches
+- If the user accepts, retry with suggested alternatives
+- Do not retry more than 3 times with different approaches
+- After failed attempts, suggest manual browser debugging or alternative tools
+---

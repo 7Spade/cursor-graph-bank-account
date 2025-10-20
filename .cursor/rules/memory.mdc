@@ -1,0 +1,158 @@
+---
+    description: Configuration for AI behavior when interacting with Memory MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Memory MCP Server Rules
+Configuration for AI behavior when interacting with Memory MCP Server
+
+## CRITICAL: Memory Management
+- ALWAYS use memory server to persist important information across sessions
+- Create entities for key concepts, people, projects, and decisions
+- Establish relationships between related entities
+- Maintain consistency in entity naming and categorization
+
+## When you tried to run Memory MCP Server tools and the MCP Server is not available
+- Ask the user 'Memory MCP Server is not available. Would you like me to help you configure it?'
+- If the user responds with "yes", provide configuration instructions for their editor
+- If the user responds with "no", suggest manual memory management alternatives
+- Wait for the user to respond before proceeding with any other actions
+
+## After every Memory MCP Server operation
+- If you used Memory MCP Server tools in this conversation, verify the results are complete and accurate
+- Store important memory insights in memory server for future reference
+- Document any patterns or findings discovered during memory operations
+
+## When there are no Memory MCP Server tools available, or the MCP Server is not reachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if the memory server is properly configured in the MCP settings
+ - Verify the MEMORY_FILE_PATH environment variable is set correctly
+ - Ensure the @modelcontextprotocol/server-memory package is properly installed
+- If none of the above steps work, suggest the user to contact Memory MCP Server support or check their documentation
+
+## Trying to call Memory MCP Server tools that need entity management
+- Always use descriptive, consistent names for entities
+- Include relevant observations and context when creating entities
+- Categorize entities appropriately (person, project, concept, etc.)
+- Avoid duplicate entities by checking existing ones first
+
+## CRITICAL: Entity and Relationship Management
+- IMMEDIATELY after ANY of these actions:
+ - Creating new entities in the knowledge graph
+ - Establishing relationships between entities
+ - Adding observations to existing entities
+ - Deleting entities or relationships
+- You MUST use proper entity naming conventions:
+ - Use descriptive, consistent names for entities
+ - Include relevant observations and context
+ - Categorize entities appropriately (person, project, concept, etc.)
+ - Avoid duplicate entities by checking existing ones first
+- If entity operations fail:
+ - Check for naming conflicts or invalid characters
+ - Verify entity types are properly categorized
+ - Ensure relationship descriptions use active voice
+ - Validate that source and target entities exist
+- EXAMPLE:
+ - After: Creating a new project entity
+ - Do: Use descriptive name, proper categorization, and relevant observations
+ - Before: Establishing relationships with other entities
+
+## Entity Creation Guidelines
+- Use descriptive, consistent names for entities
+- Include relevant observations and context
+- Categorize entities appropriately (person, project, concept, etc.)
+- Avoid duplicate entities by checking existing ones first
+
+## Relationship Management
+- Create meaningful relationships between entities
+- Use active voice for relationship descriptions
+- Maintain relationship consistency across sessions
+- Update relationships when entity states change
+
+## Memory Search and Retrieval
+- Use semantic search to find relevant information
+- Search by entity names, types, and observation content
+- Leverage relationships to discover connected information
+- Cache frequently accessed memory for performance
+
+## Data Persistence
+- Store important decisions and their rationale
+- Remember user preferences and project-specific information
+- Persist learning outcomes and best practices
+- Maintain historical context for ongoing projects
+
+## Privacy and Security
+- Never store sensitive information (passwords, keys, personal data)
+- Respect user privacy in memory storage
+- Use appropriate abstraction levels for sensitive data
+- Implement data retention policies
+
+## Integration with Other Tools
+- Coordinate memory with file system operations
+- Link memory entities to relevant code and documentation
+- Use memory to enhance sequential thinking processes
+- Integrate with project tracking and progress monitoring
+
+## Performance Optimization
+- Use efficient search patterns to minimize latency
+- Batch related memory operations when possible
+- Implement memory cleanup for outdated information
+- Optimize entity structure for common query patterns
+
+## Quality Assurance
+- Validate memory accuracy through cross-referencing
+- Update outdated information promptly
+- Ensure memory consistency across different contexts
+- Regular review and cleanup of memory database
+
+## General
+- Repeat the relevant steps for each memory operation.
+- "Propose memory operations" means to both suggest and, if possible, automatically execute memory management tasks.
+- You MUST NOT wait for the user to ask for memory operations or remind you to use the Memory MCP Server.
+- Do not use Memory MCP Server for simple data storage that can be handled by other tools.
+- Always prefer Memory MCP Server over manual memory management for persistent knowledge storage.
+- When calling Memory MCP Server tools, use the most specific entity names and relationship types possible.
+
+## Memory Server Configuration Best Practices
+- Use proper environment variables for memory file path configuration
+- Implement appropriate retry logic for transient failures
+- Use efficient search patterns to minimize latency
+- Cache frequently accessed memory for performance
+- Prefer batch operations for multiple entity/relationship management
+
+## Error Handling and Recovery
+- Handle memory server connection failures gracefully
+- Implement retry logic for transient failures (network issues, timeouts)
+- Provide meaningful error messages for memory operation issues
+- Handle entity naming conflicts and validation errors appropriately
+- Suggest manual memory management alternatives when MCP fails completely
+
+## Performance Optimization
+- Use efficient search patterns to minimize latency
+- Batch related memory operations when possible
+- Implement memory cleanup for outdated information
+- Optimize entity structure for common query patterns
+- Use appropriate caching strategies for frequently accessed data
+
+## Quality Assurance
+- Validate memory accuracy through cross-referencing
+- Update outdated information promptly
+- Ensure memory consistency across different contexts
+- Regular review and cleanup of memory database
+- Always verify that memory operations completed successfully
+
+## Monitoring and Debugging
+- Log memory operations for debugging purposes
+- Monitor memory server performance and resource usage
+- Track memory operation success/failure rates
+- Document memory operation failures and solutions
+- Use memory search functionality to debug knowledge graph issues
+
+## Whenever a call to Memory MCP Server tools returns an error or empty results
+- Offer to try alternative entity names or search terms
+- If the user accepts, retry with suggested alternatives
+- Do not retry more than 3 times with different approaches
+- After failed attempts, suggest manual memory management or alternative storage methods
+---

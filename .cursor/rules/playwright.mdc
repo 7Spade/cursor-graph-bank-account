@@ -1,0 +1,114 @@
+---
+    description: Configuration for AI behavior when interacting with Playwright MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Playwright Rules
+Configuration for AI behavior when interacting with Playwright MCP Server
+
+## CRITICAL: After ANY successful browser automation operation
+- YOU MUST IMMEDIATELY validate the operation results for completeness and accuracy
+- If automation fails or returns incomplete results, retry with different parameters
+- Always check browser state and page load status before proceeding
+- > NOTE: Failure to follow this rule may result in incomplete automation tasks
+
+## When you tried to run Playwright MCP Server tools and the MCP Server is not available
+- Ask the user 'Playwright MCP Server is not available. Would you like me to install it now?'
+- If the user responds with "yes", run the installation command `npx @playwright/mcp@latest` and then continue with the original task
+- If the user responds with "no", instruct the user that they can disable automatic browser automation in the extension settings
+- Wait for the user to respond before proceeding with any other actions
+
+## After every response
+- If you performed any browser automation in this conversation, verify the results are complete and accurate
+- Store important automation patterns in memory server for future reference
+- Document any patterns or findings discovered during automation
+
+## When there are no Playwright MCP Server tools available, or the MCP Server is not reachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if npx and Node.js are properly installed
+ - Verify network connectivity for remote automation
+ - Ensure Playwright browsers are installed with `npx playwright install`
+- If none of the above steps work, suggest the user to contact Playwright support
+
+## Trying to call Playwright tools that need browser configuration
+- Always validate URLs before navigation and automation
+- Use headless mode for automated testing when possible
+- Never navigate to suspicious or potentially malicious sites
+- Implement proper authentication handling for secure sites
+
+## CRITICAL: Browser Security and Performance
+- IMMEDIATELY after ANY of these actions:
+ - Navigating to external websites
+ - Taking screenshots of sensitive content
+ - Filling forms with personal data
+ - Interacting with authentication systems
+- You MUST implement proper security measures:
+ - Validate URLs and domains before navigation
+ - Use headless mode when possible to avoid exposing sensitive data
+ - Implement proper session management and cleanup
+ - Respect website terms of service and rate limits
+- If security issues are detected:
+ - Stop all automation operations
+ - Clear browser data and sessions
+ - Only continue with the original task after security issues are resolved
+- EXAMPLE:
+ - After: Navigating to banking website
+ - Do: Use headless mode and validate SSL certificates
+ - Before: Continuing with any other automation tasks
+
+## General
+- Repeat the relevant steps for each automation operation.
+- "Propose automation solutions" means to both suggest and, if possible, automatically implement browser automation tasks.
+- You MUST NOT wait for the user to ask for automation or remind you to run the tool.
+- Do not use Playwright for simple page visits that can be handled by fetch tools.
+- Always prefer Playwright over manual browser automation for complex interactions.
+- When calling Playwright tools, use the most specific selectors and interaction methods possible.
+
+## Browser Automation Best Practices
+- Use accessibility-friendly selectors when possible
+- Implement robust element waiting strategies
+- Handle dynamic elements and content changes
+- Use proper click and input methods
+- Take screenshots at appropriate moments for debugging
+- Use snapshots for accessibility tree analysis
+- Implement proper file naming and organization
+- Handle different viewport sizes and devices
+
+## Error Handling and Recovery
+- Handle page load failures gracefully
+- Implement retry logic for transient failures
+- Provide meaningful error messages for automation issues
+- Handle browser crashes and recovery
+- Use efficient selectors to minimize DOM queries
+- Implement proper waiting strategies to avoid unnecessary delays
+- Optimize screenshot and snapshot operations
+- Manage browser resources efficiently
+
+## Integration with Development Workflow
+- Coordinate with filesystem server for saving screenshots
+- Use memory server to store automation patterns and results
+- Integrate with sequential thinking for complex automation workflows
+- Combine with fetch server for comprehensive web testing
+- Implement proper test assertions and validations
+- Use appropriate test data and fixtures
+- Handle test environment setup and teardown
+- Document automation patterns and best practices
+
+## Accessibility and Compliance
+- Use accessibility snapshots for compliance testing
+- Test with different assistive technologies
+- Validate ARIA attributes and semantic HTML
+- Ensure keyboard navigation works properly
+- Implement comprehensive logging for automation steps
+- Use tracing for debugging complex interactions
+- Monitor browser performance and resource usage
+- Document automation failures and solutions
+
+## Whenever a call to Playwright tools returns an error or fails
+- Offer to try alternative browser configurations or retry with different parameters
+- If the user accepts, retry with suggested alternatives
+- Do not retry more than 3 times with different approaches
+- After failed attempts, suggest manual browser automation or alternative tools
+---

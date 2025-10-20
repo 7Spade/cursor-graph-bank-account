@@ -1,0 +1,104 @@
+<mat-card class="profile-form-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>person</mat-icon>
+      個人資料
+    </mat-card-title>
+    <mat-card-subtitle>管理您的個人資料資訊</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="profileForm" (ngSubmit)="onSave()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>顯示名稱</mat-label>
+          <input matInput 
+                 formControlName="displayName" 
+                 placeholder="請輸入您的顯示名稱"
+                 [class.error]="isFieldInvalid('displayName')">
+          <mat-error>{{ getFieldError('displayName') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>個人簡介</mat-label>
+          <textarea matInput 
+                    formControlName="bio" 
+                    placeholder="請輸入您的個人簡介"
+                    rows="3"
+                    [class.error]="isFieldInvalid('bio')"></textarea>
+          <mat-error>{{ getFieldError('bio') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>所在地</mat-label>
+          <input matInput 
+                 formControlName="location" 
+                 placeholder="請輸入您的所在地"
+                 [class.error]="isFieldInvalid('location')">
+          <mat-error>{{ getFieldError('location') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>公司</mat-label>
+          <input matInput 
+                 formControlName="company" 
+                 placeholder="請輸入您的公司"
+                 [class.error]="isFieldInvalid('company')">
+          <mat-error>{{ getFieldError('company') }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>個人網站</mat-label>
+          <input matInput 
+                 formControlName="website" 
+                 placeholder="https://example.com"
+                 [class.error]="isFieldInvalid('website')">
+          <mat-error>{{ getFieldError('website') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>部落格</mat-label>
+          <input matInput 
+                 formControlName="blog" 
+                 placeholder="https://blog.example.com"
+                 [class.error]="isFieldInvalid('blog')">
+          <mat-error>{{ getFieldError('blog') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button 
+            type="button"
+            (click)="onReset()"
+            [disabled]="!canReset()">
+      <mat-icon>refresh</mat-icon>
+      重置
+    </button>
+    
+    <button mat-raised-button 
+            color="primary"
+            type="button"
+            (click)="onSave()"
+            [disabled]="!canSave()">
+      @if (loading()) {
+        <ng-container>
+          <mat-icon>hourglass_empty</mat-icon>
+          儲存中...
+        </ng-container>
+      } @else {
+        <ng-container>
+          <mat-icon>save</mat-icon>
+          儲存
+        </ng-container>
+      }
+    </button>
+  </mat-card-actions>
+</mat-card>

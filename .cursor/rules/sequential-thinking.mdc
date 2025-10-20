@@ -1,0 +1,135 @@
+---
+    description: Configuration for AI behavior when interacting with Sequential Thinking MCP Server
+    globs: 
+    alwaysApply: true
+---
+---
+# Sequential Thinking MCP Server Rules
+Configuration for AI behavior when interacting with Sequential Thinking MCP Server
+
+## CRITICAL: Sequential Thinking Process
+- ALWAYS use sequential thinking for complex problem-solving tasks
+- Break down complex problems into logical, sequential steps
+- Document each thought process clearly with reasoning
+- Use the thinking tool to explore multiple solution approaches
+- > NOTE: Failure to follow this process may result in incomplete problem analysis
+
+## When you tried to run the `sequentialthinking` tool and the MCP Server is not available
+- Ask the user 'Sequential Thinking MCP Server is not available. Would you like me to install it now?'
+- If the user responds with "yes", guide them through the installation process using npx
+- If the user responds with "no", suggest alternative structured thinking approaches
+- Wait for the user to respond before proceeding with any other actions
+
+## After every complex problem-solving session
+- If you used sequential thinking in this conversation, verify the process was complete and documented
+- Store key insights and decision rationale in memory server for future reference
+- Document any patterns or methodologies discovered during the thinking process
+
+## When there are no Sequential Thinking MCP Server tools available, or the MCP Server is not reachable
+- Suggest the user the following troubleshooting steps:
+ - Try to reset the MCP on the extension
+ - Check if npx and Node.js are properly installed
+ - Verify the MCP Sequential Thinking Tools package is available
+ - If using Docker alternative, ensure Docker daemon is running
+- If none of the above steps work, suggest the user to contact Sequential Thinking support
+
+## Trying to call a tool that needs complex problem parameters
+- Always validate problem complexity before initiating sequential thinking
+- Use appropriate thought branching and revision capabilities
+- Handle multi-step reasoning with proper step validation
+
+## CRITICAL: Complex Problem Analysis
+- IMMEDIATELY after ANY of these scenarios:
+ - Architectural decision making
+ - Multi-step debugging processes
+ - Complex algorithm design
+ - System integration challenges
+ - Planning and design phases
+- You MUST use sequential thinking with:
+ - Clear problem definition and constraints
+ - Step-by-step reasoning documentation
+ - Multiple approach exploration
+ - Decision rationale and trade-off analysis
+- If thinking process becomes stuck:
+ - Use thought branching to explore alternatives
+ - Implement thought revision for course correction
+ - Document lessons learned from failed approaches
+- EXAMPLE:
+ - After: Complex system architecture decision
+ - Do: Use sequential thinking with structured approach
+ - Before: Making final architectural commitments
+
+## When to Use Sequential Thinking
+- Complex architectural decisions requiring trade-off analysis
+- Multi-step problem solving with interdependencies
+- Debugging complex issues with multiple potential causes
+- Planning and design phases requiring systematic exploration
+- Algorithm design and optimization challenges
+- System integration challenges with multiple stakeholders
+
+## Sequential Thinking Best Practices
+- Start with clear problem definition and success criteria
+- Explore multiple approaches before committing to a solution
+- Document assumptions, constraints, and dependencies
+- Consider edge cases and error scenarios systematically
+- Validate each step before proceeding to the next
+- Reflect on the process and outcomes for continuous improvement
+- Use thought branching for exploring alternative paths
+- Implement thought revision when new information emerges
+
+## Integration with Development Workflow
+- Use sequential thinking during planning phases of Graph Bank modes
+- Apply structured thinking to code reviews and architecture decisions
+- Utilize for debugging complex issues in IMPLEMENT mode
+- Integrate with CREATIVE mode for design exploration
+- Combine with other MCP tools for comprehensive analysis
+- Store thinking patterns in memory server for reuse
+
+## Error Handling and Recovery
+- If thinking process gets stuck, use thought branching to restart with different approach
+- Handle incomplete or contradictory information gracefully with revision capabilities
+- Provide fallback strategies when primary approaches fail
+- Document lessons learned from failed attempts in memory server
+- Use confidence scoring to validate thinking quality
+
+## Performance Considerations
+- Use sequential thinking judiciously to avoid token waste on simple problems
+- Focus on high-impact problems that benefit from structured analysis
+- Combine with other tools for efficient problem resolution
+- Cache insights from previous thinking sessions in memory server
+- Use appropriate MAX_HISTORY_SIZE configuration for context management
+
+## Quality Assurance
+- Validate thinking conclusions with practical implementation testing
+- Cross-reference with existing knowledge and best practices
+- Ensure thinking process aligns with project requirements and constraints
+- Document key insights and decision rationale for future reference
+- Use confidence scoring and rationale documentation for transparency
+
+## Configuration and Environment
+- Configure MAX_HISTORY_SIZE environment variable appropriately (default: 1000)
+- Use proper MCP server configuration for Cline and Claude Desktop
+- Handle WSL environments with proper Node.js version management
+- Ensure proper npx availability for tool execution
+
+## Troubleshooting and Support
+- Handle npx execution failures gracefully
+- Implement retry logic for transient MCP server failures
+- Provide meaningful error messages for thinking process issues
+- Handle environment and configuration errors appropriately
+- Fall back to alternative structured thinking methods when MCP fails
+
+## General
+- Repeat the relevant thinking steps for each complex problem component
+- "Propose solutions" means to both suggest and, if possible, automatically implement fixes
+- You MUST NOT wait for the user to ask for structured thinking or remind you to use the tool
+- Do not use sequential thinking for simple, single-step problems
+- Always document the thinking process and decision rationale
+- Use memory server to persist important thinking patterns and insights
+
+## Whenever a call to Sequential Thinking tools returns an error
+- Offer to guide the user through MCP server setup and configuration
+- If the user accepts, provide step-by-step installation guidance
+- Do not attempt to install or configure MCP servers without user permission
+- After setup, immediately retry the thinking process (only retry once)
+---

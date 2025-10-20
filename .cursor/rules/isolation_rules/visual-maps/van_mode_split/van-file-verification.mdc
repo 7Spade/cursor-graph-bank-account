@@ -1,0 +1,302 @@
+---
+description: Visual process map for VAN mode file verification
+globs: van-file-verification.mdc
+alwaysApply: false
+---
+# OPTIMIZED FILE VERIFICATION SYSTEM
+
+🚨 CRITICAL: GRAPH BANK VERIFICATION REQUIRED 🚨
+Graph Bank structure MUST exist before any file operations
+This check MUST be executed first in all verification processes
+
+> **TL;DR:** This system provides a structured approach to verify file structure integrity before task implementation, with emphasis on efficient checks and clear status reporting.
+
+## 🔍 FILE VERIFICATION WORKFLOW
+
+```mermaid
+graph TD
+    %% Critical Graph Bank verification - MUST be first
+    Start["Start File Verification"] --> MemBankCheck{"Graph Bank<br>Exists?"}
+    MemBankCheck -->|"No"| CreateMemBank["CREATE GRAPH BANK<br>[CRITICAL]"]
+    MemBankCheck -->|"Yes"| VerifyMemBankComplete["Verify Graph Bank<br>Structure Complete"]
+    CreateMemBank --> VerifyMemBankComplete
+    
+    VerifyMemBankComplete --> PassCheck{"All Critical<br>Checks Pass?"}
+    PassCheck -->|"No"| AbortAll["⛔ ABORT ALL OPERATIONS<br>Fix Graph Bank First"]
+    PassCheck -->|"Yes"| MainVerification
+
+    %% Regular verification flow continues here
+    MainVerification["Start Full<br>File Verification"] --> BatchVerify["Batch Verification<br>Using Patterns"]
+    BatchVerify --> BrokenLinks["Check for<br>Broken References"]
+    BrokenLinks --> DirectoryStructure["Verify Directory<br>Structure"]
+    DirectoryStructure --> Status{"All Verifications<br>Successful?"}
+    
+    Status -->|"Yes"| Complete["Verification<br>Complete ✓"]
+    Status -->|"No"| Diagnose["Diagnose<br>Issues"]
+    Diagnose --> Attempt{"Attempt Auto<br>Resolution?"}
+    
+    Attempt -->|"Yes"| AutoFix["Auto-Fix<br>Issues"]
+    Attempt -->|"No"| ReportIssue["Report Issues to<br>User"]
+    
+    AutoFix --> Recheck{"Issues<br>Resolved?"}
+    Recheck -->|"Yes"| ReportSuccess["Report Success<br>to User"]
+    Recheck -->|"No"| ReportIssue
+    
+    ReportSuccess --> Complete
+    ReportIssue --> UserAction["Wait for<br>User Action"]
+    UserAction --> ReVerify["Re-Verify<br>After User Action"]
+    ReVerify --> Status
+    
+    style MemBankCheck fill:#ff0000,stroke:#990000,color:white,stroke-width:3px
+    style CreateMemBank fill:#ff0000,stroke:#990000,color:white,stroke-width:3px
+    style VerifyMemBankComplete fill:#ff0000,stroke:#990000,color:white,stroke-width:3px
+    style PassCheck fill:#ff0000,stroke:#990000,color:white,stroke-width:3px
+    style AbortAll fill:#ff0000,stroke:#990000,color:white,stroke-width:3px
+    style Status fill:#f6546a,stroke:#c30052,color:white
+    style Complete fill:#10b981,stroke:#059669,color:white
+```
+
+## 🧩 GRAPH BANK VERIFICATION - CRITICAL COMPONENT
+
+Graph Bank verification MUST be executed first in any file verification process:
+
+```javascript
+function verifyGraphBank() {
+  // Check if Graph Bank exists
+  const graphBankExists = checkDirectoryExists("graph-bank");
+  if (!graphBankExists) {
+    console.error("⛔ CRITICAL ERROR: Graph Bank does not exist");
+    createGraphBankStructure();
+    return verifyGraphBankCreation();
+  }
+  
+  // Check required subdirectories
+  const requiredDirs = [
+    "graph-bank/active-context",
+    "graph-bank/system-patterns",
+    "graph-bank/creative-phase",
+    "graph-bank/implementation"
+  ];
+  
+  const missingDirs = requiredDirs.filter(dir => !checkDirectoryExists(dir));
+  if (missingDirs.length > 0) {
+    console.error(`⛔ CRITICAL ERROR: Missing Graph Bank directories: ${missingDirs.join(", ")}`);
+    createMissingDirectories(missingDirs);
+    return verifyGraphBankCreation();
+  }
+  
+  // Check critical files
+  const criticalFiles = [
+    "graph-bank/active-context/activeContext.md",
+    "graph-bank/system-patterns/systemPatterns.md"
+  ];
+  
+  const missingFiles = criticalFiles.filter(file => !checkFileExists(file));
+  if (missingFiles.length > 0) {
+    console.error(`⛔ CRITICAL ERROR: Missing critical files: ${missingFiles.join(", ")}`);
+    createMissingFiles(missingFiles);
+    return verifyGraphBankCreation();
+  }
+  
+  return true; // Graph Bank verification successful
+}
+
+// MANDATORY: This must be called before any other verification
+const graphBankVerified = verifyGraphBank();
+if (!graphBankVerified) {
+  throw new Error("⛔ GRAPH BANK VERIFICATION FAILED - CANNOT PROCEED");
+}
+```
+
+## 📋 GRAPH BANK VERIFICATION CHECKLIST
+
+```
+✓ GRAPH BANK VERIFICATION CHECKLIST
+- Graph Bank directory exists? [YES/NO]
+- Required subdirectories exist? [YES/NO]
+- Critical files exist? [YES/NO]
+- File content is valid? [YES/NO]
+
+→ If ALL YES: Graph Bank verification passed - Continue file verification
+→ If ANY NO: STOP ALL PROCESSING and FIX GRAPH BANK
+```
+
+## 🔍 BATCH VERIFICATION WORKFLOW
+
+## 📋 OPTIMIZED DIRECTORY CREATION
+
+```mermaid
+graph TD
+    Start["Directory<br>Creation"] --> DetectOS["Detect Operating<br>System"]
+    DetectOS -->|"Windows"| WinCmd["Batch Create<br>Windows Command"]
+    DetectOS -->|"Mac/Linux"| UnixCmd["Batch Create<br>Unix Command"]
+    WinCmd & UnixCmd --> Verify["Verify<br>Creation Success"]
+    Verify --> Complete["Directory Setup<br>Complete"]
+```
+
+### Platform-Specific Commands
+
+#### Windows (PowerShell)
+```powershell
+# Create all directories in one command
+mkdir graph-bank, docs, docs\archive -ErrorAction SilentlyContinue
+
+# Create all required files
+$files = @(".cursorrules", "tasks.md", 
+           "graph-bank\projectbrief.md", 
+           "graph-bank\productContext.md",
+           "graph-bank\systemPatterns.md",
+           "graph-bank\techContext.md",
+           "graph-bank\activeContext.md",
+           "graph-bank\progress.md")
+
+foreach ($file in $files) {
+    if (-not (Test-Path $file)) {
+        New-Item -Path $file -ItemType File -Force
+    }
+}
+```
+
+#### Mac/Linux (Bash)
+```bash
+# Create all directories in one command
+mkdir -p graph-bank docs/archive
+
+# Create all required files
+touch .cursorrules tasks.md \
+      graph-bank/projectbrief.md \
+      graph-bank/productContext.md \
+      graph-bank/systemPatterns.md \
+      graph-bank/techContext.md \
+      graph-bank/activeContext.md \
+      graph-bank/progress.md
+```
+
+## 📝 STREAMLINED VERIFICATION PROCESS
+
+Instead of checking each component separately, perform batch verification:
+
+```powershell
+# Windows - PowerShell
+$requiredDirs = @("graph-bank", "docs", "docs\archive")
+$requiredFiles = @(".cursorrules", "tasks.md")
+$mbFiles = @("projectbrief.md", "productContext.md", "systemPatterns.md", 
+             "techContext.md", "activeContext.md", "progress.md")
+
+$missingDirs = $requiredDirs | Where-Object { -not (Test-Path $_) -or -not (Test-Path $_ -PathType Container) }
+$missingFiles = $requiredFiles | Where-Object { -not (Test-Path $_) -or (Test-Path $_ -PathType Container) }
+$missingMBFiles = $mbFiles | ForEach-Object { "graph-bank\$_" } | 
+                  Where-Object { -not (Test-Path $_) -or (Test-Path $_ -PathType Container) }
+
+if ($missingDirs.Count -eq 0 -and $missingFiles.Count -eq 0 -and $missingMBFiles.Count -eq 0) {
+    Write-Output "✓ All required components verified"
+} else {
+    # Create all missing items at once
+    if ($missingDirs.Count -gt 0) {
+        $missingDirs | ForEach-Object { mkdir $_ -Force }
+    }
+    if ($missingFiles.Count -gt 0 -or $missingMBFiles.Count -gt 0) {
+        $allMissingFiles = $missingFiles + $missingMBFiles
+        $allMissingFiles | ForEach-Object { New-Item -Path $_ -ItemType File -Force }
+    }
+}
+```
+
+## 📝 TEMPLATE INITIALIZATION
+
+Optimize template creation with a single script:
+
+```powershell
+# Windows - PowerShell
+$templates = @{
+    "tasks.md" = @"
+# Graph Bank: Tasks
+
+## Current Task
+[Task not yet defined]
+
+## Status
+- [ ] Task definition
+- [ ] Implementation plan
+- [ ] Execution
+- [ ] Documentation
+
+## Requirements
+[No requirements defined yet]
+"@
+
+    "graph-bank\activeContext.md" = @"
+# Graph Bank: Active Context
+
+## Current Focus
+[No active focus defined]
+
+## Status
+[No status defined]
+
+## Latest Changes
+[No changes recorded]
+"@
+
+    # Add other templates here
+}
+
+foreach ($file in $templates.Keys) {
+    if (Test-Path $file) {
+        Set-Content -Path $file -Value $templates[$file]
+    }
+}
+```
+
+## 🔍 PERFORMANCE OPTIMIZATION BEST PRACTICES
+
+1. **Batch Operations**: Always use batch operations instead of individual commands
+   ```
+   # GOOD: Create all directories at once
+   mkdir graph-bank docs docs\archive
+   
+   # BAD: Create directories one at a time
+   mkdir graph-bank
+   mkdir docs
+   mkdir docs\archive
+   ```
+
+2. **Pre-Check Optimization**: Check all requirements first, then create only what's missing
+   ```
+   # First check what's missing
+   $missingItems = ...
+   
+   # Then create only what's missing
+   if ($missingItems) { ... }
+   ```
+
+3. **Error Handling**: Include error handling in all commands
+   ```
+   mkdir graph-bank, docs, docs\archive -ErrorAction SilentlyContinue
+   ```
+
+4. **Platform Adaptation**: Auto-detect platform and use appropriate commands
+   ```
+   if ($IsWindows) {
+       # Windows commands
+   } else {
+       # Unix commands
+   }
+   ```
+
+5. **One-Pass Verification**: Verify directory structure in a single pass
+   ```
+   $requiredPaths = @("graph-bank", "docs", "docs\archive", ".cursorrules", "tasks.md")
+   $missingPaths = $requiredPaths | Where-Object { -not (Test-Path $_) }
+   ```
+
+## 📝 VERIFICATION REPORT FORMAT
+
+```
+✅ VERIFICATION COMPLETE
+- Created directories: [list]
+- Created files: [list]
+- All components verified
+
+Graph Bank system ready for use.
+``` 

@@ -1,0 +1,106 @@
+<mat-card class="notification-settings-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>notifications</mat-icon>
+      通知設定
+    </mat-card-title>
+    <mat-card-subtitle>管理您的通知偏好設定</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="notificationForm" (ngSubmit)="onSave()">
+      <!-- Email Notifications -->
+      <div class="notification-section">
+        <h3>
+          <mat-icon>email</mat-icon>
+          電子郵件通知
+        </h3>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>通知頻率</mat-label>
+            <mat-select formControlName="emailFrequency">
+              @for (frequency of emailFrequencies; track frequency.value) {
+                <mat-option [value]="frequency.value">
+                  {{ frequency.label }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="toggle-group">
+          <mat-slide-toggle formControlName="emailMarketing">
+            行銷通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="emailUpdates">
+            產品更新
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="emailSecurity">
+            安全通知
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <!-- Push Notifications -->
+      <div class="notification-section">
+        <h3>
+          <mat-icon>notifications_active</mat-icon>
+          推播通知
+        </h3>
+        
+        <div class="toggle-group">
+          <mat-slide-toggle formControlName="pushEnabled" 
+                           (change)="onPushToggleChanged($event.checked)">
+            啟用推播通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushMarketing" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            行銷通知
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushUpdates" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            產品更新
+          </mat-slide-toggle>
+          
+          <mat-slide-toggle formControlName="pushSecurity" 
+                           [disabled]="!notificationForm.get('pushEnabled')?.value">
+            安全通知
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button 
+            type="button"
+            (click)="onReset()"
+            [disabled]="!canReset()">
+      <mat-icon>refresh</mat-icon>
+      重置
+    </button>
+    
+    <button mat-raised-button 
+            color="primary"
+            type="button"
+            (click)="onSave()"
+            [disabled]="!canSave()">
+      @if (loading()) {
+        <ng-container>
+          <mat-icon>hourglass_empty</mat-icon>
+          儲存中...
+        </ng-container>
+      } @else {
+        <ng-container>
+          <mat-icon>save</mat-icon>
+          儲存
+        </ng-container>
+      }
+    </button>
+  </mat-card-actions>
+</mat-card>

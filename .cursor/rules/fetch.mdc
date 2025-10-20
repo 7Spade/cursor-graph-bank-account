@@ -1,0 +1,67 @@
+---
+description: Configuration for AI behavior when interacting with Fetch MCP Server
+globs: 
+alwaysApply: true
+---
+# Fetch MCP Server Rules
+Configuration for AI behavior when interacting with Fetch MCP Server
+
+## CRITICAL: Network Security
+- ALWAYS validate URLs before making requests
+- Use HTTPS when possible, avoid HTTP for sensitive data
+- Respect robots.txt and rate limiting policies
+- Never fetch potentially malicious or suspicious content
+
+## Request Best Practices
+- Set appropriate user-agent headers for identification
+- Use proper HTTP methods (GET, POST, PUT, DELETE)
+- Handle authentication headers securely
+- Implement proper timeout settings
+
+## Content Handling
+- Validate content types before processing
+- Handle different encodings appropriately
+- Respect content-length limits
+- Process large responses efficiently
+
+## Error Handling
+- Handle network timeouts gracefully
+- Provide meaningful error messages for failed requests
+- Implement retry logic with exponential backoff
+- Handle HTTP status codes appropriately
+
+## Performance Considerations
+- Cache responses when appropriate to reduce network load
+- Use compression when available
+- Implement connection pooling for multiple requests
+- Monitor bandwidth usage for large downloads
+
+## Security Guidelines
+- Never expose API keys or credentials in requests
+- Validate SSL certificates for secure connections
+- Sanitize URLs to prevent injection attacks
+- Respect CORS policies and same-origin restrictions
+
+## Integration with Other Tools
+- Coordinate with filesystem server for saving fetched content
+- Use memory server to cache important fetched information
+- Integrate with sequential thinking for complex web scraping
+- Combine with other MCP tools for comprehensive data gathering
+
+## Rate Limiting and Ethics
+- Respect website rate limits and terms of service
+- Implement appropriate delays between requests
+- Use APIs when available instead of scraping
+- Follow ethical web scraping practices
+
+## Content Processing
+- Extract relevant information efficiently
+- Handle different content formats (HTML, JSON, XML, etc.)
+- Parse structured data appropriately
+- Validate and clean fetched content before use
+
+## Monitoring and Logging
+- Log fetch operations for debugging purposes
+- Monitor success/failure rates
+- Track response times and performance metrics
+- Document sources and timestamps for fetched data

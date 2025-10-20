@@ -1,0 +1,295 @@
+## 🔧 MCP SERVICES INTEGRATION
+
+### Core MCP Services (Required for all modes)
+```javascript
+const CORE_MCP_SERVICES = [
+  "filesystem.mdc",      // File system operations
+  "memory.mdc"           // Memory bank system
+];
+```
+
+### ARCHIVE Mode Specific MCP Services
+```javascript
+const ARCHIVE_MCP_SERVICES = [
+  // No additional services needed for archiving
+];
+```
+
+### MCP Service Loading Function
+```javascript
+function loadMCPServicesForARCHIVE() {
+  // Load core MCP services only
+  CORE_MCP_SERVICES.forEach(service => {
+    fetch_rules({ rule_names: [service] });
+  });
+  
+  // Validate MCP services availability
+  validateMCPServices([...CORE_MCP_SERVICES, ...ARCHIVE_MCP_SERVICES]);
+}
+```
+
+### MCP Service Validation
+```javascript
+function validateMCPServices(requiredServices) {
+  const availableServices = [];
+  const missingServices = [];
+  
+  requiredServices.forEach(service => {
+    if (isMCPServiceAvailable(service)) {
+      availableServices.push(service);
+    } else {
+      missingServices.push(service);
+    }
+  });
+  
+  if (missingServices.length > 0) {
+    console.warn(`Missing MCP services: ${missingServices.join(', ')}`);
+    console.info(`Available services: ${availableServices.join(', ')}`);
+  }
+  
+  return { availableServices, missingServices };
+}
+```
+
+# GRAPH BANK ARCHIVE MODE
+
+> **TL;DR:** 歸檔模式，負責創建綜合文檔、更新知識庫和保存專案總結。
+
+Your role is to perform comprehensive archiving of the project, creating documentation, updating knowledge bases, and preserving project insights for future reference.
+
+```mermaid
+---
+config:
+  layout: dagre
+  look: classic
+  theme: default
+---
+flowchart TD
+    Start["🚀 START ARCHIVE MODE"] --> ReadProjectData["📚 Read Project Data<br/>from Graph Bank"]
+    
+    %% Data Collection
+    ReadProjectData --> CollectTasks["📋 Collect Tasks<br/>from tasks.md"]
+    CollectTasks --> CollectProgress["📊 Collect Progress<br/>from progress.md"]
+    CollectProgress --> CollectReflections["🔍 Collect Reflections<br/>from reflection/"]
+    CollectReflections --> CollectCreative["🎨 Collect Creative<br/>from creative/"]
+    
+    %% Archive Type Selection
+    CollectCreative --> SelectArchiveType{"Archive<br/>Type?"}
+    SelectArchiveType -->|"Project Summary"| ProjectArchive["📁 PROJECT<br/>ARCHIVE"]
+    SelectArchiveType -->|"Knowledge Base"| KnowledgeArchive["🧠 KNOWLEDGE<br/>ARCHIVE"]
+    SelectArchiveType -->|"Best Practices"| PracticesArchive["⭐ BEST PRACTICES<br/>ARCHIVE"]
+    
+    %% Project Archive Process
+    ProjectArchive --> CreateProjectSummary["📝 Create Project<br/>Summary Document"]
+    CreateProjectSummary --> GenerateTimeline["⏰ Generate Project<br/>Timeline"]
+    GenerateTimeline --> DocumentDecisions["📋 Document Key<br/>Decisions"]
+    DocumentDecisions --> CreateProjectReport["📊 Create Project<br/>Report"]
+    
+    %% Knowledge Archive Process
+    KnowledgeArchive --> ExtractInsights["💡 Extract Key<br/>Insights"]
+    ExtractInsights --> CategorizeKnowledge["📚 Categorize<br/>Knowledge"]
+    CategorizeKnowledge --> UpdateKnowledgeBase["🧠 Update Knowledge<br/>Base"]
+    UpdateKnowledgeBase --> CreateKnowledgeDoc["📖 Create Knowledge<br/>Documentation"]
+    
+    %% Best Practices Archive Process
+    PracticesArchive --> IdentifyPatterns["🔍 Identify Successful<br/>Patterns"]
+    IdentifyPatterns --> DocumentPractices["📝 Document Best<br/>Practices"]
+    DocumentPractices --> CreatePracticeGuide["📚 Create Practice<br/>Guide"]
+    CreatePracticeGuide --> ValidatePractices["✅ Validate<br/>Practices"]
+    
+    %% Archive Synthesis
+    CreateProjectReport --> ArchiveSynthesis["🔄 ARCHIVE<br/>SYNTHESIS"]
+    CreateKnowledgeDoc --> ArchiveSynthesis
+    ValidatePractices --> ArchiveSynthesis
+    
+    %% Final Archive Creation
+    ArchiveSynthesis --> CreateArchiveStructure["📁 Create Archive<br/>Structure"]
+    CreateArchiveStructure --> GenerateArchiveIndex["📋 Generate Archive<br/>Index"]
+    GenerateArchiveIndex --> StoreInMemory["💾 Store Archive<br/>in Memory"]
+    
+    %% Memory Bank Integration
+    StoreInMemory --> UpdateMemoryEntities["🧠 Update Memory<br/>Entities"]
+    UpdateMemoryEntities --> CreateRelationships["🔗 Create Knowledge<br/>Relationships"]
+    CreateRelationships --> FinalizeArchive["✅ FINALIZE<br/>ARCHIVE"]
+    
+    %% Archive Completion
+    FinalizeArchive --> UpdateProjectStatus["📊 Update Project<br/>Status"]
+    UpdateProjectStatus --> CleanupTempFiles["🧹 Cleanup Temporary<br/>Files"]
+    CleanupTempFiles --> ArchiveComplete["🎉 ARCHIVE<br/>COMPLETE"]
+    
+    %% Error Handling
+    Error["⚠️ ERROR<br/>DETECTION"] -->|"File Access"| RetryAccess["🔄 Retry File<br/>Access"]
+    Error -->|"Memory Issues"| ContinueWithoutMemory["💾 Continue without<br/>Memory Storage"]
+    Error -->|"Archive Creation"| RetryArchive["🔄 Retry Archive<br/>Creation"]
+    
+    RetryAccess --> ReadProjectData
+    ContinueWithoutMemory --> ArchiveSynthesis
+    RetryArchive --> CreateArchiveStructure
+    
+    %% Styling
+    style Start fill:#f8d486,stroke:#e8b84d,color:black
+    style ProjectArchive fill:#ff6b6b,stroke:#e74c3c,color:white
+    style KnowledgeArchive fill:#4ecdc4,stroke:#26a69a,color:white
+    style PracticesArchive fill:#45b7d1,stroke:#2980b9,color:white
+    style ArchiveSynthesis fill:#96ceb4,stroke:#6c7b7f,color:black
+    style ArchiveComplete fill:#f39c12,stroke:#e67e22,color:white
+    style Error fill:#ff9ff3,stroke:#f368e0,color:black
+```
+
+## ARCHIVE MODE PROCESS FLOW
+
+### Step 1: Project Data Collection
+```javascript
+// Collect all project data from Graph Bank
+function collectProjectData() {
+  const projectData = {
+    tasks: read_file({ target_file: "graph-bank/tasks.md" }),
+    progress: read_file({ target_file: "graph-bank/progress.md" }),
+    activeContext: read_file({ target_file: "graph-bank/activeContext.md" }),
+    projectBrief: read_file({ target_file: "graph-bank/projectbrief.md" }),
+    reflections: list_directory({ path: "graph-bank/reflection/" }),
+    creative: list_directory({ path: "graph-bank/creative/" })
+  };
+  
+  return projectData;
+}
+```
+
+### Step 2: Archive Structure Creation
+```bash
+# Create archive directory structure
+mkdir -p graph-bank/archive/archive-$(date +%Y%m%d)
+mkdir -p graph-bank/archive/archive-$(date +%Y%m%d)/project-summary
+mkdir -p graph-bank/archive/archive-$(date +%Y%m%d)/knowledge-base
+mkdir -p graph-bank/archive/archive-$(date +%Y%m%d)/best-practices
+mkdir -p graph-bank/archive/archive-$(date +%Y%m%d)/code-samples
+```
+
+### Step 3: Project Summary Generation
+```markdown
+# Project Archive: [Project Name] - [Date]
+
+## Executive Summary
+- **Project Duration**: [Start Date] - [End Date]
+- **Complexity Level**: [Level 1-4]
+- **Final Status**: [Completed/In Progress/Cancelled]
+- **Key Achievements**: [List of main accomplishments]
+
+## Project Timeline
+- **INIT Phase**: [Duration and outcomes]
+- **VAN Phase**: [Duration and outcomes]
+- **PLAN Phase**: [Duration and outcomes]
+- **CREATIVE Phase**: [Duration and outcomes]
+- **IMPLEMENT Phase**: [Duration and outcomes]
+- **REFLECT Phase**: [Duration and outcomes]
+
+## Key Decisions
+- [Decision 1]: [Rationale and impact]
+- [Decision 2]: [Rationale and impact]
+- [Decision 3]: [Rationale and impact]
+
+## Technical Implementation
+- **Technologies Used**: [List of technologies]
+- **Architecture Decisions**: [Key architectural choices]
+- **Code Quality Metrics**: [Quality scores and metrics]
+
+## Lessons Learned
+- [Lesson 1]: [Description and application]
+- [Lesson 2]: [Description and application]
+- [Lesson 3]: [Description and application]
+
+## Recommendations for Future Projects
+- [Recommendation 1]
+- [Recommendation 2]
+- [Recommendation 3]
+```
+
+### Step 4: Knowledge Base Update
+```javascript
+// Update memory bank with project insights
+function updateKnowledgeBase(projectData) {
+  // Create project entity
+  mcp_memory_create_entities({
+    entities: [{
+      name: projectData.projectBrief.name,
+      entityType: "project",
+      observations: [
+        `Completed on ${new Date().toISOString()}`,
+        `Complexity Level: ${projectData.complexity}`,
+        `Final Status: ${projectData.status}`,
+        `Key Technologies: ${projectData.technologies.join(', ')}`
+      ]
+    }]
+  });
+  
+  // Create relationships
+  mcp_memory_create_relations({
+    relations: [{
+      from: projectData.projectBrief.name,
+      to: "Graph Bank System",
+      relationType: "implemented_using"
+    }]
+  });
+}
+```
+
+### Step 5: Best Practices Documentation
+```markdown
+# Best Practices Guide
+
+## Development Practices
+- **Code Quality**: [Specific practices for maintaining code quality]
+- **Testing**: [Testing strategies that worked well]
+- **Documentation**: [Documentation practices that were effective]
+
+## Process Practices
+- **Planning**: [Planning approaches that were successful]
+- **Creative Design**: [Design processes that yielded good results]
+- **Implementation**: [Implementation strategies that worked]
+
+## Tool Usage
+- **MCP Services**: [Effective MCP service combinations]
+- **Graph Bank**: [Graph Bank usage patterns]
+- **Mode Switching**: [Optimal mode switching strategies]
+
+## Common Pitfalls
+- [Pitfall 1]: [Description and how to avoid]
+- [Pitfall 2]: [Description and how to avoid]
+- [Pitfall 3]: [Description and how to avoid]
+```
+
+## ARCHIVE MODE VERIFICATION CHECKLIST
+
+- [ ] Project data collected from Graph Bank
+- [ ] Archive directory structure created
+- [ ] Project summary document generated
+- [ ] Knowledge base updated with project insights
+- [ ] Best practices documented
+- [ ] Memory bank updated with archive information
+- [ ] Archive index created
+- [ ] Temporary files cleaned up
+- [ ] Project status updated to archived
+
+## ERROR HANDLING
+
+### Common Issues and Solutions
+1. **File Access Denied**: Check permissions and retry
+2. **Memory Bank Unavailable**: Continue without memory storage
+3. **Archive Creation Failed**: Retry with error handling
+4. **Data Corruption**: Use backup data or regenerate
+
+## ARCHIVE COMPLETION
+
+Upon successful completion:
+- Project marked as archived in tasks.md
+- Knowledge preserved in memory bank
+- Best practices documented for future reference
+- Archive structure ready for long-term storage
+
+## MODE TRANSITION
+
+ARCHIVE mode is typically the final mode in the Graph Bank workflow:
+- No automatic transition to other modes
+- Project considered complete
+- Knowledge preserved for future projects
+- Ready for new project initialization

@@ -1,0 +1,209 @@
+## 🔧 MCP SERVICES INTEGRATION
+
+### Core MCP Services (Required for all modes)
+```javascript
+const CORE_MCP_SERVICES = [
+  "filesystem.mdc",      // File system operations
+  "memory.mdc"           // Memory bank system
+];
+```
+
+### INIT Mode Specific MCP Services
+```javascript
+const INIT_MCP_SERVICES = [
+  // No additional services needed for pure initialization
+];
+```
+
+### MCP Service Loading Function
+```javascript
+function loadMCPServicesForINIT() {
+  // Load core MCP services only
+  CORE_MCP_SERVICES.forEach(service => {
+    fetch_rules({ rule_names: [service] });
+  });
+  
+  // Validate MCP services availability
+  validateMCPServices([...CORE_MCP_SERVICES, ...INIT_MCP_SERVICES]);
+}
+```
+
+### MCP Service Validation
+```javascript
+function validateMCPServices(requiredServices) {
+  const availableServices = [];
+  const missingServices = [];
+  
+  requiredServices.forEach(service => {
+    if (isMCPServiceAvailable(service)) {
+      availableServices.push(service);
+    } else {
+      missingServices.push(service);
+    }
+  });
+  
+  if (missingServices.length > 0) {
+    console.warn(`Missing MCP services: ${missingServices.join(', ')}`);
+    console.info(`Available services: ${availableServices.join(', ')}`);
+  }
+  
+  return { availableServices, missingServices };
+}
+```
+
+# GRAPH BANK INIT MODE
+
+> **TL;DR:** 純初始化模式，負責創建 Graph Bank 基礎結構和專案設置。
+
+Your role is to perform pure initialization tasks, creating the foundational Graph Bank structure and basic project configuration.
+
+```mermaid
+---
+config:
+  layout: dagre
+  look: classic
+  theme: default
+---
+flowchart TD
+    Start["🚀 START INIT MODE"] --> CheckStructure["📁 Check Graph Bank<br/>Structure"]
+    
+    %% Structure Check
+    CheckStructure --> StructureExists{"Graph Bank<br/>Exists?"}
+    StructureExists -->|"No"| CreateStructure["📁 CREATE GRAPH BANK<br/>Structure"]
+    StructureExists -->|"Yes"| VerifyStructure["✅ Verify Structure<br/>Completeness"]
+    
+    %% Create Graph Bank Structure
+    CreateStructure --> CreateDirectories["📂 Create Directories<br/>graph-bank/"]
+    CreateDirectories --> CreateCoreFiles["📄 Create Core Files<br/>tasks.md, activeContext.md, progress.md"]
+    CreateCoreFiles --> CreateSubdirectories["📂 Create Subdirectories<br/>creative/, reflection/, archive/"]
+    CreateSubdirectories --> InitializeFiles["📝 Initialize File<br/>Contents"]
+    
+    %% Verify Structure
+    VerifyStructure --> CheckFiles["🔍 Check Required<br/>Files"]
+    CheckFiles --> FilesComplete{"All Files<br/>Present?"}
+    FilesComplete -->|"No"| CreateMissing["📄 Create Missing<br/>Files"]
+    FilesComplete -->|"Yes"| ValidateContent["✅ Validate File<br/>Content"]
+    
+    %% Initialize File Contents
+    InitializeFiles --> InitTasks["📝 Initialize tasks.md<br/>with Basic Structure"]
+    InitTasks --> InitActive["📝 Initialize activeContext.md<br/>with Default Context"]
+    InitActive --> InitProgress["📝 Initialize progress.md<br/>with Initial Status"]
+    InitProgress --> InitProjectBrief["📝 Initialize projectbrief.md<br/>with Project Template"]
+    
+    %% Create Missing Files
+    CreateMissing --> CreateMissingFiles["📄 Create Missing<br/>Files"]
+    CreateMissingFiles --> ValidateContent
+    
+    %% Validate Content
+    ValidateContent --> ContentValid{"Content<br/>Valid?"}
+    ContentValid -->|"No"| FixContent["🔧 Fix Invalid<br/>Content"]
+    ContentValid -->|"Yes"| UpdateMemory["🧠 Update Memory<br/>Bank"]
+    
+    %% Fix Content
+    FixContent --> FixFiles["🔧 Fix File<br/>Content"]
+    FixFiles --> ValidateContent
+    
+    %% Update Memory Bank
+    UpdateMemory --> StoreInitStatus["💾 Store Initialization<br/>Status in Memory"]
+    StoreInitStatus --> CompleteInit["✅ INITIALIZATION<br/>COMPLETE"]
+    
+    %% Mode Transition
+    CompleteInit --> TransitionToVAN["→ Transition to<br/>VAN Mode"]
+    
+    %% Error Handling
+    Error["⚠️ ERROR<br/>DETECTION"] -->|"File Creation"| RetryCreate["🔄 Retry File<br/>Creation"]
+    Error -->|"Permission"| CheckPermissions["🔐 Check File<br/>Permissions"]
+    Error -->|"Structure"| RecreateStructure["🔄 Recreate<br/>Structure"]
+    
+    RetryCreate --> CreateStructure
+    CheckPermissions --> CreateStructure
+    RecreateStructure --> CreateStructure
+    
+    %% Styling
+    style Start fill:#f8d486,stroke:#e8b84d,color:black
+    style CreateStructure fill:#ff6b6b,stroke:#e74c3c,color:white
+    style VerifyStructure fill:#4ecdc4,stroke:#26a69a,color:white
+    style CompleteInit fill:#45b7d1,stroke:#2980b9,color:white
+    style TransitionToVAN fill:#96ceb4,stroke:#6c7b7f,color:black
+    style Error fill:#ff9ff3,stroke:#f368e0,color:black
+```
+
+## INIT MODE PROCESS FLOW
+
+### Step 1: Graph Bank Structure Creation
+```bash
+# Create main Graph Bank directory
+mkdir -p graph-bank
+
+# Create core files
+touch graph-bank/tasks.md
+touch graph-bank/activeContext.md
+touch graph-bank/progress.md
+touch graph-bank/projectbrief.md
+
+# Create subdirectories
+mkdir -p graph-bank/creative
+mkdir -p graph-bank/reflection
+mkdir -p graph-bank/archive
+```
+
+### Step 2: Initialize Core Files
+```markdown
+# tasks.md
+# Graph Bank Tasks
+Current Mode: INIT
+Status: Initializing
+Tasks: []
+
+# activeContext.md
+# Active Context
+Current Focus: Project Initialization
+Phase: INIT
+Context: Setting up Graph Bank structure
+
+# progress.md
+# Progress Tracking
+Phase: INIT
+Status: In Progress
+Completion: 0%
+```
+
+### Step 3: Memory Bank Integration
+```javascript
+// Store initialization status in memory
+mcp_memory_create_entities({
+  entities: [{
+    name: "Graph Bank Initialization",
+    entityType: "project_phase",
+    observations: [
+      "Graph Bank structure created successfully",
+      "Core files initialized",
+      "Ready for VAN mode transition"
+    ]
+  }]
+});
+```
+
+## INIT MODE VERIFICATION CHECKLIST
+
+- [ ] Graph Bank directory structure created
+- [ ] Core files (tasks.md, activeContext.md, progress.md, projectbrief.md) exist
+- [ ] Subdirectories (creative/, reflection/, archive/) created
+- [ ] File contents properly initialized
+- [ ] Memory bank updated with initialization status
+- [ ] Ready for VAN mode transition
+
+## ERROR HANDLING
+
+### Common Issues and Solutions
+1. **Permission Denied**: Check file system permissions
+2. **Directory Already Exists**: Verify existing structure
+3. **File Creation Failed**: Retry with proper error handling
+4. **Memory Bank Unavailable**: Continue without memory integration
+
+## MODE TRANSITION
+
+Upon successful completion:
+- Update tasks.md with completion status
+- Transition to VAN mode for technical validation
+- Maintain Graph Bank structure integrity
