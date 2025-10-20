@@ -1,0 +1,32 @@
+{
+  "name": "cursor-graph-bank-account",
+  "version": "1.0.0",
+  "description": "Graph Bank Account Management System",
+  "private": true,
+  "workspaces": [
+    "angular"
+  ],
+  "scripts": {
+    "install:angular": "cd angular && yarn install",
+    "start:angular": "cd angular && yarn start",
+    "build:angular": "cd angular && yarn build",
+    "test:angular": "cd angular && yarn test",
+    "watch:angular": "cd angular && yarn watch",
+    "ng": "cd angular && yarn ng",
+    "install:all": "yarn install && yarn install:angular",
+    "dev": "yarn start:angular",
+    "build": "yarn build:angular",
+    "clean": "cd angular && rm -rf node_modules dist",
+    "clean:all": "rm -rf node_modules && yarn clean",
+    "lint:angular": "cd angular && yarn ng lint",
+    "e2e:angular": "cd angular && yarn ng e2e"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=1.22.0"
+  }
+}
