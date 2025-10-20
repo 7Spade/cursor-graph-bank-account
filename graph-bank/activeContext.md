@@ -2,22 +2,19 @@
 
 - 環境：Windows 11、包管理器：pnpm、編輯器：Cursor
 - 專案：Angular v20 + Firebase（@angular/fire）
-- 模式：PLAN ✅ 完成，準備進入 CREATIVE（創意模式）
+- 模式：CREATIVE ✅ 完成，準備進入 IMPLEMENT（實施模式）
 - 複雜度：Level 3（組織功能修復 - 多組件協調）
 - 當前焦點：修復 111 組織按鈕功能實現
 - Graph Bank 狀態：
   - ✅ 核心檔案：`activeContext.md`, `progress.md`, `projectbrief.md`, `productContext.md`, `systemPatterns.md`, `techContext.md`
   - ✅ 子目錄：`creative/`, `reflection/`, `archive/`
-- PLAN 階段完成：
-  - **任務識別**：Level 3 中級功能任務 - 修復 111 組織按鈕功能
-  - **問題分析**：
-    - 檢視按鈕：組織載入錯誤
-    - 編輯按鈕：功能未實現（佔位符）
-    - 設定按鈕：權限檢查失敗
-  - **根本原因**：服務方法混亂、資料結構不一致、權限系統問題
-  - **規劃完成**：詳細的實施策略、測試計劃、風險評估
-- CREATIVE 階段準備：
-  - **需要創意設計的方面**：
-    - UI/UX 設計：組織編輯對話框用戶體驗
-    - 架構設計：組織服務層統一架構
-    - 演算法設計：組織權限檢查優化
+  - ✅ 樣式指南：`style-guide.md` (基於 Material Design 3)
+- CREATIVE 階段完成：
+  - **UI/UX 設計**: 單頁表單對話框設計，基於 Material Design 3
+  - **架構設計**: 分層架構，保持服務層分工
+  - **演算法設計**: 混合權限檢查策略
+- IMPLEMENT 階段準備：
+  - **Phase 1**: 服務層修復（統一 getOrganization 方法）
+  - **Phase 2**: 組件層修復（詳情、編輯、設定組件）
+  - **Phase 3**: 權限系統修復（權限檢查和路由守衛）
+  - **Phase 4**: 測試與驗證（單元、整合、端到端測試）
