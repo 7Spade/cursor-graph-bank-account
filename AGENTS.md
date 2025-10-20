@@ -259,10 +259,10 @@ Graph Bank System 整合了多個 MCP (Model Context Protocol) 服務，提供�
 **rmx7 標準執行命令（雙輸出格式）：**
 ```bash
 # 輸出 Markdown 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ../angular-dev-focused.md
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ./angular-dev-focused.md
 
 # 輸出 XML 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ../angular-dev-analysis.xml
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ./angular-dev-analysis.xml
 ```
 | `cdt7` | Chrome DevTools | 瀏覽器除錯 | 網頁除錯、效能分析 | `.cursor/rules/chrome-devtools.mdc` | v1.0+ |
 | `codacy7` | codacy | 程式碼品質檢查 | 靜態分析、安全檢查 | `.cursor/rules/codacy.mdc` | v1.0+ |
