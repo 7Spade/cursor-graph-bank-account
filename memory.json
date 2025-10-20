@@ -8,7 +8,7 @@
         "使用繁體中文進行交流",
         "基於 Cursor 的記憶銀行系統",
         "提供分層任務管理和自定義模式整合",
-        "開發環境：Windows 11，包管理器：yarn",
+        "開發環境：Windows 11，包管理器：pnpm",
         "編輯器：Cursor (版本 0.48 或更高)",
         "AI 模型：Claude 4 Sonnet 或 Claude 4 Opus"
       ]
@@ -85,7 +85,7 @@
         "語言：繁體中文",
         "溝通風格：專業且友善",
         "開發環境：Windows 11",
-        "包管理器：yarn",
+        "包管理器：pnpm",
         "偏好 AI：Claude 4 Sonnet"
       ]
     }

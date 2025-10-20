@@ -49,8 +49,6 @@ angular/package.json
 angular/src/app/app.config.ts
 angular/src/app/app.html
 angular/src/app/app.routes.ts
-angular/src/app/app.scss
-angular/src/app/app.spec.ts
 angular/src/app/app.ts
 angular/src/app/core/guards/permission.guard.ts
 angular/src/app/core/models/auth.model.ts
@@ -268,61 +266,6 @@ This section contains the contents of the repository's files.
 }
 </file>
 
-<file path="angular/package.json">
-{
-  "name": "angular-fire-rolekit",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "20.1.0",
-    "@angular/cdk": "20.1.0",
-    "@angular/common": "^20.1.0",
-    "@angular/compiler": "^20.1.0",
-    "@angular/core": "^20.1.0",
-    "@angular/fire": "^20.0.1",
-    "@angular/forms": "^20.1.0",
-    "@angular/material": "20.1.0",
-    "@angular/platform-browser": "^20.1.0",
-    "@angular/router": "^20.1.0",
-    "firebase": "^11.10.0",
-    "rxfire": "^6.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
-  },
-  "devDependencies": {
-    "@angular/build": "^20.1.0",
-    "@angular/cli": "^20.1.0",
-    "@angular/compiler-cli": "^20.1.0",
-    "@types/jasmine": "~5.1.0",
-    "jasmine-core": "~5.8.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.2"
-  }
-}
-</file>
-
 <file path="angular/src/app/app.config.ts">
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
@@ -384,24 +327,6 @@ import { roleGuard, orgRoleGuard, permissionGuard, orgAdminGuard, orgOwnerGuard 
 // 儀表板路由
 ⋮----
 // 預設重定向
-</file>
-
-<file path="angular/src/app/app.spec.ts">
-import { TestBed } from '@angular/core/testing';
-import { App } from './app';
-</file>
-
-<file path="angular/src/app/app.ts">
-import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { environment } from '../environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
-⋮----
-export class App {
-⋮----
-constructor()
-⋮----
-// Firebase 和 App Check 已正確配置
 </file>
 
 <file path="angular/src/app/core/guards/permission.guard.ts">
@@ -6316,6 +6241,74 @@ body {
     }
   ]
 }
+</file>
+
+<file path="angular/package.json">
+{
+  "name": "angular-fire-rolekit",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "20.1.0",
+    "@angular/cdk": "20.1.0",
+    "@angular/common": "^20.1.0",
+    "@angular/compiler": "^20.1.0",
+    "@angular/core": "^20.1.0",
+    "@angular/fire": "^20.0.1",
+    "@angular/forms": "^20.1.0",
+    "@angular/material": "20.1.0",
+    "@angular/platform-browser": "^20.1.0",
+    "@angular/router": "^20.1.0",
+    "firebase": "^11.10.0",
+    "rxfire": "^6.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.0",
+    "@angular/cli": "^20.1.0",
+    "@angular/compiler-cli": "^20.1.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.2"
+  }
+}
+</file>
+
+<file path="angular/src/app/app.ts">
+import { Component, inject, signal } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment';
+⋮----
+export class App {
+⋮----
+constructor()
+⋮----
+// Firebase 和 App Check 已正確配置
 </file>
 
 <file path="angular/src/app/core/models/auth.model.ts">
