@@ -54,7 +54,7 @@ export function roleGuard(expectedRole: string): CanActivateFn {
  * 通用權限守衛
  * 從路由數據中讀取權限配置
  */
-export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
+export const permissionGuard: CanActivateFn = async (route: ActivatedRouteSnapshot) => {
   const permissionService = inject(PermissionService);
   const authService = inject(AuthService);
   const router = inject(Router);
@@ -66,6 +66,17 @@ export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
     return false;
   }
 
+  // 從路由參數中獲取組織ID，並設置組織上下文
+  const orgId = route.paramMap.get('orgId');
+  if (orgId) {
+    try {
+      await permissionService.setCurrentOrganizationByIdentifier(orgId);
+    } catch (error) {
+      console.error('Failed to set organization context:', error);
+      // 如果設置組織上下文失敗，仍然繼續權限檢查
+    }
+  }
+
   // 從路由數據中獲取權限配置
   const permission = route.data['permission'] as { action: string; resource: string };
   
@@ -74,9 +85,15 @@ export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
     return true; // 如果沒有權限配置，允許訪問
   }
 
-  // 檢查權限
-  if (permissionService.can(permission.action, permission.resource)) {
-    return true;
+  try {
+    // 檢查權限 - 現在正確處理異步
+    const hasPermission = await permissionService.can(permission.action, permission.resource);
+    if (hasPermission) {
+      return true;
+    }
+  } catch (error) {
+    console.error('Permission check failed:', error);
+    // 如果權限檢查失敗，為了安全起見，拒絕訪問
   }
 
   // 沒有權限，重定向到未授權頁面
@@ -91,7 +108,7 @@ export const permissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot) =>
  * @returns CanActivateFn
  */
 export function createPermissionGuard(action: string, resource: string): CanActivateFn {
-  return () => {
+  return async () => {
     const permissionService = inject(PermissionService);
     const authService = inject(AuthService);
     const router = inject(Router);
@@ -103,9 +120,14 @@ export function createPermissionGuard(action: string, resource: string): CanActi
       return false;
     }
 
-    // 檢查權限
-    if (permissionService.can(action, resource)) {
-      return true;
+    try {
+      // 檢查權限 - 現在正確處理異步
+      const hasPermission = await permissionService.can(action, resource);
+      if (hasPermission) {
+        return true;
+      }
+    } catch (error) {
+      console.error('Permission check failed:', error);
     }
 
     // 沒有權限，重定向到未授權頁面
@@ -120,7 +142,7 @@ export function createPermissionGuard(action: string, resource: string): CanActi
  * @returns CanActivateFn
  */
 export function orgRoleGuard(role: OrgRole): CanActivateFn {
-  return () => {
+  return async () => {
     const permissionService = inject(PermissionService);
     const authService = inject(AuthService);
     const router = inject(Router);
@@ -132,9 +154,14 @@ export function orgRoleGuard(role: OrgRole): CanActivateFn {
       return false;
     }
 
-    // 檢查組織角色
-    if (permissionService.hasOrgRole(role)) {
-      return true;
+    try {
+      // 檢查組織角色 - 使用正確的方法名
+      const hasRole = await permissionService.hasRole(role);
+      if (hasRole) {
+        return true;
+      }
+    } catch (error) {
+      console.error('Role check failed:', error);
     }
 
     // 沒有權限，重定向到未授權頁面
