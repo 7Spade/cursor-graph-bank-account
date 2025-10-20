@@ -1,13 +1,13 @@
 // src/app/core/services/permission.service.ts
 
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Firestore, doc, docData } from '@angular/fire/firestore';
-import { AuthService } from './auth.service';
-import { OrganizationService } from './organization.service';
-import { OrgRole, TeamRole, ACLAbility } from '../models/auth.model';
-import { ErrorLoggingService } from './error-handling/error-logging.service';
-import { map } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { OrgRole, TeamRole } from '../models/auth.model';
+import { AuthService } from './auth.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { OrganizationService } from './organization.service';
 
 @Injectable({ providedIn: 'root' })
 export class PermissionService {
@@ -68,7 +68,7 @@ export class PermissionService {
       // 先檢查是否為組織擁有者
       const org = await firstValueFrom(this.orgService.getOrganization(orgId));
       const isOwner = org?.ownerId === currentUser.id;
-      
+
       if (isOwner) {
         // 如果是擁有者，直接設為擁有者權限
         this._orgMembership.set({
@@ -127,25 +127,25 @@ export class PermissionService {
     // 對於組織相關資源，優先檢查組織權限
     if (resource === 'organization' || resource === 'member' || resource === 'team') {
       const membership = this._orgMembership();
-      
+
       // 如果是組織擁有者，擁有所有權限
       if (membership.isOwner) return true;
-      
+
       // 如果是組織管理員，擁有大部分權限
       if (membership.role === OrgRole.ADMIN) {
         return action === 'read' || action === 'write' || action === 'admin';
       }
-      
+
       // 如果是成員，只有讀取權限
       if (membership.isMember) {
         return action === 'read';
       }
-      
+
       return false;
     }
 
     // 其他資源使用基本權限檢查
-    return account.permissions.abilities.some(ability => 
+    return account.permissions.abilities.some(ability =>
       ability.action === action && ability.resource === resource
     );
   }
@@ -166,7 +166,7 @@ export class PermissionService {
 
     try {
       const teamMemberDoc = doc(
-        this.firestore, 
+        this.firestore,
         `accounts/${this._currentOrgId()}/teams/${teamId}/members/${currentUser.id}`
       );
       const teamMemberData = await firstValueFrom(docData(teamMemberDoc).pipe(
@@ -201,7 +201,7 @@ export class PermissionService {
 
       // 檢查是否為協作者
       const collaboratorDoc = doc(
-        this.firestore, 
+        this.firestore,
         `repositories/${repositoryId}/collaborators/${account.id}`
       );
       const collaboratorData = await firstValueFrom(docData(collaboratorDoc).pipe(
@@ -233,7 +233,7 @@ export class PermissionService {
 
       // 檢查協作者權限
       const collaboratorDoc = doc(
-        this.firestore, 
+        this.firestore,
         `repositories/${repositoryId}/collaborators/${account.id}`
       );
       const collaboratorData = await firstValueFrom(docData(collaboratorDoc).pipe(
@@ -269,7 +269,7 @@ export class PermissionService {
 
       // 檢查協作者權限
       const collaboratorDoc = doc(
-        this.firestore, 
+        this.firestore,
         `repositories/${repositoryId}/collaborators/${account.id}`
       );
       const collaboratorData = await firstValueFrom(docData(collaboratorDoc).pipe(
@@ -297,7 +297,7 @@ export class PermissionService {
   hasRole(role: string): boolean {
     const account = this.authService.currentAccount();
     if (!account) return false;
-    
+
     return account.permissions.roles.includes(role);
   }
 

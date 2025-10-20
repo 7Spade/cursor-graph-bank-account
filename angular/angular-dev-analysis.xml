@@ -2817,59 +2817,6 @@ deleteRole(role: OrganizationRole): void
 // TODO: 實作刪除角色確認對話框
 </file>
 
-<file path="angular/src/app/features/organization/components/organization-settings.component.ts">
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { firstValueFrom } from 'rxjs';
-⋮----
-import { OrganizationService } from '../../../core/services/organization.service';
-import { PermissionService } from '../../../core/services/permission.service';
-import { NotificationService } from '../../../core/services/notification.service';
-import { Organization } from '../../../core/models/auth.model';
-⋮----
-/**
- * 組織設定組件
- * 允許組織管理員編輯組織的基本資訊
- */
-⋮----
-export class OrganizationSettingsComponent implements OnInit {
-⋮----
-// Signals
-⋮----
-// Form data
-⋮----
-async ngOnInit()
-⋮----
-// 檢查權限
-⋮----
-async loadOrganization()
-⋮----
-// 填充表單數據
-⋮----
-isFormValid(): boolean
-⋮----
-async onSubmit()
-⋮----
-// 準備 Profile 和 Settings 數據
-⋮----
-email: '', // 組織沒有電子郵件
-⋮----
-// 使用批次更新確保事務性
-⋮----
-resetForm()
-⋮----
-goBack()
-</file>
-
 <file path="angular/src/app/features/organization/components/security-manager.component.ts">
 import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6311,6 +6258,59 @@ constructor()
 // Firebase 和 App Check 已正確配置
 </file>
 
+<file path="angular/src/app/features/organization/components/organization-settings.component.ts">
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+⋮----
+import { Organization } from '../../../core/models/auth.model';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OrganizationService } from '../../../core/services/organization.service';
+import { PermissionService } from '../../../core/services/permission.service';
+⋮----
+/**
+ * 組織設定組件
+ * 允許組織管理員編輯組織的基本資訊
+ */
+⋮----
+export class OrganizationSettingsComponent implements OnInit {
+⋮----
+// Signals
+⋮----
+// Form data
+⋮----
+async ngOnInit()
+⋮----
+// 檢查權限
+⋮----
+async loadOrganization()
+⋮----
+// 填充表單數據
+⋮----
+isFormValid(): boolean
+⋮----
+async onSubmit()
+⋮----
+// 準備 Profile 和 Settings 數據
+⋮----
+email: '', // 組織沒有電子郵件
+⋮----
+// 使用批次更新確保事務性
+⋮----
+resetForm()
+⋮----
+goBack()
+</file>
+
 <file path="angular/src/app/core/models/auth.model.ts">
 // src/app/core/models/auth.model.ts
 ⋮----
@@ -6908,39 +6908,38 @@ export interface TeamVO {
 <file path="angular/src/app/core/services/organization.service.ts">
 // src/app/core/services/organization.service.ts
 ⋮----
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import {
+  DocumentData,
   Firestore,
-  doc,
-  docData,
   collection,
   collectionData,
-  query,
-  where,
-  addDoc,
-  setDoc,
-  updateDoc,
   deleteDoc,
+  doc,
+  docData,
   getDoc,
   getDocs,
-  writeBatch,
-  DocumentData
+  query,
+  setDoc,
+  updateDoc,
+  where,
+  writeBatch
 } from '@angular/fire/firestore';
-import { Observable, map, switchMap, combineLatest, of, catchError, throwError, firstValueFrom } from 'rxjs';
-import { 
-  Organization, 
-  OrganizationMember, 
+import { Observable, catchError, firstValueFrom, map, switchMap, throwError } from 'rxjs';
+import {
+  OrgRole,
+  Organization,
+  OrganizationMember,
+  PermissionVO,
+  ProfileVO,
+  SettingsVO,
   Team,
   TeamMember,
-  OrgRole,
-  TeamRole,
-  ProfileVO,
-  PermissionVO,
-  SettingsVO
+  TeamRole
 } from '../models/auth.model';
 import { ValidationUtils } from '../utils/validation.utils';
-import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { AuthService } from './auth.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { NotificationService } from './notification.service';
 ⋮----
 export class OrganizationService {
@@ -7112,14 +7111,14 @@ clearOrganizationContext()
 <file path="angular/src/app/core/services/permission.service.ts">
 // src/app/core/services/permission.service.ts
 ⋮----
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Firestore, doc, docData } from '@angular/fire/firestore';
-import { AuthService } from './auth.service';
-import { OrganizationService } from './organization.service';
-import { OrgRole, TeamRole, ACLAbility } from '../models/auth.model';
-import { ErrorLoggingService } from './error-handling/error-logging.service';
-import { map } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { OrgRole, TeamRole } from '../models/auth.model';
+import { AuthService } from './auth.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
+import { OrganizationService } from './organization.service';
 ⋮----
 export class PermissionService {
 ⋮----

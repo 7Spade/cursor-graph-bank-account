@@ -1,20 +1,20 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 
+import { Organization } from '../../../core/models/auth.model';
+import { NotificationService } from '../../../core/services/notification.service';
 import { OrganizationService } from '../../../core/services/organization.service';
 import { PermissionService } from '../../../core/services/permission.service';
-import { NotificationService } from '../../../core/services/notification.service';
-import { Organization } from '../../../core/models/auth.model';
 
 /**
  * 組織設定組件
@@ -59,9 +59,9 @@ import { Organization } from '../../../core/models/auth.model';
               <!-- 組織名稱 -->
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>組織名稱</mat-label>
-                <input 
-                  matInput 
-                  [(ngModel)]="formData.name" 
+                <input
+                  matInput
+                  [(ngModel)]="formData.name"
                   name="name"
                   required
                   [disabled]="isSubmitting()">
@@ -71,9 +71,9 @@ import { Organization } from '../../../core/models/auth.model';
               <!-- 組織 Slug -->
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>組織 Slug</mat-label>
-                <input 
-                  matInput 
-                  [(ngModel)]="formData.slug" 
+                <input
+                  matInput
+                  [(ngModel)]="formData.slug"
                   name="slug"
                   required
                   [disabled]="isSubmitting()">
@@ -84,9 +84,9 @@ import { Organization } from '../../../core/models/auth.model';
               <!-- 組織描述 -->
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>組織描述</mat-label>
-                <textarea 
-                  matInput 
-                  [(ngModel)]="formData.description" 
+                <textarea
+                  matInput
+                  [(ngModel)]="formData.description"
                   name="description"
                   rows="4"
                   [disabled]="isSubmitting()">
@@ -98,8 +98,8 @@ import { Organization } from '../../../core/models/auth.model';
               <!-- 組織可見性 -->
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>組織可見性</mat-label>
-                <mat-select 
-                  [(ngModel)]="formData.visibility" 
+                <mat-select
+                  [(ngModel)]="formData.visibility"
                   name="visibility"
                   [disabled]="isSubmitting()">
                   <mat-option value="public">公開</mat-option>
@@ -112,8 +112,8 @@ import { Organization } from '../../../core/models/auth.model';
               <!-- 預設成員角色 -->
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>預設成員角色</mat-label>
-                <mat-select 
-                  [(ngModel)]="formData.defaultMemberRole" 
+                <mat-select
+                  [(ngModel)]="formData.defaultMemberRole"
                   name="defaultMemberRole"
                   [disabled]="isSubmitting()">
                   <mat-option value="member">成員</mat-option>
@@ -126,26 +126,26 @@ import { Organization } from '../../../core/models/auth.model';
           </mat-card-content>
 
           <mat-card-actions>
-            <button 
-              mat-button 
+            <button
+              mat-button
               (click)="goBack()"
               [disabled]="isSubmitting()">
               <mat-icon>arrow_back</mat-icon>
               返回
             </button>
-            
+
             <div class="spacer"></div>
-            
-            <button 
-              mat-button 
+
+            <button
+              mat-button
               (click)="resetForm()"
               [disabled]="isSubmitting()">
               <mat-icon>refresh</mat-icon>
               重置
             </button>
-            
-            <button 
-              mat-raised-button 
+
+            <button
+              mat-raised-button
               color="primary"
               (click)="onSubmit()"
               [disabled]="isSubmitting() || !isFormValid()">
@@ -244,7 +244,7 @@ export class OrganizationSettingsComponent implements OnInit {
 
   async ngOnInit() {
     this.orgId = this.route.snapshot.paramMap.get('orgId')!;
-    
+
     if (!this.orgId) {
       this.error.set('無效的組織 ID');
       return;
@@ -263,16 +263,16 @@ export class OrganizationSettingsComponent implements OnInit {
     try {
       this.isLoading.set(true);
       this.error.set(null);
-      
+
       const org = await firstValueFrom(this.orgService.getOrganization(this.orgId));
-      
+
       if (!org) {
         this.error.set('組織不存在或無法載入');
         return;
       }
 
       this.organization.set(org);
-      
+
       // 填充表單數據
       this.formData = {
         name: org.profile.name,
@@ -292,7 +292,7 @@ export class OrganizationSettingsComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-    return this.formData.name.trim().length > 0 && 
+    return this.formData.name.trim().length > 0 &&
            this.formData.slug.trim().length > 0;
   }
 
@@ -303,7 +303,7 @@ export class OrganizationSettingsComponent implements OnInit {
 
     try {
       this.isSubmitting.set(true);
-      
+
       // 準備 Profile 和 Settings 數據
       const profileData = {
         name: this.formData.name,
@@ -327,10 +327,10 @@ export class OrganizationSettingsComponent implements OnInit {
 
       // 使用批次更新確保事務性
       await this.orgService.updateOrganizationComplete(this.orgId, profileData, settingsData);
-      
+
       this.notificationService.showSuccess('組織設定已更新');
       this.originalFormData = { ...this.formData };
-      
+
     } catch (error) {
       this.notificationService.showError(`更新失敗: ${error instanceof Error ? error.message : '未知錯誤'}`);
     } finally {

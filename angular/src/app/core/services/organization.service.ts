@@ -1,38 +1,37 @@
 // src/app/core/services/organization.service.ts
 
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import {
+  DocumentData,
   Firestore,
-  doc,
-  docData,
   collection,
   collectionData,
-  query,
-  where,
-  addDoc,
-  setDoc,
-  updateDoc,
   deleteDoc,
+  doc,
+  docData,
   getDoc,
   getDocs,
-  writeBatch,
-  DocumentData
+  query,
+  setDoc,
+  updateDoc,
+  where,
+  writeBatch
 } from '@angular/fire/firestore';
-import { Observable, map, switchMap, combineLatest, of, catchError, throwError, firstValueFrom } from 'rxjs';
-import { 
-  Organization, 
-  OrganizationMember, 
+import { Observable, catchError, firstValueFrom, map, switchMap, throwError } from 'rxjs';
+import {
+  OrgRole,
+  Organization,
+  OrganizationMember,
+  PermissionVO,
+  ProfileVO,
+  SettingsVO,
   Team,
   TeamMember,
-  OrgRole,
-  TeamRole,
-  ProfileVO,
-  PermissionVO,
-  SettingsVO
+  TeamRole
 } from '../models/auth.model';
 import { ValidationUtils } from '../utils/validation.utils';
-import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { AuthService } from './auth.service';
+import { ErrorLoggingService } from './error-handling/error-logging.service';
 import { NotificationService } from './notification.service';
 
 @Injectable({ providedIn: 'root' })
@@ -169,21 +168,21 @@ export class OrganizationService {
     // 使用 where 查詢直接在資料庫層面過濾組織
     const accountsCol = collection(this.firestore, 'accounts');
     const q = query(
-      accountsCol, 
+      accountsCol,
       where('type', '==', 'organization')
     );
-    
+
     return collectionData(q, { idField: 'id' }).pipe(
       switchMap(async (organizations) => {
         // 檢查用戶是否為這些組織的成員
         const userOrganizations: Organization[] = [];
-        
+
         for (const org of organizations) {
           try {
             // 檢查成員文檔是否存在
             const memberRef = doc(this.firestore, `accounts/${org.id}/members/${userId}`);
             const memberDoc = await getDoc(memberRef);
-            
+
             if (memberDoc.exists()) {
               userOrganizations.push(org as Organization);
             }
@@ -210,7 +209,7 @@ export class OrganizationService {
             // 繼續處理其他組織，不中斷整個流程
           }
         }
-        
+
         return userOrganizations;
       }),
       catchError((error: any) => {
@@ -554,17 +553,17 @@ export class OrganizationService {
 
       const batch = writeBatch(this.firestore);
       const orgRef = doc(this.firestore, `accounts/${orgId}`);
-      
+
       // 添加更新操作到批次
-      batch.update(orgRef, { 
+      batch.update(orgRef, {
         profile: { ...profile },
         settings: { ...settings },
         updatedAt: new Date()
       });
-      
+
       // 執行批次操作
       await batch.commit();
-      
+
       // 更新本地狀態
       const currentOrg = this._currentOrganization();
       if (currentOrg && currentOrg.id === orgId) {
@@ -611,40 +610,40 @@ export class OrganizationService {
       // 檢查是否為擁有者
       const currentUser = this.authService.currentAccount();
       const org = await firstValueFrom(this.getOrganization(orgId));
-      
+
       if (!org || org.ownerId !== currentUser?.id) {
         throw new Error('只有組織擁有者可以刪除組織');
       }
 
       // 刪除組織及其所有子集合
       const batch = writeBatch(this.firestore);
-      
+
       // 刪除成員子集合
       const membersRef = collection(this.firestore, `accounts/${orgId}/members`);
       const membersSnapshot = await getDocs(membersRef);
       membersSnapshot.forEach(doc => {
         batch.delete(doc.ref);
       });
-      
+
       // 刪除團隊子集合
       const teamsRef = collection(this.firestore, `accounts/${orgId}/teams`);
       const teamsSnapshot = await getDocs(teamsRef);
       teamsSnapshot.forEach(doc => {
         batch.delete(doc.ref);
       });
-      
+
       // 刪除組織文檔
       const orgRef = doc(this.firestore, `accounts/${orgId}`);
       batch.delete(orgRef);
-      
+
       await batch.commit();
-      
+
       this.notificationService.showSuccess('組織已刪除');
     } catch (error) {
       const errorMessage = `刪除組織失敗: ${error instanceof Error ? error.message : '未知錯誤'}`;
       this._error.set(errorMessage);
       this.notificationService.showError(errorMessage);
-      
+
       // 記錄詳細錯誤信息
       this.errorLoggingService.logError(
         {
@@ -664,7 +663,7 @@ export class OrganizationService {
         },
         ['organization', 'delete', 'permission']
       );
-      
+
       throw error;
     } finally {
       this._isLoading.set(false);
