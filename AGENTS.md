@@ -284,11 +284,11 @@ Graph Bank System 整合了多個 MCP (Model Context Protocol) 服務，提供�
 **rmx7 標準執行命令（雙輸出格式）：**
 
 ```bash
-# 輸出 Markdown 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ./angular/angular-dev-focused.md
+# 輸出 Markdown 格式（在專案根目錄執行，路徑加上 angular/ 前綴）
+npx repomix --ignore "node_modules/**,angular/node_modules/**,yarn.lock,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
 
-# 輸出 XML 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ./angular/angular-dev-analysis.xml
+# 輸出 XML 格式（在專案根目錄執行，路徑加上 angular/ 前綴）
+npx repomix --ignore "node_modules/**,angular/node_modules/**,yarn.lock,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style xml --output angular/angular-dev-analysis.xml
 ```
 
 | `cdt7` | Chrome DevTools | 瀏覽器除錯 | 網頁除錯、效能分析 | `.cursor/rules/chrome-devtools.mdc` | v1.0+ |
@@ -359,7 +359,7 @@ cdt7: 檢查 JavaScript 錯誤和網路請求
 # Repomix 程式碼分析 - 標準執行方式
 rmx7: 分析專案結構並生成程式碼摘要
 # 執行命令：
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ./angular/angular-dev-focused.md
+npx repomix --ignore "node_modules/**,angular/node_modules/**,yarn.lock,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
 
 # Codacy 品質檢查
 codacy7: 檢查 TypeScript 程式碼品質
@@ -391,9 +391,9 @@ mem7: 記錄技術升級決策和原因
 rmx7: 分析現有程式碼結構和依賴關係
 # 執行命令（雙輸出格式）：
 # 輸出 Markdown 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ./angular/angular-dev-focused.md
+npx repomix --ignore "node_modules/**,angular/node_modules/**,yarn.lock,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
 # 輸出 XML 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ./angular/angular-dev-analysis.xml
+npx repomix --ignore "node_modules/**,angular/node_modules/**,yarn.lock,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style xml --output angular/angular-dev-analysis.xml
 st7: 識別重構機會和潛在問題
 uc7: 查詢重構相關的最佳實踐
 st7: 制定重構計劃和實施步驟
