@@ -357,9 +357,9 @@ mem7: 記錄技術升級決策和原因
 rmx7: 分析現有程式碼結構和依賴關係
 # 執行命令（雙輸出格式）：
 # 輸出 Markdown 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ../angular-dev-focused.md
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style markdown --output ./angular-dev-focused.md
 # 輸出 XML 格式
-npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ../angular-dev-analysis.xml
+npx repomix --ignore "node_modules/**,yarn.lock,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,.angular/**,public/**,*.spec.ts,*.spec.js,firebase.json,tsconfig.spec.json" --include "src/**/*.ts,src/**/*.html,src/**/*.scss,angular.json,package.json,tsconfig.json,tsconfig.app.json" --compress --style xml --output ./angular-dev-analysis.xml
 st7: 識別重構機會和潛在問題
 uc7: 查詢重構相關的最佳實踐
 st7: 制定重構計劃和實施步驟

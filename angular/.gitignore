@@ -46,3 +46,7 @@ src/environments/environment.ts
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
