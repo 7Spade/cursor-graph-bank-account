@@ -1,0 +1,14 @@
+# Cursor AI 忽略檔案
+# 防止 AI agent 在根目錄建立 src 資料夾
+
+# 根目錄不應該有 src 資料夾
+/src/
+
+# 其他應該忽略的根目錄檔案
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 但保留 angular/src
+!angular/src/

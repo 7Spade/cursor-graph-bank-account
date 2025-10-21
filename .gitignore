@@ -4,11 +4,19 @@ Thumbs.db
 desktop.ini
 
 # Editor specific files
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
+
+# Encoding and temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+.#*
+#*#
 
 # Node.js
 node_modules/
@@ -69,15 +77,10 @@ pids
 *.pid.lock
 
 # Cursor specific
-.cursor/workspace/ 
+.cursor/workspace/
 
 #claude.code specific
 .claude/
 CLAUDE.md
 
-#Ignore vscode AI rules
-.github\instructions\codacy.instructions.md
-
-
-#Ignore cursor AI rules
-.cursor\rules\codacy.mdc
+.env

@@ -100,18 +100,14 @@
     },
     "Context7": {
       "url": "https://mcp.context7.com/mcp",
-      "headers": {},
+      "env": {
+        "CONTEXT7_API_KEY": "ctx7sk-f874ea42-89d4-4d71-b531-cdd58f814e7d"
+      },
+      "disabled": false,
       "autoApprove": [
         "resolve-library-id",
         "get-library-docs"
-      ],
-      "retry": {
-        "enabled": true,
-        "maxAttempts": 3,
-        "delay": 3000,
-        "backoffMultiplier": 1.5,
-        "maxDelay": 12000
-      }
+      ]
     },
     "repomix": {
       "command": "npx",

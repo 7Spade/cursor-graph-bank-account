@@ -1,5 +1,26 @@
 # Graph Bank System - AI 輔助開發代理系統
 
+## ⚠️ 專案配置（重要）
+
+**包管理器：PNPM**
+- ✅ **必須使用**: `pnpm`
+- ❌ **禁止使用**: `npm` 或 `yarn`
+- 📁 **Angular 專案目錄**: `angular/`
+- 🔧 **正確命令格式**: `cd angular && pnpm [command]`
+
+**範例命令：**
+```bash
+# ✅ 正確
+cd angular && pnpm install
+cd angular && pnpm run start
+cd angular && pnpm run build
+
+# ❌ 錯誤
+npm install
+npm run start
+pnpm install  # (在根目錄執行)
+```
+
 ## 專案概述
 
 Graph Bank System 是一個先進的 AI 輔助開發系統，專為優化 Cursor 編輯器中的 AI 輔助開發工作流程而設計。本系統採用分層規則載入架構和記憶銀行（Memory Bank）技術，提供結構化的開發流程和跨會話的上下文維護。
@@ -21,9 +42,9 @@ graph TD
     PB[projectbrief.md] --> PC[productContext.md]
     PB --> SP[systemPatterns.md]
     PB --> TC[techContext.md]
-    
+
     PC & SP & TC --> AC[activeContext.md]
-    
+
     AC --> P[progress.md]
     AC --> Tasks[tasks.md]
 
@@ -45,7 +66,7 @@ graph TD
     Main --> Visual["Visual Process Maps"]
     Main --> Token["Token Optimization"]
     Main --> MCP["MCP Services Integration"]
-    
+
     Modes --> INIT["INIT: Pure Initialization"]
     Modes --> VAN["VAN: Technical Validation"]
     Modes --> PLAN["PLAN: Task Planning"]
@@ -53,11 +74,11 @@ graph TD
     Modes --> IMPLEMENT["IMPLEMENT: Building"]
     Modes --> REFLECT["REFLECT: Review & Reflection"]
     Modes --> ARCHIVE["ARCHIVE: Documentation"]
-    
+
     MCP --> Core["Core MCP Services"]
     MCP --> ModeSpecific["Mode-Specific Services"]
     MCP --> LangGraph["LangGraph Reflection"]
-    
+
     style Main fill:#4da6ff,stroke:#0066cc,color:white
     style Modes fill:#f8d486,stroke:#e8b84d,color:black
     style Rules fill:#80ffaa,stroke:#4dbb5f,color:black
@@ -69,7 +90,9 @@ graph TD
 ## 開發模式說明
 
 ### 🚀 INIT Mode - 純初始化模式
+
 **用途**：Graph Bank 基礎結構創建
+
 - Graph Bank 目錄結構創建
 - 核心檔案初始化（tasks.md, activeContext.md, progress.md, projectbrief.md）
 - 子目錄創建（creative/, reflection/, archive/）
@@ -77,35 +100,45 @@ graph TD
 - 記憶銀行狀態更新
 
 ### 🔍 VAN Mode - 技術驗證模式
+
 **用途**：專案初始化和複雜度評估
+
 - 平台檢測和文件驗證
 - 專案結構分析
-- 複雜度等級確定（1-4級）
+- 複雜度等級確定（1-4 級）
 - 開發環境配置
 
 ### 📋 PLAN Mode - 規劃模式
+
 **用途**：任務規劃和實施策略制定
+
 - 需求分析和組件識別
 - 實施策略制定
 - 依賴關係分析
 - 創意階段組件標記
 
 ### 🎨 CREATIVE Mode - 創意模式
+
 **用途**：設計決策和架構探索
+
 - 多選項設計探索
 - 優缺點分析
 - 架構決策制定
 - 實施指導原則
 
 ### ⚒️ IMPLEMENT Mode - 實施模式
+
 **用途**：系統化代碼實施
+
 - 按計劃實施組件
 - 命令執行和測試
 - 進度追蹤
 - 整合驗證
 
 ### 🔍 REFLECT Mode - 反思模式
+
 **用途**：代碼審查和經驗總結（整合 LangGraph Reflection）
+
 - LLM-as-a-Judge 評估機制
 - Codacy 靜態代碼分析
 - 反思圖創建和迭代改進循環
@@ -115,7 +148,9 @@ graph TD
 - 知識文檔化
 
 ### 📚 ARCHIVE Mode - 歸檔模式
+
 **用途**：專案文檔和知識保存
+
 - 綜合文檔創建
 - 知識庫更新
 - 專案總結
@@ -124,21 +159,25 @@ graph TD
 ## 複雜度等級系統
 
 ### Level 1: 快速修復
+
 - **適用場景**：簡單的 Bug 修復
 - **工作流程**：INIT → VAN → IMPLEMENT → REFLECT
 - **文檔要求**：最小化文檔模板
 
 ### Level 2: 簡單增強
+
 - **適用場景**：功能增強和小型改進
 - **工作流程**：INIT → VAN → PLAN → IMPLEMENT → REFLECT
 - **文檔要求**：簡化規劃模板
 
 ### Level 3: 中級功能
+
 - **適用場景**：新功能開發
 - **工作流程**：INIT → VAN → PLAN → CREATIVE → IMPLEMENT → REFLECT → ARCHIVE
 - **文檔要求**：全面規劃和創意探索
 
 ### Level 4: 企業級系統
+
 - **適用場景**：複雜系統開發
 - **工作流程**：完整七階段流程
 - **文檔要求**：分層文檔模板和治理控制
@@ -191,6 +230,7 @@ Graph Bank 的 CREATIVE 模式基於 Anthropic Claude 的 "Think" 工具方法�
 ### 視覺化流程圖
 
 每個模式都包含嵌入的 Mermaid 圖表，提供：
+
 - 清晰的視覺指導
 - 決策點和條件分支
 - 進度檢查點
@@ -199,16 +239,19 @@ Graph Bank 的 CREATIVE 模式基於 Anthropic Claude 的 "Think" 工具方法�
 ## 專案狀態
 
 ### 當前版本
+
 - **版本**：v0.8-beta
 - **狀態**：積極開發中
 - **主要改進**：完整七模式系統、MCP 服務整合、LangGraph Reflection
 
 ### 系統要求
+
 - **Cursor 編輯器**：版本 0.48 或更高
 - **AI 模型**：Claude 4 Sonnet 或 Claude 4 Opus（推薦）
 - **自定義模式**：必須在 Cursor 中啟用
 
 ### 發展方向
+
 - 動態模板生成
 - 自動上下文摘要
 - 跨任務知識保存
@@ -221,11 +264,13 @@ Graph Bank 的 CREATIVE 模式基於 Anthropic Claude 的 "Think" 工具方法�
 Graph Bank System 現在整合了完整的 MCP (Model Context Protocol) 服務架構，每個模式都自動載入適當的 MCP 服務：
 
 ### 核心 MCP 服務（所有模式）
+
 - **filesystem.mdc**：檔案系統操作
 - **memory.mdc**：記憶銀行系統
 - **sequential-thinking.mdc**：結構化思考工具
 
 ### 模式特定 MCP 服務
+
 - **INIT**：最小服務（僅核心服務）
 - **VAN**：repomix（專案分析）
 - **PLAN**：context7, fetch（技術研究）
@@ -235,6 +280,7 @@ Graph Bank System 現在整合了完整的 MCP (Model Context Protocol) 服務�
 - **ARCHIVE**：最小服務（僅核心服務）
 
 ### LangGraph Reflection 整合
+
 - **LLM-as-a-Judge 機制**：使用單獨的 LLM 作為評判者
 - **代碼驗證反思**：使用 Codacy 進行靜態分析
 - **反思圖創建**：結合助手圖和評判圖的反思系統
@@ -246,21 +292,33 @@ Graph Bank System 整合了多個 MCP (Model Context Protocol) 服務，提供�
 
 ### 核心 MCP 服務
 
-| 觸發代碼 | MCP 服務 | 功能描述 | 主要用途 | 規則文件 | 支援版本 |
-|---------|----------|----------|----------|----------|----------|
-| `st7` | sequential-thinking | 結構化思考工具 | 複雜問題分析、決策制定 | `.cursor/rules/sequential-thinking.mdc` | v1.0+ |
-| `uc7` | Context7 | 程式庫文檔查詢 | 技術文檔檢索、API 參考 | `.cursor/rules/context7.mdc` | v1.0+ |
-| `mem7` | memory | 記憶銀行系統 | 跨會話知識保存 | `.cursor/rules/memory.mdc` | v1.0+ |
-| `fs7` | filesystem | 檔案系統操作 | 檔案讀寫、目錄管理 | `.cursor/rules/filesystem.mdc` | v1.0+ |
-| `fetch7` | fetch | 網路內容獲取 | 網頁抓取、API 調用 | `.cursor/rules/fetch.mdc` | v1.0+ |
-| `pw7` | playwright | 瀏覽器自動化 | 網頁測試、截圖 | `.cursor/rules/playwright.mdc` | v1.0+ |
-| `rmx7` | repomix-docker | 程式碼分析 | 專案結構分析 | `.cursor/rules/repomix.mdc` | v1.0+ |
+| 觸發代碼 | MCP 服務            | 功能描述       | 主要用途               | 規則文件                                | 支援版本 |
+| -------- | ------------------- | -------------- | ---------------------- | --------------------------------------- | -------- |
+| `st7`    | sequential-thinking | 結構化思考工具 | 複雜問題分析、決策制定 | `.cursor/rules/sequential-thinking.mdc` | v1.0+    |
+| `uc7`    | Context7            | 程式庫文檔查詢 | 技術文檔檢索、API 參考 | `.cursor/rules/context7.mdc`            | v1.0+    |
+| `mem7`   | memory              | 記憶銀行系統   | 跨會話知識保存         | `.cursor/rules/memory.mdc`              | v1.0+    |
+| `fs7`    | filesystem          | 檔案系統操作   | 檔案讀寫、目錄管理     | `.cursor/rules/filesystem.mdc`          | v1.0+    |
+| `fetch7` | fetch               | 網路內容獲取   | 網頁抓取、API 調用     | `.cursor/rules/fetch.mdc`               | v1.0+    |
+| `pw7`    | playwright          | 瀏覽器自動化   | 網頁測試、截圖         | `.cursor/rules/playwright.mdc`          | v1.0+    |
+| `rmx7`   | repomix-docker      | 程式碼分析     | 專案結構分析           | `.cursor/rules/repomix.mdc`             | v1.0+    |
+
+**rmx7 標準執行命令（雙輸出格式）：**
+
+```bash
+# 輸出 Markdown 格式（在專案根目錄執行，路徑加上 angular/ 前綴）
+npx repomix --ignore "node_modules/**,angular/node_modules/**,pnpm-lock.yaml,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
+
+# 輸出 XML 格式（在專案根目錄執行，路徑加上 angular/ 前綴）
+npx repomix --ignore "node_modules/**,angular/node_modules/**,pnpm-lock.yaml,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style xml --output angular/angular-dev-analysis.xml
+```
+
 | `cdt7` | Chrome DevTools | 瀏覽器除錯 | 網頁除錯、效能分析 | `.cursor/rules/chrome-devtools.mdc` | v1.0+ |
 | `codacy7` | codacy | 程式碼品質檢查 | 靜態分析、安全檢查 | `.cursor/rules/codacy.mdc` | v1.0+ |
 
 ### 使用範例
 
 #### 完整技術分析工作流程
+
 ```bash
 # 步驟 1: 使用 st7 查看資料夾結構
 st7: 分析當前專案目錄結構，識別所有技術相關檔案
@@ -278,6 +336,7 @@ st7: 制定技術升級計劃和優先順序
 ```
 
 #### 結構化思考與分析
+
 ```bash
 # 複雜問題分析
 st7: 分析微服務架構與單體架構的優缺點，考慮可擴展性和維護性
@@ -292,6 +351,7 @@ mem7: 保存使用者偏好：偏好使用 Tailwind CSS
 ```
 
 #### 檔案與網路操作
+
 ```bash
 # 檔案系統操作
 fs7: 讀取 package.json 並分析依賴關係
@@ -303,6 +363,7 @@ fetch7: 抓取技術部落格文章內容
 ```
 
 #### 瀏覽器自動化與測試
+
 ```bash
 # Playwright 自動化
 pw7: 截取網站首頁並保存為 PNG
@@ -314,10 +375,12 @@ cdt7: 檢查 JavaScript 錯誤和網路請求
 ```
 
 #### 程式碼分析與品質檢查
+
 ```bash
-# Repomix 程式碼分析
+# Repomix 程式碼分析 - 標準執行方式
 rmx7: 分析專案結構並生成程式碼摘要
-rmx7: 檢查大型專案的依賴關係
+# 執行命令：
+npx repomix --ignore "node_modules/**,angular/node_modules/**,pnpm-lock.yaml,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
 
 # Codacy 品質檢查
 codacy7: 檢查 TypeScript 程式碼品質
@@ -325,6 +388,7 @@ codacy7: 掃描安全漏洞和依賴問題
 ```
 
 #### 整合使用範例
+
 ```bash
 # 完整的開發工作流程
 st7: 規劃新功能的實施策略
@@ -335,6 +399,7 @@ codacy7: 檢查程式碼品質
 ```
 
 #### 進階工作流程範例
+
 ```bash
 # 專案技術棧現代化分析
 st7: 掃描專案目錄，識別所有技術檔案
@@ -345,6 +410,11 @@ mem7: 記錄技術升級決策和原因
 
 # 程式碼重構工作流程
 rmx7: 分析現有程式碼結構和依賴關係
+# 執行命令（雙輸出格式）：
+# 輸出 Markdown 格式
+npx repomix --ignore "node_modules/**,angular/node_modules/**,pnpm-lock.yaml,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style markdown --output angular/angular-dev-focused.md
+# 輸出 XML 格式
+npx repomix --ignore "node_modules/**,angular/node_modules/**,pnpm-lock.yaml,angular/pnpm-lock.yaml,.gitignore,.editorconfig,README.md,**/angular-fire-rolekit/**,angular/.angular/**,angular/public/**,*.spec.ts,*.spec.js,angular/firebase.json,angular/tsconfig.spec.json" --include "angular/src/**/*.ts,angular/src/**/*.html,angular/src/**/*.scss,angular/angular.json,angular/package.json,angular/tsconfig.json,angular/tsconfig.app.json" --compress --style xml --output angular/angular-dev-analysis.xml
 st7: 識別重構機會和潛在問題
 uc7: 查詢重構相關的最佳實踐
 st7: 制定重構計劃和實施步驟
@@ -368,11 +438,13 @@ pw7: 自動化效能測試和驗證
 ### MCP 服務配置與故障排除
 
 #### 配置要求
+
 - **Cursor 版本**：需要 0.48 或更高版本
 - **MCP 設定**：確保 `.cursor/mcp.json` 正確配置
 - **權限設定**：某些服務需要適當的檔案系統權限
 
 #### 常見問題解決
+
 ```bash
 # 如果 MCP 服務無法連接
 1. 檢查 .cursor/mcp.json 配置
@@ -387,6 +459,7 @@ rmx7: 確保 Docker Desktop 正在運行
 ```
 
 #### 服務狀態檢查
+
 - **記憶服務**：`mem7: 檢查記憶銀行狀態`
 - **檔案服務**：`fs7: 列出當前目錄`
 - **網路服務**：`fetch7: 測試網路連接`
@@ -406,4 +479,4 @@ rmx7: 確保 Docker Desktop 正在運行
 
 ---
 
-*此文件為 Graph Bank System v0.8-beta 的基礎說明，隨著系統的發展可能會有所變更。*
+_此文件為 Graph Bank System v0.8-beta 的基礎說明，隨著系統的發展可能會有所變更。_
