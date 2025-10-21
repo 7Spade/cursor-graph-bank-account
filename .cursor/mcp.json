@@ -107,7 +107,25 @@
       "autoApprove": [
         "resolve-library-id",
         "get-library-docs"
-      ]
+      ],
+      "retry": {
+        "enabled": true,
+        "maxAttempts": 5,
+        "delay": 1500,
+        "backoffMultiplier": 2.0,
+        "maxDelay": 12000,
+        "retryableErrors": [
+          "ECONNRESET",
+          "ETIMEDOUT",
+          "ENOTFOUND",
+          "ECONNREFUSED",
+          "timeout",
+          "network",
+          "rate_limit",
+          "server_error",
+          "service_unavailable"
+        ]
+      }
     },
     "repomix": {
       "command": "npx",
